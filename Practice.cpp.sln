@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "errMsg_initList", "errMsg_initList\errMsg_initList.vcxproj", "{DEAC8DBE-8AE7-420B-9869-9CD12111E723}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter06", "Chapter06", "{703D2151-1F30-4A72-B0B1-F4CDCDD7DEAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C++Primer", "C++Primer", "{E9C1DDC3-7388-4A07-8A49-DEC9A29C8C5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Debug|x64.ActiveCfg = Debug|x64
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Debug|x64.Build.0 = Debug|x64
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Debug|x86.ActiveCfg = Debug|Win32
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Debug|x86.Build.0 = Debug|Win32
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Release|x64.ActiveCfg = Release|x64
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Release|x64.Build.0 = Release|x64
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Release|x86.ActiveCfg = Release|Win32
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DEAC8DBE-8AE7-420B-9869-9CD12111E723} = {703D2151-1F30-4A72-B0B1-F4CDCDD7DEAA}
+		{703D2151-1F30-4A72-B0B1-F4CDCDD7DEAA} = {E9C1DDC3-7388-4A07-8A49-DEC9A29C8C5E}
+	EndGlobalSection
+EndGlobal
