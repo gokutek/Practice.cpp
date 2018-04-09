@@ -15,6 +15,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Templates", "Templates\Temp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Variadic", "Variadic\Variadic.vcxproj", "{5348B428-BBDA-4B6F-992A-93DBEB906C71}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C++Templates", "C++Templates", "{F19F9970-6575-4402-8A0A-4ED5AC73B6BC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{9BEB84A4-952A-447B-84F6-A72A187851BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{32FEC0B7-E0AE-409E-8217-A140B33C5CCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -47,6 +53,14 @@ Global
 		{5348B428-BBDA-4B6F-992A-93DBEB906C71}.Release|x64.Build.0 = Release|x64
 		{5348B428-BBDA-4B6F-992A-93DBEB906C71}.Release|x86.ActiveCfg = Release|Win32
 		{5348B428-BBDA-4B6F-992A-93DBEB906C71}.Release|x86.Build.0 = Release|Win32
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Debug|x64.ActiveCfg = Debug|x64
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Debug|x64.Build.0 = Debug|x64
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Debug|x86.ActiveCfg = Debug|Win32
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Debug|x86.Build.0 = Debug|Win32
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Release|x64.ActiveCfg = Release|x64
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Release|x64.Build.0 = Release|x64
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Release|x86.ActiveCfg = Release|Win32
+		{9BEB84A4-952A-447B-84F6-A72A187851BD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
