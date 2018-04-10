@@ -1,5 +1,8 @@
 C++ Practice
 ------------
 
-### errMsg_initList
+### Primer
+C++ Primer
 
+### Templates
+C++ Templates

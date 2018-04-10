@@ -38,6 +38,26 @@ RT _max4(T1 const& a, T2 const& b)
 }
 
 
+template<typename T>
+T const& _max5(T const& a, T const& b)
+{
+	return a > b ? a : b;
+}
+
+
+char const* _max5(char const* a, char const* b)
+{
+	return strcmp(a, b) < 0 ? b : a;
+}
+
+
+template<typename T>
+T const& _max5(T const& a, T const& b, T const& c)
+{
+	return _max5(_max5(a, b), c);
+}
+
+
 int main()
 {
 	std::cout << _max(1, 2) << std::endl;
@@ -54,6 +74,12 @@ int main()
 	std::cout << _max3<int, double, double>(110, 112.5) << std::endl;
 
 	std::cout << _max4<double>(1110, 1112.5) << std::endl;
+
+	std::cout << _max5(7, 42, 68) << std::endl;
+	const char* s1 = "s1";
+	const char* s2 = "s2";
+	const char* s3 = "s3";
+	//std::cout << _max5(s1, s2, s3) << std::endl; // C4172: 返回局部变量或临时变量的地址
 
 	return 0;
 }
