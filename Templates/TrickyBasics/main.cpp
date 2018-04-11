@@ -36,11 +36,36 @@ public:
 };
 
 
+template<typename T>
+class Base 
+{
+public:
+	void bar()
+	{
+		std::cout << __FUNCTION__ << std::endl;
+	}
+};
+
+
+template<typename T>
+class Derived : Base<T> {
+public:
+	void foo() 
+	{
+		bar(); // 调用的还是基类的，没出现书上的情况，难道是VS编译器的问题吗？
+		this->bar();
+	}
+};
+
+
 int main()
 {
 	Shell<int>::In<5>::Deep<5> deep;
 	Weird<int, 5> w;
 	w.case1(&deep);
+
+	Derived<int> bar;
+	bar.foo();
 
 	return 0;
 }
