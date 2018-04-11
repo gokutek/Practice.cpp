@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "stack.h"
 
 template<typename T>
 class Shell
@@ -58,6 +59,23 @@ public:
 };
 
 
+static void test_stack()
+{
+	Stack<int> s;
+	s.push(1);
+	s.push(2);
+	s.push(3);
+	int val = s.top();
+	s.pop();
+
+	Stack<float> sFloat;
+	sFloat.push(10.0f);
+	sFloat.push(21.2f);
+	sFloat.push(334.33f);
+	s = sFloat;
+}
+
+
 int main()
 {
 	Shell<int>::In<5>::Deep<5> deep;
@@ -67,5 +85,7 @@ int main()
 	Derived<int> bar;
 	bar.foo();
 
+	test_stack();
+	
 	return 0;
 }
