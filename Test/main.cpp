@@ -10,6 +10,7 @@
 #include <memory>
 #include <initializer_list>
 #include <stack>
+#include <type_traits>
 #include <fstream>
 #include <assert.h>
 
@@ -28,8 +29,24 @@ void test_t_type_func()
 	// 虽然ra是int&，在到test_t_type中，T被推断为int类型
 	test_t_type(ra);
 	assert(ra == 100);
-	// 强制将T设为int&
+	 //强制将T设为int&
 	test_t_type<int&>(ra);
+	assert(ra == 10);
+}
+
+
+template<typename T>
+void test_t_type2(T&& val)
+{
+	val = 10;
+}
+
+
+void test_t_type_func2()
+{
+	int a = 100;
+	int& ra = a;
+	test_t_type2(ra);
 	assert(ra == 10);
 }
 
@@ -37,6 +54,7 @@ void test_t_type_func()
 int main()
 {
 	test_t_type_func();
+	test_t_type_func2();
 
 	const char* sz = "hello"; // 指针指向的是常量
 	sz = "world"; // 可以修改指针本身以指向其它对象
