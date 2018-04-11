@@ -15,28 +15,35 @@
 
 
 template<typename T>
-void test_ref(T val)
+void test_t_type(T val)
 {
 	val = 10;
 }
 
 
-void test_ref_()
+void test_t_type_func()
 {
 	int a = 100;
 	int& ra = a;
-	test_ref(ra);
+	// 虽然ra是int&，在到test_t_type中，T被推断为int类型
+	test_t_type(ra);
 	assert(ra == 100);
+	// 强制将T设为int&
+	test_t_type<int&>(ra);
+	assert(ra == 10);
 }
 
 
 int main()
 {
+	test_t_type_func();
+
 	const char* sz = "hello"; // 指针指向的是常量
 	sz = "world"; // 可以修改指针本身以指向其它对象
 	//*sz = 'a'; // error C3892: “sz”: 不能给常量赋值
 
-	char* const sz1 = "world"; // 指针本身是常量
+	char arr[] = "world";
+	char* const sz1 = arr; // 指针本身是常量
 	*sz1 = 'W'; // 可以修改指针指向的对象的值
 	//sz1 = "test"; // error C3892: “sz1”: 不能给常量赋值
 
