@@ -68,6 +68,9 @@ static void test_stack()
 	int val = s.top();
 	s.pop();
 
+	Stack<int> s2;
+	s2 = s; // 这个调用不会走模板版本的operator=
+
 	Stack<float> sFloat;
 	sFloat.push(10.0f);
 	sFloat.push(21.2f);
