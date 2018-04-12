@@ -70,5 +70,11 @@ int main()
 	char const* sz2 = "hello"; // 同sz
 	sz2 = "world";
 	//*sz2 = 'a';
+
+	{
+		int x = 100;
+		int & const f = x;
+		f = 88;
+	}
 	return 0;
 }

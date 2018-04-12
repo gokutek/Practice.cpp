@@ -1,5 +1,8 @@
 const int* ip;    // ip is a pointer to const int
-
 int const* ip;    // ip is a pointer to int const
-
 int* const ip;    // ip is a const pointer to int
+
+
+int x = 100;
+int & const f = x; // warning C4227: 使用了记时错误: 忽略引用上的限定符
+const是不能放在&后面的，因为引用本身永远都是无法修改的
