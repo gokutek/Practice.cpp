@@ -13,6 +13,7 @@
 #include <type_traits>
 #include <fstream>
 #include <assert.h>
+#include "reflection.h"
 
 
 template<typename T>
@@ -53,6 +54,7 @@ void test_t_type_func2()
 
 int main()
 {
+	reflection::reflection_unite_test();
 	test_t_type_func();
 	test_t_type_func2();
 

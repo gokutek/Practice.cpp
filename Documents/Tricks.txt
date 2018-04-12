@@ -1,0 +1,5 @@
+const int* ip;    // ip is a pointer to const int
+
+int const* ip;    // ip is a pointer to int const
+
+int* const ip;    // ip is a const pointer to int
