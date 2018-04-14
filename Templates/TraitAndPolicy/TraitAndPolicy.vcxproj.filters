@@ -18,5 +18,8 @@
     <ClInclude Include="accumtraits3.hpp">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="accum5.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

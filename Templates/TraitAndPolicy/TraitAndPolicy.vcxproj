@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="accum1.hpp" />
+    <ClInclude Include="accum5.hpp" />
     <ClInclude Include="accumtraits3.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
