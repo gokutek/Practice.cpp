@@ -33,5 +33,8 @@
     <ClInclude Include="sizeof.hpp">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="elementtype.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

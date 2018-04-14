@@ -5,6 +5,7 @@
 #include "accum6.hpp"
 #include "sumpolicy2.hpp"
 #include "sizeof.hpp"
+#include "elementtype.hpp"
 
 
 int main()
@@ -50,6 +51,10 @@ int main()
 	std::cout << TypeSize<char>::value << std::endl;
 	std::cout << TypeSize<int>::value << std::endl;
 	std::cout << TypeSize<int64_t>::value << std::endl;
+
+	std::cout << "- test: print_element_type" << std::endl;
+	print_element_type(std::vector<int>());
+	print_element_type(std::list<float>());
 
 	return 0;
 }
