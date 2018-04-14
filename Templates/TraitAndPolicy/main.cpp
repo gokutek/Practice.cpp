@@ -39,5 +39,8 @@ int main()
 	std::cout << "- test: accum7" << std::endl;
 	std::cout << accum7(num, num + 5) << std::endl;
 
+	std::cout << "- test: accum8" << std::endl;
+	std::cout << accum8(num, num + 5) << std::endl;
+
 	return 0;
 }

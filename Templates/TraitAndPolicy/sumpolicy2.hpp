@@ -57,4 +57,38 @@ template<typename T,
 	return total;
 }
 
+
+/*
+===============================================================================
+与accum7相比：
+Policy<Trait::TRet, T>::accum(total, *beg);
+改为了：
+Policy<Trait, T>::accum(total, *beg);
+直接将Trait传给Policy。
+===============================================================================
+*/
+template<typename Tait, typename T>
+struct SumPolicy8
+{
+	static void accum(typename Tait::TRet& total, T const& val)
+	{
+		total += val;
+	}
+};
+
+
+template<typename T,
+	template<typename, typename> class Policy = SumPolicy8,
+	typename Trait = AccumTraits7<T> >
+	inline typename Trait::TRet accum8(T const* beg, T const* end)
+{
+	typename Trait::TRet total = Trait::zero();
+	while (beg != end) {
+		Policy<Trait, T>::accum(total, *beg);
+		++beg;
+	}
+	return total;
+}
+
+
 #endif // SUMPOLICY2_HPP
