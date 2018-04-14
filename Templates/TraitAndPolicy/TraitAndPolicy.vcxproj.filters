@@ -30,5 +30,8 @@
     <ClInclude Include="accum0.hpp">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="sizeof.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

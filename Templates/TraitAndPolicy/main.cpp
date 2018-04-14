@@ -4,6 +4,7 @@
 #include "accum5.hpp"
 #include "accum6.hpp"
 #include "sumpolicy2.hpp"
+#include "sizeof.hpp"
 
 
 int main()
@@ -44,6 +45,11 @@ int main()
 
 	std::cout << "- test: accum0" << std::endl;
 	std::cout << accum8(num, num + 5) << std::endl;
+
+	std::cout << "- test: TypeSize" << std::endl;
+	std::cout << TypeSize<char>::value << std::endl;
+	std::cout << TypeSize<int>::value << std::endl;
+	std::cout << TypeSize<int64_t>::value << std::endl;
 
 	return 0;
 }

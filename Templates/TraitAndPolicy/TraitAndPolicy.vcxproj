@@ -154,6 +154,7 @@
     <ClInclude Include="accum5.hpp" />
     <ClInclude Include="accum6.hpp" />
     <ClInclude Include="accumtraits3.hpp" />
+    <ClInclude Include="sizeof.hpp" />
     <ClInclude Include="sumpolicy2.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
