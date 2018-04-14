@@ -2,6 +2,7 @@
 #include "accum1.hpp"
 #include "accumtraits3.hpp"
 #include "accum5.hpp"
+#include "accum6.hpp"
 
 
 int main()
@@ -29,6 +30,10 @@ int main()
 	std::cout << "- test: accum5" << std::endl;
 	std::cout << accum5(num, num + 5) << std::endl;
 	std::cout << accum5(name, name + strlen(name)) << std::endl;
+
+	std::cout << "- test: accum6" << std::endl;
+	std::cout << accum6(num, num + 5) << std::endl;
+	std::cout << accum6<int, MulPolicy>(num, num + 5) << std::endl; // 输出了0，乘法的初值应该是1
 
 	return 0;
 }
