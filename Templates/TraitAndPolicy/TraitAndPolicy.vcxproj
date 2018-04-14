@@ -154,6 +154,7 @@
     <ClInclude Include="accum5.hpp" />
     <ClInclude Include="accum6.hpp" />
     <ClInclude Include="accumtraits3.hpp" />
+    <ClInclude Include="apply1.hpp" />
     <ClInclude Include="elementtype.hpp" />
     <ClInclude Include="isclasst.hpp" />
     <ClInclude Include="sizeof.hpp" />

@@ -7,6 +7,7 @@
 #include "sizeof.hpp"
 #include "elementtype.hpp"
 #include "isclasst.hpp"
+#include "apply1.hpp"
 
 
 int main()
@@ -67,6 +68,8 @@ int main()
 	
 	enum Bar {};
 	std::cout << IsClassT<Bar>::Yes << std::endl;
+
+	UnitTest_Apply1();
 
 	return 0;
 }

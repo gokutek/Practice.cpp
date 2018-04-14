@@ -39,5 +39,8 @@
     <ClInclude Include="isclasst.hpp">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="apply1.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
