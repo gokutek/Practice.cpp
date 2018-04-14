@@ -149,6 +149,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="accum0.hpp" />
     <ClInclude Include="accum1.hpp" />
     <ClInclude Include="accum5.hpp" />
     <ClInclude Include="accum6.hpp" />

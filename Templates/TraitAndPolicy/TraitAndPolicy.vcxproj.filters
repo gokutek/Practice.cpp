@@ -27,5 +27,8 @@
     <ClInclude Include="sumpolicy2.hpp">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="accum0.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
