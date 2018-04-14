@@ -73,7 +73,8 @@ int main()
 
 	{
 		int x = 100;
-		int & const f = x;
+		//int & const f = x; // warning C4227: 使用了记时错误: 忽略引用上的限定符
+		int & f = x;
 		f = 88;
 	}
 	return 0;
