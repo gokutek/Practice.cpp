@@ -6,6 +6,7 @@
 #include "sumpolicy2.hpp"
 #include "sizeof.hpp"
 #include "elementtype.hpp"
+#include "isclasst.hpp"
 
 
 int main()
@@ -55,6 +56,17 @@ int main()
 	std::cout << "- test: print_element_type" << std::endl;
 	print_element_type(std::vector<int>());
 	print_element_type(std::list<float>());
+
+	std::cout << "- test: IsClassT" << std::endl;
+	std::cout << IsClassT<int>::Yes << std::endl;
+	std::cout << IsClassT<std::string>::Yes << std::endl;
+	std::cout << IsClassT<std::vector<int> >::Yes << std::endl;
+
+	struct Foo {};
+	std::cout << IsClassT<Foo>::Yes << std::endl;
+	
+	enum Bar {};
+	std::cout << IsClassT<Bar>::Yes << std::endl;
 
 	return 0;
 }
