@@ -3,6 +3,7 @@
 #include "accumtraits3.hpp"
 #include "accum5.hpp"
 #include "accum6.hpp"
+#include "sumpolicy2.hpp"
 
 
 int main()
@@ -34,6 +35,9 @@ int main()
 	std::cout << "- test: accum6" << std::endl;
 	std::cout << accum6(num, num + 5) << std::endl;
 	std::cout << accum6<int, MulPolicy>(num, num + 5) << std::endl; // 输出了0，乘法的初值应该是1
+
+	std::cout << "- test: accum7" << std::endl;
+	std::cout << accum7(num, num + 5) << std::endl;
 
 	return 0;
 }
