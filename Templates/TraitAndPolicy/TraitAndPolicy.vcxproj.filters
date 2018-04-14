@@ -42,5 +42,8 @@
     <ClInclude Include="apply1.hpp">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="ifthenelse.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

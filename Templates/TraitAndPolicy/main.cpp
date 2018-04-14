@@ -8,6 +8,7 @@
 #include "elementtype.hpp"
 #include "isclasst.hpp"
 #include "apply1.hpp"
+#include "ifthenelse.hpp"
 
 
 int main()

@@ -156,6 +156,7 @@
     <ClInclude Include="accumtraits3.hpp" />
     <ClInclude Include="apply1.hpp" />
     <ClInclude Include="elementtype.hpp" />
+    <ClInclude Include="ifthenelse.hpp" />
     <ClInclude Include="isclasst.hpp" />
     <ClInclude Include="sizeof.hpp" />
     <ClInclude Include="sumpolicy2.hpp" />
