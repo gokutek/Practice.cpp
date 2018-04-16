@@ -71,6 +71,38 @@ void truncate(MyString<T> const&, int)
 }
 
 
+class BadString
+{
+public:
+	BadString(char const*)
+	{
+
+	}
+
+	char& operator[](size_t index)
+	{
+		return str_[index];
+	}
+
+	char const & operator[](size_t index) const
+	{
+		return str_[index];
+	}
+
+	operator char*()
+	{
+		return (char*)str_.c_str();
+	}
+
+	operator char const*()
+	{
+		return str_.c_str();
+	}
+
+private:
+	std::string str_;
+};
+
 int main()
 {
 	//combine(1, 2); // 二义性
@@ -81,5 +113,7 @@ int main()
 	truncate<char>("HelloWorld", 5);
 	//truncate("HelloWorld", 5); // 编译错误，在模板实参的演绎过程中，并不会考虑这种由单参数构造函数所提供的隐式转型
 
+	BadString str("correkt");
+	//str[5] = 'c'; // 编译错误：上面的4个函数可能都匹配
 	return 0;
 }
