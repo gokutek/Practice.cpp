@@ -22,6 +22,14 @@ struct Edge
 	{
 		return weight_ < other.weight_;
 	}
+
+	Edge(Edge const &other)
+	{
+		std::cout << __FUNCTION__ << std::endl;
+		this->v_ = other.v_;
+		this->w_ = other.w_;
+		this->weight_ = other.weight_;
+	}
 };
 
 
