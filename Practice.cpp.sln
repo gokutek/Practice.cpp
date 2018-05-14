@@ -47,6 +47,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashMT", "Examples\CrashMT
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "priority_queue", "Examples\priority_queue\priority_queue.vcxproj", "{3273D08C-C3AF-4CC5-AF7D-4BD86E39983C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VariadicTemplate", "Examples\VariadicTemplate\VariadicTemplate.vcxproj", "{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -159,6 +161,14 @@ Global
 		{3273D08C-C3AF-4CC5-AF7D-4BD86E39983C}.Release|x64.Build.0 = Release|x64
 		{3273D08C-C3AF-4CC5-AF7D-4BD86E39983C}.Release|x86.ActiveCfg = Release|Win32
 		{3273D08C-C3AF-4CC5-AF7D-4BD86E39983C}.Release|x86.Build.0 = Release|Win32
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Debug|x64.ActiveCfg = Debug|x64
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Debug|x64.Build.0 = Debug|x64
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Debug|x86.ActiveCfg = Debug|Win32
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Debug|x86.Build.0 = Debug|Win32
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Release|x64.ActiveCfg = Release|x64
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Release|x64.Build.0 = Release|x64
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Release|x86.ActiveCfg = Release|Win32
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -182,5 +192,6 @@ Global
 		{509B2446-899E-4BF8-B499-7A777B9C9EED} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 		{F19215A5-B6A0-4AC0-8A74-CD98FF4A6AD2} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 		{3273D08C-C3AF-4CC5-AF7D-4BD86E39983C} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
+		{D6A3E2D5-5B5C-4B1A-853F-02E0DA7AD57A} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 	EndGlobalSection
 EndGlobal
