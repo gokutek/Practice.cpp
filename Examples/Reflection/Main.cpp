@@ -1,7 +1,8 @@
 #include <vector>
 #include "Reflect.h"
 
-struct Node {
+struct Node 
+{
     std::string key;
     int value;
     std::vector<Node> children;
@@ -9,7 +10,17 @@ struct Node {
     REFLECT()       // Enable reflection for this type
 };
 
-int main() {
+
+// Define Node's type descriptor
+REFLECT_STRUCT_BEGIN(Node)
+REFLECT_STRUCT_MEMBER(key)
+REFLECT_STRUCT_MEMBER(value)
+REFLECT_STRUCT_MEMBER(children)
+REFLECT_STRUCT_END()
+
+
+int main() 
+{
     // Create an object of type Node
     Node node = {"apple", 3, {{"banana", 7, {}}, {"cherry", 11, {}}}};
 
@@ -21,10 +32,3 @@ int main() {
 
     return 0;
 }
-
-// Define Node's type descriptor
-REFLECT_STRUCT_BEGIN(Node)
-REFLECT_STRUCT_MEMBER(key)
-REFLECT_STRUCT_MEMBER(value)
-REFLECT_STRUCT_MEMBER(children)
-REFLECT_STRUCT_END()

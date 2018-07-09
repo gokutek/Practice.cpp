@@ -9,9 +9,10 @@ namespace reflect {
 // Base class of all type descriptors
 //--------------------------------------------------------
 
-struct TypeDescriptor {
-    const char* name;
-    size_t size;
+struct TypeDescriptor
+{
+    const char* name;   // 类型名称
+    size_t size;        // sizeof(T)
 
     TypeDescriptor(const char* name, size_t size) : name{name}, size{size} {}
     virtual ~TypeDescriptor() {}
@@ -27,55 +28,73 @@ struct TypeDescriptor {
 template <typename T>
 TypeDescriptor* getPrimitiveDescriptor();
 
+
 // A helper class to find TypeDescriptors in different ways:
-struct DefaultResolver {
+struct DefaultResolver
+{
     template <typename T> static char func(decltype(&T::Reflection));
+
     template <typename T> static int func(...);
+
     template <typename T>
-    struct IsReflected {
+    struct IsReflected
+    {
         enum { value = (sizeof(func<T>(nullptr)) == sizeof(char)) };
     };
 
     // This version is called if T has a static member named "Reflection":
     template <typename T, typename std::enable_if<IsReflected<T>::value, int>::type = 0>
-    static TypeDescriptor* get() {
+    static TypeDescriptor* get()
+    {
         return &T::Reflection;
     }
 
     // This version is called otherwise:
     template <typename T, typename std::enable_if<!IsReflected<T>::value, int>::type = 0>
-    static TypeDescriptor* get() {
+    static TypeDescriptor* get()
+    {
         return getPrimitiveDescriptor<T>();
     }
 };
 
+
 // This is the primary class template for finding all TypeDescriptors:
 template <typename T>
-struct TypeResolver {
-    static TypeDescriptor* get() {
+struct TypeResolver
+{
+    static TypeDescriptor* get()
+    {
         return DefaultResolver::get<T>();
     }
 };
+
 
 //--------------------------------------------------------
 // Type descriptors for user-defined structs/classes
 //--------------------------------------------------------
 
-struct TypeDescriptor_Struct : TypeDescriptor {
-    struct Member {
-        const char* name;
-        size_t offset;
-        TypeDescriptor* type;
+struct TypeDescriptor_Struct : TypeDescriptor
+{
+    struct Member
+    {
+        const char* name;       // 成员变量名
+        size_t offset;          // 成员变量偏移量（相对于this）
+        TypeDescriptor* type;   // 成员变量类型
     };
 
     std::vector<Member> members;
 
-    TypeDescriptor_Struct(void (*init)(TypeDescriptor_Struct*)) : TypeDescriptor{nullptr, 0} {
+    TypeDescriptor_Struct(void (*init)(TypeDescriptor_Struct*)) : TypeDescriptor{nullptr, 0}
+    {
         init(this);
     }
-    TypeDescriptor_Struct(const char* name, size_t size, const std::initializer_list<Member>& init) : TypeDescriptor{nullptr, 0}, members{init} {
+
+    TypeDescriptor_Struct(const char* name, size_t size, const std::initializer_list<Member>& init) : TypeDescriptor{nullptr, 0}, members{init}
+    {
     }
-    virtual void dump(const void* obj, int indentLevel) const override {
+
+    virtual void dump(const void* obj, int indentLevel) const override
+    {
         std::cout << name << " {" << std::endl;
         for (const Member& member : members) {
             std::cout << std::string(4 * (indentLevel + 1), ' ') << member.name << " = ";
@@ -86,11 +105,23 @@ struct TypeDescriptor_Struct : TypeDescriptor {
     }
 };
 
+
+/*
+===============================================================================
+在类的声明中添加这个宏，声明一个静态结构体、成员函数。
+===============================================================================
+*/
 #define REFLECT() \
     friend struct reflect::DefaultResolver; \
     static reflect::TypeDescriptor_Struct Reflection; \
     static void initReflection(reflect::TypeDescriptor_Struct*);
 
+
+/*
+===============================================================================
+下面的三个宏展开后是对静态成员函数的实现，以及定义了静态成员变量。
+===============================================================================
+*/
 #define REFLECT_STRUCT_BEGIN(type) \
     reflect::TypeDescriptor_Struct type::Reflection{type::initReflection}; \
     void type::initReflection(reflect::TypeDescriptor_Struct* typeDesc) { \
@@ -99,18 +130,22 @@ struct TypeDescriptor_Struct : TypeDescriptor {
         typeDesc->size = sizeof(T); \
         typeDesc->members = {
 
+
 #define REFLECT_STRUCT_MEMBER(name) \
-            {#name, offsetof(T, name), reflect::TypeResolver<decltype(T::name)>::get()},
+            { #name, offsetof(T, name), reflect::TypeResolver<decltype(T::name)>::get() },
+
 
 #define REFLECT_STRUCT_END() \
         }; \
     }
 
+
 //--------------------------------------------------------
 // Type descriptors for std::vector
 //--------------------------------------------------------
 
-struct TypeDescriptor_StdVector : TypeDescriptor {
+struct TypeDescriptor_StdVector : TypeDescriptor
+{
     TypeDescriptor* itemType;
     size_t (*getSize)(const void*);
     const void* (*getItem)(const void*, size_t);
@@ -118,7 +153,8 @@ struct TypeDescriptor_StdVector : TypeDescriptor {
     template <typename ItemType>
     TypeDescriptor_StdVector(ItemType*)
         : TypeDescriptor{"std::vector<>", sizeof(std::vector<ItemType>)},
-                         itemType{TypeResolver<ItemType>::get()} {
+                         itemType{TypeResolver<ItemType>::get()} 
+    {
         getSize = [](const void* vecPtr) -> size_t {
             const auto& vec = *(const std::vector<ItemType>*) vecPtr;
             return vec.size();
@@ -128,10 +164,14 @@ struct TypeDescriptor_StdVector : TypeDescriptor {
             return &vec[index];
         };
     }
-    virtual std::string getFullName() const override {
+
+    virtual std::string getFullName() const override
+    {
         return std::string("std::vector<") + itemType->getFullName() + ">";
     }
-    virtual void dump(const void* obj, int indentLevel) const override {
+
+    virtual void dump(const void* obj, int indentLevel) const override
+    {
         size_t numItems = getSize(obj);
         std::cout << getFullName();
         if (numItems == 0) {
@@ -148,11 +188,14 @@ struct TypeDescriptor_StdVector : TypeDescriptor {
     }
 };
 
+
 // Partially specialize TypeResolver<> for std::vectors:
 template <typename T>
-class TypeResolver<std::vector<T>> {
+class TypeResolver<std::vector<T>>
+{
 public:
-    static TypeDescriptor* get() {
+    static TypeDescriptor* get()
+    {
         static TypeDescriptor_StdVector typeDesc{(T*) nullptr};
         return &typeDesc;
     }
