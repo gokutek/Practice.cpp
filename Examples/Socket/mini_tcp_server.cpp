@@ -151,6 +151,8 @@ int EasyTcpServer::Poll()
     fd_set exceptfds;
     FD_ZERO(&exceptfds);
 
+    // FIXME: FD_SET最多只支持64个SOCKET
+
     FD_SET(listenSock_, &readfds);
     for (std::set<SOCKET>::const_iterator iter = clientSocks_.begin(); iter != clientSocks_.end(); ++iter) {
         FD_SET(*iter, &readfds);
