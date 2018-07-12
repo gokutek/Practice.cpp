@@ -14,6 +14,7 @@
 #include <fstream>
 #include <assert.h>
 #include "reflection.h"
+#include "test_decltype.h"
 
 
 template<typename T>
@@ -54,6 +55,8 @@ void test_t_type_func2()
 
 int main()
 {
+    test_decltype();
+
 	reflection::reflection_unite_test();
 	test_t_type_func();
 	test_t_type_func2();
