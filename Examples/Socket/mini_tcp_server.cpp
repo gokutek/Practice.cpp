@@ -3,6 +3,7 @@
 #include "mini_tcp_server.h"
 
 #ifdef _MSC_VER
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <WinSock2.h>
 #endif // _MSC_VER
 
@@ -12,19 +13,19 @@ class EasyTcpServer : public IMiniTcpServer
 public:
     EasyTcpServer();
 
-    int Listen(char const *ip, int port) override;
+    int Listen(char const *ip, int port);
 
-    int Close() override;
+    int Close();
 
-    void SetOnConnectionCallback(on_connection_cb_t const cb, void *ud) override;
+    void SetOnConnectionCallback(on_connection_cb_t const cb, void *ud);
 
-    void SetOnReadCallback(on_read_cb_t const &cb, void *ud) override;
+    void SetOnReadCallback(on_read_cb_t const &cb, void *ud);
 
-    void SetOnCloseCallback(on_close_cb_t const &cb, void *ud) override;
+    void SetOnCloseCallback(on_close_cb_t const &cb, void *ud);
 
-    int Send(peer_t peer, void const *data, size_t sz) override;
+    int Send(peer_t peer, void const *data, size_t sz);
 
-    int Disconnect(peer_t peer) override;
+    int Disconnect(peer_t peer);
 
     int Poll();
 
