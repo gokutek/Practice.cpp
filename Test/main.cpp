@@ -15,6 +15,7 @@
 #include <assert.h>
 #include "reflection.h"
 #include "test_decltype.h"
+#include "test_constexpr.h"
 
 
 template<typename T>
@@ -55,6 +56,7 @@ void test_t_type_func2()
 
 int main()
 {
+    test_constexpr();
     test_decltype();
 
 	reflection::reflection_unite_test();

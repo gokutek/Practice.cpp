@@ -24,5 +24,8 @@
     <ClInclude Include="test_decltype.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="test_constexpr.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

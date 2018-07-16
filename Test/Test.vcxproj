@@ -152,6 +152,7 @@
     <ClInclude Include="my_var_list.h" />
     <ClInclude Include="my_var_list_traits.h" />
     <ClInclude Include="reflection.h" />
+    <ClInclude Include="test_constexpr.h" />
     <ClInclude Include="test_decltype.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
