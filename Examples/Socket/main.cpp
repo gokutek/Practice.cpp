@@ -1,6 +1,7 @@
 ﻿#include <iostream>
-#include <windows.h>
+#include <string>
 #include "mini_tcp_server.h"
+#include "mini_tcp_client.h"
 
 
 static void test_htons()
@@ -36,20 +37,65 @@ static void OnClose(void *ud, peer_t peer)
 }
 
 
-int main()
+static void test_server()
 {
-    WSADATA data;
-    WSAStartup(MAKEWORD(2, 2), &data);
-
     IMiniTcpServer *server = CreateServer();
     int ret = server->Listen("127.0.0.1", 8088);
     server->SetOnConnectionCallback(OnConnection, NULL);
     server->SetOnReadCallback(OnRead, server);
     server->SetOnCloseCallback(OnClose, NULL);
 
-    while (true) {
+    while (true)
+    {
         server->Poll();
     }
+}
+
+
+static void OnConnectToServer(void *ud)
+{
+    MiniTcpClient *client = (MiniTcpClient*)ud;
+    std::cout << __FUNCTION__ << std::endl;
+}
+
+
+static void OnReadServerData(void *ud, void *data, size_t sz)
+{
+    MiniTcpClient *client = (MiniTcpClient*)ud;
+    std::string str((char const *)data, (char const *)data + sz);
+    client->Send(data, sz);
+    std::cout << __FUNCTION__ << ": " << str << std::endl;
+}
+
+
+static void OnDisconnectServer(void *ud)
+{
+    MiniTcpClient *client = (MiniTcpClient*)ud;
+    std::cout << __FUNCTION__ << std::endl;
+}
+
+
+static void test_client()
+{
+    MiniTcpClient client;
+    client.Connect("127.0.0.1", 51535);
+    client.SetOnConnectCallback(OnConnectToServer, &client);
+    client.SetOnReadCallback(OnReadServerData, &client);
+    client.SetOnCloseCallback(OnDisconnectServer, &client);
+
+    while (!client.Poll())
+    {
+        Sleep(1);
+    }
+}
+
+
+int main()
+{
+    WSADATA data;
+    WSAStartup(MAKEWORD(2, 2), &data);
+
+    test_client();
 
     WSACleanup();
     return 0;

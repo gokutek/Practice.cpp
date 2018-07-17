@@ -13,9 +13,15 @@
     <ClCompile Include="mini_tcp_server.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="mini_tcp_client.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mini_tcp_server.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="mini_tcp_client.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
