@@ -1,4 +1,5 @@
 ﻿// 临时测试代码
+#include <bitset>
 #include <iostream>
 #include <string>
 #include <map>
@@ -64,9 +65,19 @@ static void func(int a, int b)
 {
 }
 
+static void test_bitset()
+{
+    std::bitset<32> bs(0xfe);
+    std::cout << bs.count() << std::endl;
+    std::cout << bs.to_string() << std::endl;
+}
+
 
 int main()
 {
+    test_bitset();
+    return -1;
+
     std::string xx = ReturnString();
     xx;
     //char const *str = ReturnString().c_str(); // 这种写法不安全！
