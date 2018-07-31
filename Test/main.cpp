@@ -54,8 +54,23 @@ void test_t_type_func2()
 }
 
 
+static std::string ReturnString()
+{
+    return "Hello";
+}
+
+
+static void func(int a, int b)
+{
+}
+
+
 int main()
 {
+    std::string xx = ReturnString();
+    xx;
+    //char const *str = ReturnString().c_str(); // 这种写法不安全！
+
     test_constexpr();
     test_decltype();
 
