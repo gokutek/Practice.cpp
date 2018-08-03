@@ -146,6 +146,14 @@ static void test_typeid()
         std::cout << "hash_code: " << info.hash_code() << std::endl;
         std::cout << "raw_name: " << info.raw_name() << std::endl;
     }
+
+    {
+        std::cout << std::endl << "typeid(Animal);" << std::endl;
+        const type_info& info = typeid(Animal);
+        std::cout << "name: " << info.name() << std::endl;
+        std::cout << "hash_code: " << info.hash_code() << std::endl;
+        std::cout << "raw_name: " << info.raw_name() << std::endl;
+    }
 }
 
 
