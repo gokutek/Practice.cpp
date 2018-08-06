@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\main.cpp" />
+    <ClCompile Include="..\..\test\panic.cpp" />
+    <ClCompile Include="..\..\test\primitive.cpp" />
+    <ClCompile Include="..\..\test\stl.cpp" />
+    <ClCompile Include="..\..\test\user.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\test_kapok.hpp" />
+    <ClInclude Include="..\..\unit_test.hpp" />
+    <ClInclude Include="..\..\kapok\DeSerializer.hpp">
+      <Filter>kapok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\kapok\Common.hpp">
+      <Filter>kapok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\kapok\Kapok.hpp">
+      <Filter>kapok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\kapok\jsonutil.hpp">
+      <Filter>kapok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\kapok\Serializer.hpp">
+      <Filter>kapok</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\kapok\traits.hpp">
+      <Filter>kapok</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="kapok">
+      <UniqueIdentifier>{19df378c-1ca5-4c1c-8181-b5c0f79d816a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
