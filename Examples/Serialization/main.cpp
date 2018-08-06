@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <tuple>
+#include <array>
 #include <type_traits>
 
 
@@ -24,7 +25,7 @@ struct Person
 };
 
 
-int main()
+static void test_Kapok()
 {
     // Kapok库的核心原理
     Person person;
@@ -34,6 +35,52 @@ int main()
     auto meta = person.Meta();
     auto p = std::get<0>(meta);
     p.second = "Lucy";
+}
 
+
+struct Person2
+{
+    std::string name;
+    int         age;
+};
+
+// 这个数组记录每个导出的变量名
+std::array<std::string, 2> arr_Person2 = { "name", "age" };
+
+static auto iguana_reflect_members(Person2 const&)
+{
+    struct reflect_members
+    {
+        constexpr decltype(auto) static apply_impl()
+        {
+            // 这个tuple对应每个变量的地址
+            return std::make_tuple(&Person2::name, &Person2::age);
+        }
+
+        using type = void;
+        using size_type = std::integral_constant<size_t, 2>;
+        static std::string name() { return "Person2"; }
+        static size_t value() { return size_type::value; }
+        static std::array<std::string, size_type::value> arr() { return arr_Person2; }
+    };
+
+    return reflect_members{};
+}
+
+
+static void test_iguana()
+{
+    Person2 val;
+    auto meta = iguana_reflect_members(val);
+    val.*std::get<0>(meta.apply_impl()) = "Jack";
+    val.*std::get<1>(meta.apply_impl()) = 66;
+    std::cout << val.name << std::endl << val.age;
+}
+
+
+int main()
+{
+    test_Kapok();
+    test_iguana();
     return 0;
 }
