@@ -2,14 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\main.cpp" />
-    <ClCompile Include="..\..\test\panic.cpp" />
-    <ClCompile Include="..\..\test\primitive.cpp" />
-    <ClCompile Include="..\..\test\stl.cpp" />
-    <ClCompile Include="..\..\test\user.cpp" />
+    <ClCompile Include="..\..\test\panic.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\primitive.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\stl.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\user.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test_kapok.hpp" />
-    <ClInclude Include="..\..\unit_test.hpp" />
     <ClInclude Include="..\..\kapok\DeSerializer.hpp">
       <Filter>kapok</Filter>
     </ClInclude>
@@ -28,10 +35,16 @@
     <ClInclude Include="..\..\kapok\traits.hpp">
       <Filter>kapok</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\unit_test.hpp">
+      <Filter>test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="kapok">
       <UniqueIdentifier>{19df378c-1ca5-4c1c-8181-b5c0f79d816a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{4de8e947-5eb0-4470-ac87-11c755c2ab44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
