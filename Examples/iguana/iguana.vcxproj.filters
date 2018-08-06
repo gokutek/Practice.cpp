@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="iguana">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="iguana\detail">
+      <UniqueIdentifier>{1a29c5e2-0919-45f5-89e0-2079cfd11721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="example">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="iguana\json.hpp">
+      <Filter>iguana</Filter>
+    </ClInclude>
+    <ClInclude Include="iguana\msgpack.hpp">
+      <Filter>iguana</Filter>
+    </ClInclude>
+    <ClInclude Include="iguana\reflection.hpp">
+      <Filter>iguana</Filter>
+    </ClInclude>
+    <ClInclude Include="iguana\xml.hpp">
+      <Filter>iguana</Filter>
+    </ClInclude>
+    <ClInclude Include="iguana\detail\itoa.hpp">
+      <Filter>iguana\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="iguana\detail\string_stream.hpp">
+      <Filter>iguana\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="iguana\detail\traits.hpp">
+      <Filter>iguana\detail</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="example\example.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
+    <ClCompile Include="iguana\detail\string_stream.cpp">
+      <Filter>iguana\detail</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
