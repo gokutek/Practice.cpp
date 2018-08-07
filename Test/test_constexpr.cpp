@@ -1,7 +1,4 @@
-﻿#ifndef test_constexpr_h
-#define test_constexpr_h
-
-#include <array>
+﻿#include <array>
 #include <vector>
 
 /*
@@ -48,7 +45,7 @@ constexpr int test_string()
 }
 
 
-inline void test_constexpr()
+void test_constexpr()
 {
 #if 0
     int i;
@@ -64,5 +61,3 @@ inline void test_constexpr()
     foo(i); // Call is Ok，i不是常量表达式，但仍然可以调用（constexpr 被忽略）
     //std::array<int, foo(i)> arr1; // Error，但是foo(i)的调用结果不是常量表达式了
 }
-
-#endif // test_constexpr_h

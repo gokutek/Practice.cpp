@@ -10,6 +10,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="test_constexpr.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="test_decltype.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="reflection.h">
@@ -19,12 +25,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="my_var_list_traits.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="test_decltype.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="test_constexpr.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

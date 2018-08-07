@@ -15,9 +15,6 @@
 #include <fstream>
 #include <assert.h>
 #include "reflection.h"
-#include "test_decltype.h"
-#include "test_constexpr.h"
-
 
 template<typename T>
 void test_t_type(T val)
@@ -157,6 +154,7 @@ static void test_typeid()
 }
 
 
+
 int main()
 {
     test_typeid();
@@ -168,6 +166,9 @@ int main()
     std::string xx = ReturnString();
     xx;
     //char const *str = ReturnString().c_str(); // 这种写法不安全！
+
+    extern void test_constexpr();
+    extern void test_decltype();
 
     test_constexpr();
     test_decltype();

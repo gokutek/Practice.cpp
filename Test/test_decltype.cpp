@@ -1,7 +1,5 @@
-﻿#ifndef TEST_DECLTYPE_H
-#define TEST_DECLTYPE_H
-
-#include <iostream>
+﻿#include <iostream>
+#include <vector>
 
 
 // 与auto一起使用
@@ -18,7 +16,7 @@ inline std::string&& test_decltype_ret_str()
 }
 
 
-inline void test_decltype()
+void test_decltype()
 {
     // decltype(x) 返回的是参数x的类型
     int i= 4;
@@ -63,5 +61,3 @@ inline void test_decltype()
     float n3 = add(100, 200.123f);
     std::cout << n3 << std::endl;
 }
-
-#endif // TEST_DECLTYPE_H
