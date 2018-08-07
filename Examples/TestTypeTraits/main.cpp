@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <vector>
 #include <type_traits>
 
 enum Sex
@@ -48,5 +49,13 @@ int main()
     std::is_empty<int>::value;
     std::is_base_of<int, long>::value;
 
+    /*
+    ===========================================================================
+    type_traits中很多"__is"开头的函数都是编译器内部实现的，看不到它们的代码
+    ===========================================================================
+    */
+    std::is_class<int>;
+    bool bRet = __is_class(int);
+    bRet = __is_class(std::vector<int>);
     return 0;
 }
