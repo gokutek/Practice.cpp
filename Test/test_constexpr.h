@@ -2,6 +2,7 @@
 #define test_constexpr_h
 
 #include <array>
+#include <vector>
 
 /*
 ===============================================================================
@@ -39,6 +40,14 @@ Point midpoint(const Point& p1, const Point& p2)
 
 constexpr auto mid = midpoint(p1, p2);
 
+
+constexpr int test_string()
+{
+    //std::string str; // error C3250: “str”: 不允许在“constexpr”函数体中进行声明
+    return 10;
+}
+
+
 inline void test_constexpr()
 {
 #if 0
@@ -46,6 +55,8 @@ inline void test_constexpr()
     const int size = i;
     int arr[size];         // 编译错误，size不是常量表达式，不能在编译期确定
 #endif
+
+    test_string();
 
     int i = 10;
     std::array<int, foo(5)> arr; // OK，5是常量表达式，计算出foo(5)也是常量表达式
