@@ -47,6 +47,12 @@ struct Person2
 // 这个数组记录每个导出的变量名
 std::array<std::string, 2> arr_Person2 = { "name", "age" };
 
+
+/*
+===============================================================================
+这个函数返回参数类型的反射信息
+===============================================================================
+*/
 static auto iguana_reflect_members(Person2 const&)
 {
     struct reflect_members
