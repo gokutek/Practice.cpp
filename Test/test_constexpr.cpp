@@ -1,5 +1,6 @@
 ﻿#include <array>
 #include <vector>
+#include <iostream>
 
 /*
 ===============================================================================
@@ -29,8 +30,7 @@ private:
 constexpr Point p1(9.4, 27);
 constexpr Point p2(28.8, 5.3);
 
-constexpr
-Point midpoint(const Point& p1, const Point& p2)
+constexpr Point midpoint(const Point& p1, const Point& p2)
 {
     return{ p1.getX() + p2.getX() / 2, p1.getY() + p2.getY() / 2 };
 }
@@ -45,6 +45,24 @@ constexpr int test_string()
 }
 
 
+static constexpr int add(int x, int y)
+{
+    return x + y;
+}
+
+
+#if 0
+// C++ 14
+constexpr int factorial2(int n)
+{
+    int result = 1;
+    for (int i = 1; i <= n; ++i)
+        result *= i;
+    return result;
+}
+#endif
+
+
 void test_constexpr()
 {
 #if 0
@@ -54,6 +72,12 @@ void test_constexpr()
 #endif
 
     test_string();
+
+    std::cout << add(1, 2) << std::endl;
+
+    int x;
+    x = 10;
+    std::cout << add(1, x) << std::endl;
 
     int i = 10;
     std::array<int, foo(5)> arr; // OK，5是常量表达式，计算出foo(5)也是常量表达式
