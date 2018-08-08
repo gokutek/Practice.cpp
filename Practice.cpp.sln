@@ -65,6 +65,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestTypeTraits", "Examples\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kapok", "ThirdParty\Kapok\vcproject\vcproject\vcproject.vcxproj", "{6302160B-5BCE-442B-B7F6-15972074585E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestBoost", "Examples\TestBoost\TestBoost.vcxproj", "{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -241,6 +243,14 @@ Global
 		{6302160B-5BCE-442B-B7F6-15972074585E}.Release|x64.Build.0 = Release|x64
 		{6302160B-5BCE-442B-B7F6-15972074585E}.Release|x86.ActiveCfg = Release|Win32
 		{6302160B-5BCE-442B-B7F6-15972074585E}.Release|x86.Build.0 = Release|Win32
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Debug|x64.ActiveCfg = Debug|x64
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Debug|x64.Build.0 = Debug|x64
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Debug|x86.ActiveCfg = Debug|Win32
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Debug|x86.Build.0 = Debug|Win32
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x64.ActiveCfg = Release|x64
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x64.Build.0 = Release|x64
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x86.ActiveCfg = Release|Win32
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -272,5 +282,6 @@ Global
 		{71F2B2DF-3871-4D2A-B40B-E541DC86BC20} = {86C39192-10BA-49F4-8C8D-A183097C699B}
 		{8E1159FD-1856-4F81-8518-319BAE337A60} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 		{6302160B-5BCE-442B-B7F6-15972074585E} = {86C39192-10BA-49F4-8C8D-A183097C699B}
+		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 	EndGlobalSection
 EndGlobal
