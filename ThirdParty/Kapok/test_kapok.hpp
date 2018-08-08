@@ -4,6 +4,8 @@
 
 int test_func(int a, int b)
 {
+    int x = GET_ARG_COUNT();
+    x = GET_ARG_COUNT(1, 2, 3);
 	return a + b;
 }
 
