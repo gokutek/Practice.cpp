@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter06", "Chapter06", "{703D2151-1F30-4A72-B0B1-F4CDCDD7DEAA}"
 EndProject
@@ -66,6 +66,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kapok", "ThirdParty\Kapok\vcproject\vcproject\vcproject.vcxproj", "{6302160B-5BCE-442B-B7F6-15972074585E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestBoost", "Examples\TestBoost\TestBoost.vcxproj", "{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "iguana", "ThirdParty\iguana\iguana.vcxproj", "{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -251,6 +253,14 @@ Global
 		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x64.Build.0 = Release|x64
 		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x86.ActiveCfg = Release|Win32
 		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2}.Release|x86.Build.0 = Release|Win32
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Debug|x64.ActiveCfg = Debug|x64
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Debug|x64.Build.0 = Debug|x64
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Debug|x86.ActiveCfg = Debug|Win32
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Debug|x86.Build.0 = Debug|Win32
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Release|x64.ActiveCfg = Release|x64
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Release|x64.Build.0 = Release|x64
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Release|x86.ActiveCfg = Release|Win32
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -283,5 +293,9 @@ Global
 		{8E1159FD-1856-4F81-8518-319BAE337A60} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 		{6302160B-5BCE-442B-B7F6-15972074585E} = {86C39192-10BA-49F4-8C8D-A183097C699B}
 		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
+		{B4500C8D-1DBF-4729-B8D7-92ECB9C627B4} = {86C39192-10BA-49F4-8C8D-A183097C699B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D0EC9EF-9A96-4423-868E-219D7038EF81}
 	EndGlobalSection
 EndGlobal

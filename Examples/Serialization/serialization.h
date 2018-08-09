@@ -24,6 +24,8 @@
 #define ARG_NAME_5(arg, ...) #arg, ARG_NAME_4(__VA_ARGS__)
 
 #define MACRO_EXPAND(...)                 __VA_ARGS__
+
+// 不用MACRO_EXPAND包一层也不能正常工作
 #define APPLY_VARIADIC_MACRO(macro, ...)  MACRO_EXPAND(macro(__VA_ARGS__))
 
 

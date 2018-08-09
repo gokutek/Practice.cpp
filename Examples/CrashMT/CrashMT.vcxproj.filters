@@ -7,8 +7,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.cpp">
-      <Filter>source</Filter>
-    </ClInclude>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>
