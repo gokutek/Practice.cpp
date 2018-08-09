@@ -149,6 +149,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_constexpr.cpp" />
     <ClCompile Include="test_decltype.cpp" />
+    <ClCompile Include="test_macro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_var_list.h" />

@@ -16,6 +16,9 @@
     <ClCompile Include="test_decltype.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="test_macro.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="reflection.h">

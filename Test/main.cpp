@@ -157,6 +157,14 @@ static void test_typeid()
 
 int main()
 {
+	extern void test_constexpr();
+	extern void test_decltype();
+	extern void test_macro();
+
+	test_constexpr();
+	test_decltype();
+	test_macro();
+
     test_typeid();
     return -1;
 
@@ -166,12 +174,6 @@ int main()
     std::string xx = ReturnString();
     xx;
     //char const *str = ReturnString().c_str(); // 这种写法不安全！
-
-    extern void test_constexpr();
-    extern void test_decltype();
-
-    test_constexpr();
-    test_decltype();
 
 	reflection::reflection_unite_test();
 	test_t_type_func();
