@@ -8,3 +8,6 @@
 
 ## iguana
 序列化库，与Kapok是同一个作者。
+
+##libevent
+libevent-2.1.8-stable
