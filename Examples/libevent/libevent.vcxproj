@@ -18,6 +18,33 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\ThirdParty\libevent\buffer.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\bufferevent.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\bufferevent_async.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\bufferevent_filter.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\bufferevent_pair.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\bufferevent_ratelim.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\bufferevent_sock.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\buffer_iocp.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evdns.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\event.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\event_iocp.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\event_tagging.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evmap.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evrpc.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evthread.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evthread_win32.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evutil.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evutil_rand.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\evutil_time.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\http.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\listener.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\log.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\signal.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\strlcpy.c" />
+    <ClCompile Include="..\..\ThirdParty\libevent\win32select.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1A091815-637E-463A-AE6D-6E1738B1DE84}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -77,6 +104,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\libevent\include;$(SolutionDir)ThirdParty\libevent\WIN32-Code\nmake;$(SolutionDir)ThirdParty\libevent\compat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -89,6 +118,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\libevent\include;$(SolutionDir)ThirdParty\libevent\WIN32-Code\nmake;$(SolutionDir)ThirdParty\libevent\compat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,6 +134,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\libevent\include;$(SolutionDir)ThirdParty\libevent\WIN32-Code\nmake;$(SolutionDir)ThirdParty\libevent\compat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,6 +152,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\libevent\include;$(SolutionDir)ThirdParty\libevent\WIN32-Code\nmake;$(SolutionDir)ThirdParty\libevent\compat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
