@@ -3,7 +3,9 @@
 #include "mini_tcp_server.h"
 
 #ifdef _MSC_VER
+#ifndef _WINSOCK_DEPRECATED_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
+#endif
 #include <WinSock2.h>
 #endif // _MSC_VER
 
