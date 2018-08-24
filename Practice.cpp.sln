@@ -69,6 +69,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestBoost", "Examples\TestB
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libevent", "Examples\libevent\libevent.vcxproj", "{1A091815-637E-463A-AE6D-6E1738B1DE84}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLibevent", "Examples\TestLibevent\TestLibevent.vcxproj", "{BB8543CA-3476-43C3-8616-C9430541D479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -261,6 +263,14 @@ Global
 		{1A091815-637E-463A-AE6D-6E1738B1DE84}.Release|x64.Build.0 = Release|x64
 		{1A091815-637E-463A-AE6D-6E1738B1DE84}.Release|x86.ActiveCfg = Release|Win32
 		{1A091815-637E-463A-AE6D-6E1738B1DE84}.Release|x86.Build.0 = Release|Win32
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Debug|x64.ActiveCfg = Debug|x64
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Debug|x64.Build.0 = Debug|x64
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Debug|x86.ActiveCfg = Debug|Win32
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Debug|x86.Build.0 = Debug|Win32
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Release|x64.ActiveCfg = Release|x64
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Release|x64.Build.0 = Release|x64
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Release|x86.ActiveCfg = Release|Win32
+		{BB8543CA-3476-43C3-8616-C9430541D479}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -294,6 +304,7 @@ Global
 		{6302160B-5BCE-442B-B7F6-15972074585E} = {86C39192-10BA-49F4-8C8D-A183097C699B}
 		{FCD16D6E-C4ED-4795-B9BA-923E61E502A2} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 		{1A091815-637E-463A-AE6D-6E1738B1DE84} = {86C39192-10BA-49F4-8C8D-A183097C699B}
+		{BB8543CA-3476-43C3-8616-C9430541D479} = {32FEC0B7-E0AE-409E-8217-A140B33C5CCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D0EC9EF-9A96-4423-868E-219D7038EF81}
