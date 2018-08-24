@@ -21,6 +21,8 @@ MiniTcpClient::~MiniTcpClient()
 
 int MiniTcpClient::Connect(char const *ip, int port)
 {
+    assert(INVALID_SOCKET == sock_);
+
     connected_ = false;
     sock_ = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sock_ == INVALID_SOCKET)
@@ -59,11 +61,17 @@ int MiniTcpClient::Connect(char const *ip, int port)
 
 int MiniTcpClient::Close()
 {
+    if (INVALID_SOCKET != sock_)
+    {
+        closesocket(sock_);
+        sock_ = INVALID_SOCKET;
+    }
+
     return 0;
 }
 
 
-int MiniTcpClient::Send(void const *data, size_t sz)
+int MiniTcpClient::Send(void const *data, int sz)
 {
     if (INVALID_SOCKET == sock_)
     {

@@ -11,6 +11,7 @@ class MiniTcpClient
 
 public:
     MiniTcpClient();
+
     ~MiniTcpClient();
 
     // 连接服务器
@@ -20,7 +21,7 @@ public:
     int Close();
 
     // 向服务器发送数据
-    int Send(void const *data, size_t sz);
+    int Send(void const *data, int sz);
 
     // 设置与服务端连接成功/失败回调
     void SetOnConnectCallback(on_connect_cb_t cb, void *ud);
