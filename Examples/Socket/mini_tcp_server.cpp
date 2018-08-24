@@ -3,6 +3,7 @@
 #include "mini_tcp_server.h"
 
 #ifdef _MSC_VER
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <WinSock2.h>
 #endif // _MSC_VER
 
@@ -132,7 +133,8 @@ int EasyTcpServer::Disconnect(peer_t peer)
     SOCKET sock = (SOCKET)peer;
 
     std::set<SOCKET>::iterator iter = clientSocks_.find(sock);
-    if (iter == clientSocks_.end()) {
+    if (iter == clientSocks_.end())
+    {
         return -1;
     }
 
@@ -154,41 +156,53 @@ int EasyTcpServer::Poll()
     // FIXME: FD_SET最多只支持64个SOCKET
 
     FD_SET(listenSock_, &readfds);
-    for (std::set<SOCKET>::const_iterator iter = clientSocks_.begin(); iter != clientSocks_.end(); ++iter) {
+    for (std::set<SOCKET>::const_iterator iter = clientSocks_.begin(); iter != clientSocks_.end(); ++iter)
+    {
         FD_SET(*iter, &readfds);
     }
-    
+
     timeval timeout;
     memset(&timeout, 0, sizeof(timeout));
     int ret = select(0, &readfds, &writefds, &exceptfds, &timeout);
-    
-    if (0 == ret) { 
-        return 0; 
+
+    if (0 == ret)
+    {
+        return 0;
     }
 
-    if (SOCKET_ERROR == ret) {
+    if (SOCKET_ERROR == ret)
+    {
         return -1;
     }
 
-    for (size_t i = 0; i < readfds.fd_count; ++i) {
+    for (size_t i = 0; i < readfds.fd_count; ++i)
+    {
         SOCKET sock = readfds.fd_array[i];
-        if (sock != listenSock_) {
+        if (sock != listenSock_)
+        {
             static char buf[4096];
             ret = recv(sock, buf, sizeof(buf), 0);
-            if (SOCKET_ERROR == ret || 0 == ret) {
+            if (SOCKET_ERROR == ret || 0 == ret)
+            {
                 closesocket(sock);
                 std::set<SOCKET>::iterator iter = clientSocks_.find(sock);
-                if (iter != clientSocks_.end()) {
+                if (iter != clientSocks_.end())
+                {
                     clientSocks_.erase(sock);
                     on_close_cb_(on_close_cb_ud_, sock);
                 }
-            } else {
+            }
+            else
+            {
                 on_read_cb_(on_read_cb_ud_, sock, buf, ret);
             }
-        } else {
+        }
+        else
+        {
             SOCKET clientSock = accept(listenSock_, NULL, NULL);
 
-            if (INVALID_SOCKET == clientSock) {
+            if (INVALID_SOCKET == clientSock)
+            {
                 continue;
             }
 

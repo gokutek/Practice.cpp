@@ -1,15 +1,25 @@
 ﻿#ifndef mini_tcp_server_h
 #define mini_tcp_server_h
 
+#if defined(_MSC_VER) && _MSC_VER <= 1400
+typedef __int64 peer_t;
+#else
 #include <stdint.h>
-
 typedef uint64_t peer_t;
+#endif
+
 
 typedef void(*on_connection_cb_t)(void*, peer_t);
 typedef void(*on_read_cb_t)(void*, peer_t, void*, size_t);
 typedef void(*on_close_cb_t)(void*, peer_t);
 
 
+/*
+===============================================================================
+一个TCP服务器需要实现的接口，目前内部会提供一个默认实现，以后也可以开放给外部来实现
+这个接口
+===============================================================================
+*/
 class IMiniTcpServer
 {
 public:
