@@ -1,7 +1,19 @@
 ﻿#include <windows.h>
 #include <tchar.h>
 
+//#define INTEL_NO_ITTNOTIFY_API
+#include "ittnotify.h"
+
+
 static TCHAR const      szClassName[] = _T("TestVTuneWindowClass");
+
+
+// Create a domain that is visible globally: we will use it in our example.
+__itt_domain* domain = __itt_domain_create(_T("Example.Domain.Global"));
+
+// Create string handles which associates with the "main" task.
+__itt_string_handle* handle_main = __itt_string_handle_create(_T("WinMain"));
+__itt_string_handle* handle_update = __itt_string_handle_create(_T("OnUpdate"));
 
 
 static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -52,11 +64,16 @@ static void CenterWindow(HWND hwnd)
 
 static void OnUpdate()
 {
+    __itt_task_begin(domain, __itt_null, __itt_null, handle_update);
+    __itt_task_end(domain);
 }
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+    // Create a task associated with the "main" routine.
+    __itt_task_begin(domain, __itt_null, __itt_null, handle_main);
+
     // 注册窗口类
     RegisterWindowClass();
 
@@ -94,6 +111,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
         OnUpdate();
     }
+
+    // Mark the end of the main task
+    __itt_task_end(domain);
 
     return int(msg.wParam);
 }
