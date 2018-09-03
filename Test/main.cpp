@@ -14,6 +14,7 @@
 #include <type_traits>
 #include <fstream>
 #include <assert.h>
+#include <direct.h>
 #include "reflection.h"
 
 template<typename T>
@@ -154,9 +155,26 @@ static void test_typeid()
 }
 
 
+static void MakeSureDirectoryPathExists(std::string const &dir)
+{
+    char *p = (char*)dir.c_str();
+    while (*p)
+    {
+        char *x = strchr(p, '\\');
+        if (!x) { break; }
+
+        *x = 0;
+        _mkdir(dir.c_str());
+        p = x + 1;
+        *x = '\\';
+    }
+}
+
 
 int main()
 {
+    //MakeSureDirectoryPathExists("1\\2\\3\\4\\5\\");
+
 	extern void test_constexpr();
 	extern void test_decltype();
 	extern void test_macro();
