@@ -11,3 +11,6 @@
 
 ##libevent
 libevent-2.1.8-stable
+
+## Catch
+C++单元测试框架
