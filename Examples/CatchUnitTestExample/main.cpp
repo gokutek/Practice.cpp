@@ -1,19 +1,11 @@
-#include <iostream>
+﻿#include <iostream>
 #define CATCH_CONFIG_MAIN
 #include "Catch/catch.hpp"
 
-
-unsigned int Factorial(unsigned int number)
-{
-    return number > 1 ? Factorial(number - 1)*number : 1;
-}
-
-
-TEST_CASE("Factorials are computed", "[factorial]")
-{
-    REQUIRE(Factorial(0) == 1);
-    REQUIRE(Factorial(1) == 1);
-    REQUIRE(Factorial(2) == 2);
-    REQUIRE(Factorial(3) == 6);
-    REQUIRE(Factorial(10) == 3628800);
-}
+/*
+===============================================================================
+1. https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md；
+2. 可以在工程设置里将[C/C++]、[预处理器]中的预处理到文件打开，看宏展开后的代码；
+3. 为每个TEST CASE生成唯一函数名：__COUNTER__；
+===============================================================================
+*/

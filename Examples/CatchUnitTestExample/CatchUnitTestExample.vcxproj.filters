@@ -10,5 +10,11 @@
     <ClCompile Include="main.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="factorial.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="test_vector.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
