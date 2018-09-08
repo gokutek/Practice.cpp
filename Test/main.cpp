@@ -173,6 +173,11 @@ static void MakeSureDirectoryPathExists(std::string const &dir)
 
 int main()
 {
+    std::cout << __COUNTER__ << std::endl;
+    std::cout << __COUNTER__ << std::endl;
+    std::cout << __COUNTER__ << std::endl;
+    std::cout << __COUNTER__ << std::endl;
+    std::cout << __COUNTER__ << std::endl;
     //MakeSureDirectoryPathExists("1\\2\\3\\4\\5\\");
 
 	extern void test_constexpr();
