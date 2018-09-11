@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="test_constexpr.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="test_decltype.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="test_macro.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="reflection.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="my_var_list.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="my_var_list_traits.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
