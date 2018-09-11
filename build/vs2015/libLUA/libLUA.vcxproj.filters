@@ -187,9 +187,4 @@
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\ThirdParty\lua\src\Makefile">
-      <Filter>src</Filter>
-    </None>
-  </ItemGroup>
 </Project>

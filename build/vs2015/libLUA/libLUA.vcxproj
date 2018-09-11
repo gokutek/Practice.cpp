@@ -193,9 +193,6 @@
     <ClCompile Include="..\..\..\ThirdParty\lua\src\lvm.c" />
     <ClCompile Include="..\..\..\ThirdParty\lua\src\lzio.c" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\ThirdParty\lua\src\Makefile" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
