@@ -173,6 +173,10 @@ static void MakeSureDirectoryPathExists(std::string const &dir)
 
 int main()
 {
+    std::map<int, int> mii;
+    mii[1] = 1;
+    bool x = mii.insert(std::make_pair(1, 2)).second;
+
     std::cout << __COUNTER__ << std::endl;
     std::cout << __COUNTER__ << std::endl;
     std::cout << __COUNTER__ << std::endl;
