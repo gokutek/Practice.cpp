@@ -80,7 +80,7 @@ inline void MyVarList::AddString(const std::string& str)
 {
 	assert(str.size() < sizeof(variant));
 	variant var;
-	strcpy(&var.str[0], str.c_str());
+	memcpy(&var.str[0], str.c_str(), str.size() + 1);
 	vars_.push_back(var);
 }
 
