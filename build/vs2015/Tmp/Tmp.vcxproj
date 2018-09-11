@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7CEB5C88-BE3A-4CDC-9E47-081DE7C78936}</ProjectGuid>
+    <ProjectGuid>{D8987ABB-B223-41DC-B72F-B64A300CF5B5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Tmp</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -146,19 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Examples\Tmp\main.cpp" />
-    <ClCompile Include="..\..\..\Examples\Tmp\test_constexpr.cpp" />
-    <ClCompile Include="..\..\..\Examples\Tmp\test_decltype.cpp" />
-    <ClCompile Include="..\..\..\Examples\Tmp\test_macro.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\Examples\Tmp\i_object_input_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\i_object_output_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\my_var_list.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\my_var_list_traits.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\object_input_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\object_output_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\reflection.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
