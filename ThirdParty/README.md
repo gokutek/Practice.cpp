@@ -14,3 +14,7 @@ libevent-2.1.8-stable
 
 ## Catch
 C++单元测试框架
+
+## lua
+lua-5.3.5
+
