@@ -18,3 +18,5 @@ C++单元测试框架
 ## lua
 lua-5.3.5
 
+## rapidxml
+rapidxml-1.13
