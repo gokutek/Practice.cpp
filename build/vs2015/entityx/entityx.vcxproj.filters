@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="entityx">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{efba9a20-f924-4ca7-ac8d-da6bc35953b6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\Entity.cc">
+      <Filter>entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\Event.cc">
+      <Filter>entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\System.cc">
+      <Filter>entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\help\Pool.cc">
+      <Filter>entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\help\Timer.cc">
+      <Filter>entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ThirdParty\entityx-1.1.2\examples\test.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\Entity.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\entityx.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\Event.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\quick.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\System.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\tags\TagsComponent.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\help\NonCopyable.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\help\Pool.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\help\Timer.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ThirdParty\entityx-1.1.2\entityx\deps\Dependencies.h">
+      <Filter>entityx</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
