@@ -74,11 +74,11 @@ TEST_CASE("constexpr", "[constexpr]")
 
     test_string();
 
-    std::cout << add(1, 2) << std::endl;
+    REQUIRE(3 == add(1, 2));
 
     int x;
     x = 10;
-    std::cout << add(1, x) << std::endl;
+    REQUIRE(11 == add(1, x));
 
     int i = 10;
     std::array<int, foo(5)> arr; // OK，5是常量表达式，计算出foo(5)也是常量表达式

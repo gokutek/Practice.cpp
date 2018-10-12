@@ -1,9 +1,8 @@
-﻿#include <iostream>
-#include "catch.hpp"
+﻿#include "catch.hpp"
 
 
-#define M1() std::cout << "M1" << std::endl;
-#define M2() std::cout << "M2" << std::endl;
+#define M1() "M1"
+#define M2() "M2"
 #define M3(a, b) a##b()
 #define MM M
 
@@ -13,7 +12,7 @@
 #define M3_EX(a, b) MACRO_EXPAND(a)##MACRO_EXPAND(b)()
 
 
-TEST_CASE("macro expanding", "[macro]")
+TEST_CASE("macro expand", "[macro]")
 {
 	/*
 	==============================================================================
@@ -26,5 +25,6 @@ TEST_CASE("macro expanding", "[macro]")
 	*/
 	//M3(MM, 1)
 
-	M3_EX(MM, 1)
+    std::string const str = M3_EX(MM, 1);
+    REQUIRE(str == "M1");
 }
