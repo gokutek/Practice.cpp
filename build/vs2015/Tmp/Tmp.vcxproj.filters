@@ -49,5 +49,8 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_optional.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_tuple.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
