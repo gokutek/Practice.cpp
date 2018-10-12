@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include <vector>
+﻿#include <vector>
 #include "catch.hpp"
 
 
@@ -23,17 +22,17 @@ TEST_CASE("decltype", "[decltype]")
     int i= 4;
     decltype(i) j = 10; // j为int
     int x = i + j;
-    std::cout << x << std::endl;
+    REQUIRE(x == 14);
 
     decltype((i)) k = j; // k为int&
-    std::cout << "j=" << j << std::endl;
+    REQUIRE(j == 10);
     k = 111;
-    std::cout << "j=" << j << std::endl;
+    REQUIRE(j == 111);
 
     std::vector<int> vec1 = { 1, 2, 3, 4, 5 };
     decltype(vec1.begin()) iter = vec1.begin();
     for (; iter != vec1.end(); ++iter) {
-        std::cout << *iter << std::endl;
+        //std::cout << *iter << std::endl;
     }
 
     // 重用匿名类型
@@ -56,9 +55,9 @@ TEST_CASE("decltype", "[decltype]")
 
     // 与auto结合
     int n1 = add(100, 200);
-    std::cout << n1 << std::endl;
+    REQUIRE(n1 == 300);
 
     //int n2 = add(100, 200.0f); // warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
     float n3 = add(100, 200.123f);
-    std::cout << n3 << std::endl;
+    REQUIRE(n3 == 300.123f);
 }

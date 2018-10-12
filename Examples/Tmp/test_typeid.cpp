@@ -2,17 +2,20 @@
 #include "catch.hpp"
 
 
-class Animal
+namespace
 {
-public:
-    virtual ~Animal() {}
-};
+    class Animal
+    {
+    public:
+        virtual ~Animal() {}
+    };
 
 
-class Cat : public Animal
-{
-public:
-};
+    class Cat : public Animal
+    {
+    public:
+    };
+}
 
 
 TEST_CASE("typeid", "[typeid]")
