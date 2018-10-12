@@ -89,6 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +104,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,6 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,10 +151,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Examples\Tmp\main.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_bitset.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_const.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_constexpr.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_decltype.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_macro.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_MakeSureDirectoryPathExists.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_mod.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_template.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_typeid.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test___COUNTER__.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

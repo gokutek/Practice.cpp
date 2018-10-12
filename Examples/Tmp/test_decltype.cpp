@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <vector>
+#include "catch.hpp"
 
 
 // 与auto一起使用
@@ -16,7 +17,7 @@ inline std::string&& test_decltype_ret_str()
 }
 
 
-void test_decltype()
+TEST_CASE("decltype", "[decltype]")
 {
     // decltype(x) 返回的是参数x的类型
     int i= 4;

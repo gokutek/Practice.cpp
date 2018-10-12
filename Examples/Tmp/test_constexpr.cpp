@@ -1,6 +1,7 @@
 ﻿#include <array>
 #include <vector>
 #include <iostream>
+#include "catch.hpp"
 
 /*
 ===============================================================================
@@ -63,7 +64,7 @@ constexpr int factorial2(int n)
 #endif
 
 
-void test_constexpr()
+TEST_CASE("constexpr", "[constexpr]")
 {
 #if 0
     int i;

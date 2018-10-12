@@ -22,5 +22,23 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_mod.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_bitset.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_typeid.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_MakeSureDirectoryPathExists.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test___COUNTER__.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_const.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_template.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

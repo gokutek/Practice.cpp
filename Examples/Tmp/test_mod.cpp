@@ -1,4 +1,5 @@
-﻿#include "../../ThirdParty/Catch/catch.hpp"
+﻿#include "catch.hpp"
+
 
 TEST_CASE("mod", "[mod]")
 {

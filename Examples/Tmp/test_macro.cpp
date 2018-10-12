@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "catch.hpp"
 
 
 #define M1() std::cout << "M1" << std::endl;
@@ -11,7 +12,8 @@
 
 #define M3_EX(a, b) MACRO_EXPAND(a)##MACRO_EXPAND(b)()
 
-void test_macro()
+
+TEST_CASE("macro expanding", "[macro]")
 {
 	/*
 	==============================================================================
