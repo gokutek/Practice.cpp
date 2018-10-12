@@ -146,19 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Examples\Tmp\i_object_input_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\i_object_output_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\my_var_list.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\my_var_list_traits.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\object_input_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\object_output_stream.h" />
-    <ClInclude Include="..\..\..\Examples\Tmp\reflection.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\..\Examples\Tmp\main.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_constexpr.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_decltype.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_macro.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_mod.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

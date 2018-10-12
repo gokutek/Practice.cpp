@@ -7,29 +7,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Examples\Tmp\my_var_list_traits.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Examples\Tmp\object_input_stream.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Examples\Tmp\object_output_stream.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Examples\Tmp\reflection.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Examples\Tmp\i_object_input_stream.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Examples\Tmp\i_object_output_stream.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Examples\Tmp\my_var_list.h">
-      <Filter>source</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\..\Examples\Tmp\test_constexpr.cpp">
       <Filter>source</Filter>
     </ClCompile>
@@ -40,6 +17,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Examples\Tmp\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_mod.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,6 +16,8 @@
 #include <assert.h>
 #include <direct.h>
 #include "reflection.h"
+#define CATCH_CONFIG_RUNNER
+#include "../../ThirdParty/Catch/catch.hpp"
 
 template<typename T>
 void test_t_type(T val)
@@ -171,8 +173,17 @@ static void MakeSureDirectoryPathExists(std::string const &dir)
 }
 
 
-int main()
+int main(int argc, char* argv[])
 {
+    // global setup...
+
+    // 开始单元测试
+    int const result = Catch::Session().run(argc, argv);
+
+    // global clean-up...
+
+    return result;
+
     std::map<int, int> mii;
     mii[1] = 1;
     bool x = mii.insert(std::make_pair(1, 2)).second;
