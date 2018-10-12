@@ -41,7 +41,7 @@ constexpr auto mid = midpoint(p1, p2);
 
 constexpr int test_string()
 {
-    //std::string str; // error C3250: “str”: 不允许在“constexpr”函数体中进行声明
+    //std::string str; // 不能定义这个变量，error C3250: “str”: 不允许在“constexpr”函数体中进行声明
     return 10;
 }
 
@@ -66,23 +66,16 @@ constexpr int factorial2(int n)
 
 TEST_CASE("constexpr", "[constexpr]")
 {
-#if 0
-    int i;
-    const int size = i;
-    int arr[size];         // 编译错误，size不是常量表达式，不能在编译期确定
-#endif
-
-    test_string();
-
     REQUIRE(3 == add(1, 2));
 
     int x;
     x = 10;
     REQUIRE(11 == add(1, x));
 
-    int i = 10;
     std::array<int, foo(5)> arr; // OK，5是常量表达式，计算出foo(5)也是常量表达式
     arr;
+
+    int i = 10;
     foo(i); // Call is Ok，i不是常量表达式，但仍然可以调用（constexpr 被忽略）
     //std::array<int, foo(i)> arr1; // Error，但是foo(i)的调用结果不是常量表达式了
 }
