@@ -40,5 +40,14 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_template.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_smart_ptr.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_thread.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_optional.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -158,7 +158,10 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_macro.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_MakeSureDirectoryPathExists.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_mod.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_optional.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_smart_ptr.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_template.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_thread.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_typeid.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test___COUNTER__.cpp" />
   </ItemGroup>
