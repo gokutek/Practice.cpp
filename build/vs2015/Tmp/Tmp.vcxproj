@@ -155,6 +155,7 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_const.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_constexpr.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_decltype.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_forward_list.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_macro.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_MakeSureDirectoryPathExists.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_mod.cpp" />
