@@ -1,6 +1,12 @@
 ﻿#include <vector>
 #include "catch.hpp"
 
+/*
+==============
+decltype的用法
+==============
+*/
+
 
 // 与auto一起使用
 template<typename T1, typename T2>
@@ -12,7 +18,7 @@ auto add(T1 const &v1, T2 const &v2) -> decltype(v1 + v2)
 
 inline std::string&& test_decltype_ret_str()
 {
-    return std::string("xxx");
+	return std::string("xxx");
 }
 
 

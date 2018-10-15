@@ -2,6 +2,13 @@
 #include "catch.hpp"
 
 
+/*
+===================================
+typeid，在实际项目中未发现有什么应用
+===================================
+*/
+
+
 namespace
 {
     class Animal
@@ -17,7 +24,9 @@ namespace
     };
 }
 
+
 #define LOG_OUT 0
+
 
 TEST_CASE("typeid", "[typeid]")
 {
