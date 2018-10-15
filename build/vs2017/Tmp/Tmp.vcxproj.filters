@@ -52,5 +52,8 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_tuple.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Tmp\test_variant.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

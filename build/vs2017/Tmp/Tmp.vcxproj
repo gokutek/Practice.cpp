@@ -168,6 +168,7 @@
     <ClCompile Include="..\..\..\Examples\Tmp\test_thread.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_tuple.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test_typeid.cpp" />
+    <ClCompile Include="..\..\..\Examples\Tmp\test_variant.cpp" />
     <ClCompile Include="..\..\..\Examples\Tmp\test___COUNTER__.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
