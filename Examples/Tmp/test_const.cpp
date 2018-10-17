@@ -1,6 +1,34 @@
 ﻿#include "catch.hpp"
 
 
+TEST_CASE("put const after", "[const]")
+{
+	typedef char* CHARS;
+	typedef CHARS const CPTR;
+
+	// CPTR展开后是： char* const
+
+	char *szHello = "Hello";
+	CPTR p = szHello;
+
+	*p = 'h';
+}
+
+
+TEST_CASE("put const before", "[const]")
+{
+	typedef char* CHARS;
+	typedef const CHARS CPTR;
+
+	// CPTR展开后是： const char*
+
+	char *szHello = "Hello";
+	CPTR p = szHello;
+
+	*p = 'h';
+}
+
+
 TEST_CASE("const", "[const]")
 {
 	const char* sz = "hello"; // 指针指向的是常量
