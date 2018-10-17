@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <type_traits>
 #include "catch.hpp"
 
 
@@ -110,4 +111,205 @@ TEST_CASE("f3", "basic")
 {
 	// 这也可以，调用f<int>。但是直接定义“int f(int = "")”这样的函数是编译不过的
 	REQUIRE(111 == f(0));
+}
+
+
+/*
+===============================================================================
+将返回值类型作为模板参数，这个模板参数不能从调用参数中推导，必须手动指定。同时，在这
+个实现中，用户还必须指定前面的两个模板参数
+===============================================================================
+*/
+template<typename T1, typename T2, typename RT>
+RT max3(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("max3", "basic")
+{
+	float f = max3<int, float, float>(1, 2.0f);
+	REQUIRE(f == 2.0f);
+}
+
+
+/*
+===============================================================================
+改进max3，将RT模板参数移到最前面，这样用户使用的时候只需要指定这一个模板参数就好了
+===============================================================================
+*/
+template<typename RT, typename T1, typename T2>
+RT max4(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("max4", "basic")
+{
+	float f = max4<float>(1, 2.0f);
+	REQUIRE(f == 2.0f);
+}
+
+
+/*
+===============================================================================
+继续改进max4，C++14开始，比较正统的做法。
+In fact, the use of auto for the return type without a corresponding trailing return
+type (which would be introduced with a -> at the end) indicates that the actual return
+type must be deduced from the return statements in the function body. Of course,
+deducing the return type from the function body has to be possible. Therefore, the
+code must be available and multiple return statements have to match.
+===============================================================================
+*/
+template<typename T1, typename T2>
+auto maxauto(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+/*
+===============================================================================
+调用下面的代码将会产生编译错误：
+error C3487: “float”: 所有返回表达式必须推导为相同类型: 以前为“int”。
+因为函数中有两个return语句，并且它们的返回类型不一样。
+===============================================================================
+*/
+template<typename T1, typename T2>
+auto maxauto_compile_error(T1 a, T2 b)
+{
+	if (1) {
+		return 1;
+	}
+	return 2.0f;
+}
+
+
+TEST_CASE("maxauto", "basic")
+{
+	float f = maxauto(1, 2.0f);
+	REQUIRE(f == 2.0f);
+}
+
+
+/*
+===============================================================================
+使用decltype来定义返回类型（不需要写成decltype(b<a?a:b)）
+===============================================================================
+*/
+template<typename T1, typename T2>
+auto maxdecltype(T1 a, T2 b) -> decltype(true ? a : b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("maxdecltype", "basic")
+{
+	float f = maxdecltype(1, 2.0f);
+	REQUIRE(f == 2.0f);
+}
+
+
+/*
+===============================================================================
+改进max6：
+It might happen that the return type is a reference type, because under some
+conditions T might be a reference. For this reason you should return the type
+decayed from T.
+===============================================================================
+*/
+template<typename T1, typename T2>
+auto maxdecltypedecay(T1 a, T2 b) -> typename std::decay<decltype(true ? a : b)>::type
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("maxdecltypedecay", "basic")
+{
+	float f = maxdecltypedecay(1, 2.0f);
+	REQUIRE(f == 2.0f);
+}
+
+
+/*
+===============================================================================
+an initialization of type auto always decays
+===============================================================================
+*/
+TEST_CASE("auto dacay", "basic")
+{
+	int i = 42;
+	int const &ir = i;
+	auto a = ir;
+	a = 15;
+	REQUIRE(i == 42);
+	REQUIRE(a == 15);
+}
+
+
+/*
+===============================================================================
+使用C++11的std::common_type来定义返回值类型。
+C++14中，可以简化写成：std::common_type_t<T1, T2>。
+===============================================================================
+*/
+template<typename T1, typename T2>
+typename std::common_type<T1, T2>::type maxcommon(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("maxcommon", "basic")
+{
+	float f = maxcommon(1, 2.0f);
+	REQUIRE(f == 2.0f);
+}
+
+
+/*
+===============================================================================
+演示Default Template Arguments的用法
+===============================================================================
+*/
+template<typename T1, typename T2, typename RT = std::decay_t<decltype(true?T1():T2())>>
+RT maxdefault1(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("maxdefault1", "basic")
+{
+	float f = maxdefault1(1, 2.0f);
+	REQUIRE(f == 2.0f);
+
+	double d = maxdefault1<int, float, double>(1, 2.0f);
+	REQUIRE(d == 2.0);
+}
+
+
+/*
+===============================================================================
+改进maxdefault1中的RT类型定义，使用std::common_type_t
+===============================================================================
+*/
+template<typename T1, typename T2, typename RT = std::common_type_t<T1, T2>>
+RT maxdefault3(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("maxdefault3", "basic")
+{
+	float f = maxdefault3(1, 2.0f);
+	REQUIRE(f == 2.0f);
+
+	double d = maxdefault3<int, float, double>(1, 2.0f);
+	REQUIRE(d == 2.0);
 }
