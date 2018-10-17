@@ -489,4 +489,75 @@ TEST_CASE("rule.test.3", "Overload Resolution")
 	REQUIRE(append_c_f3(7) == 5);
 }
 
+
+/*
+===============================================================================
+The implicit conversion provided through the converting constructor is not
+considered during template argument deduction.
+===============================================================================
+*/
+template<typename T>
+class MyString
+{
+public:
+    MyString(T const*) 
+    {
+    }
+};
+
+
+template<typename T>
+MyString<T> truncate(MyString<T> const &str, int)
+{
+    return str;
+}
+
+
+TEST_CASE("rule.test.4", "Overload Resolution")
+{
+    MyString<char> str1 = truncate<char>("Hello World", 5); // OK
+
+    //MyString<char> str2 = truncate("Hello World", 5); // ERROR
+}
+
+
+/*
+===============================================================================
+an rvalue reference to a template parameter can deduce to either an lvalue
+reference type (after reference collapsing) if the corresponding argument is an
+lvalue or to an rvalue reference type if that argument is an rvalue
+===============================================================================
+*/
+template<typename T>
+void strange(T &&a, T &&b)
+{
+    a = b = 5.5;
+}
+
+
+template<typename T>
+void bizarre(T&&, double&&)
+{
+}
+
+
+TEST_CASE("rule.test.5", "Overload Resolution")
+{
+    strange(1.2, 3.4); // OK: with T deduced to double
+
+    double val = 1.2;
+    strange(val, val); // OK: with T deduced to double&
+    REQUIRE(val == 5.5);
+
+    //strange(val, 3.4); // ERROR: conflicting deductions
+
+    //bizarre(val, val); // ERROR: lvalue val doesn’t match double&&
+    bizarre(val, double(val));
+}
+
+#pragma endregion
+
+
+#pragma region C.2.1 The Implied Argument for Member Functions
+
 #pragma endregion
