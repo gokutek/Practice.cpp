@@ -3,38 +3,6 @@
 #include "catch.hpp"
 
 
-namespace
-{
-	int g_ctor_called = 0;	// 构造函数调用次数
-	int g_cpor_called = 0;	// 拷贝构造函数调用次数
-
-
-	struct Foo
-	{
-		int val;
-
-		Foo(int v) : val(v)
-		{
-			++g_ctor_called;
-		}
-
-		Foo(Foo const &other) : val(other.val)
-		{
-			++g_cpor_called;
-		}
-
-		~Foo()
-		{
-		}
-
-		bool operator<(Foo const &other) const
-		{
-			return val < other.val;
-		}
-	};
-}
-
-
 #pragma region 1.1.1 Defining the Template
 
 /*
@@ -52,23 +20,9 @@ T max1(T a, T b)
 
 TEST_CASE("max1", "basic")
 {
-	Foo f1(1);
-	Foo f2(2);
-
-	REQUIRE(2 == g_ctor_called);
-	REQUIRE(0 == g_cpor_called);
-
-	// 模板被实例化为：Foo max1(Foo a, Foo b)，函数参数会有对象拷贝
-	Foo res = max1(f1, f2);
-	REQUIRE(res.val == 2);
-	REQUIRE(2 == g_ctor_called);
-	REQUIRE(3 == g_cpor_called);
-
-	// 非主流用法：强制实例化为Foo const&，函数参数不会有对象拷贝
-	Foo const& res1 = max1<Foo const&>(f1, f2);
-	REQUIRE(res1.val == 2);
-	REQUIRE(2 == g_ctor_called);
-	REQUIRE(3 == g_cpor_called);
+	REQUIRE(max1(1, 2) == 2);
+	REQUIRE(max1(10.0, 20.0) == 20.0);
+	REQUIRE(max1(std::string("Hello"), std::string("world")) == "world");
 }
 
 #pragma endregion
@@ -96,48 +50,54 @@ TEST_CASE("Using the Template", "basic")
 #pragma endregion
 
 
-/*
-===============================================================================
-改进max1，避免函数参数的对象拷贝
-===============================================================================
-*/
+#pragma region 1.2 Template Argument Deduction
+
 template<typename T>
-T _max2(T const &a, T const &b)
+T max_1_2(T const& a, T const& b)
 {
 	return b < a ? a : b;
 }
 
 
-TEST_CASE("_max2", "basic")
+template<typename T>
+T foo(T*, T*)
 {
-	g_ctor_called = 0;
-	g_cpor_called = 0;
+	return T();
+}
 
-	Foo f1(1);
-	Foo f2(2);
 
-	REQUIRE(2 == g_ctor_called);
-	REQUIRE(0 == g_cpor_called);
+TEST_CASE("Type Conversions During Type Deduction", "basic")
+{
+	int i = 21;
+	int const c = 42;
+	max1(i, c); // OK: T is deduced as int
+	max1(c, c); // OK: T is deduced as int
+	int& ir = i;
+	max1(i, ir); // OK: T is deduced as int
+	int arr[4];
+	foo(&i, arr); // OK: T is deduced as int*
 
-	Foo res1 = _max2(f1, f2);
-
-	REQUIRE(2 == g_ctor_called);
-	REQUIRE(1 == g_cpor_called); // 这里的一次拷贝是函数返回值
+	// foo("hello", std::string()); // compile ERROR: T can be deduced as char const[6] or std::string
+	// max1(4, 7.2); // compile ERROR: T can be deduced as int or double
+	
+	REQUIRE(max1(static_cast<double>(4), 7.2) == 7.2);
+	REQUIRE(max1<double>(4, 7.2) == 7.2);
 }
 
 
 template<typename T>
-int f(T = "")
+void f(T = "")
 {
-	return 111;
 }
 
 
-TEST_CASE("f3", "basic")
+TEST_CASE("Type Deduction for Default Arguments", "basic")
 {
-	// 这也可以，调用f<int>。但是直接定义“int f(int = "")”这样的函数是编译不过的
-	REQUIRE(111 == f(0));
+	// 这也可以，调用f<int>。但是直接定义“void f(int = "")”这样的函数是编译不过的
+	f(0);
 }
+
+#pragma endregion
 
 
 #pragma region 1.3.1 Template Parameters for Return Types
