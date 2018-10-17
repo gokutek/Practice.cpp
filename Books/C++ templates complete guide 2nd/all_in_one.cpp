@@ -35,6 +35,8 @@ namespace
 }
 
 
+#pragma region 1.1.1 Defining the Template
+
 /*
 ===============================================================================
 需要思考的问题：
@@ -69,6 +71,30 @@ TEST_CASE("max1", "basic")
 	REQUIRE(3 == g_cpor_called);
 }
 
+#pragma endregion
+
+
+#pragma region 1.1.2 Using the Template
+
+TEST_CASE("Using the Template", "basic")
+{
+	// int max (int, int);
+	int i = 42;
+	REQUIRE(42 == ::max1(7, i));
+
+	// double max (double, double);
+	double f1 = 3.4; 
+	double f2 = -6.7;
+	REQUIRE(::max1(f1, f2) == 3.4);
+
+	// std::string max (std::string, std::string);
+	std::string s1 = "mathematics"; 
+	std::string s2 = "math";
+	REQUIRE(::max1(s1, s2) == s1);
+}
+
+#pragma endregion
+
 
 /*
 ===============================================================================
@@ -76,13 +102,13 @@ TEST_CASE("max1", "basic")
 ===============================================================================
 */
 template<typename T>
-T max2(T const &a, T const &b)
+T _max2(T const &a, T const &b)
 {
 	return b < a ? a : b;
 }
 
 
-TEST_CASE("max2", "basic")
+TEST_CASE("_max2", "basic")
 {
 	g_ctor_called = 0;
 	g_cpor_called = 0;
@@ -93,7 +119,7 @@ TEST_CASE("max2", "basic")
 	REQUIRE(2 == g_ctor_called);
 	REQUIRE(0 == g_cpor_called);
 
-	Foo res1 = max2(f1, f2);
+	Foo res1 = _max2(f1, f2);
 
 	REQUIRE(2 == g_ctor_called);
 	REQUIRE(1 == g_cpor_called); // 这里的一次拷贝是函数返回值
@@ -114,6 +140,8 @@ TEST_CASE("f3", "basic")
 }
 
 
+#pragma region 1.3.1 Template Parameters for Return Types
+
 /*
 ===============================================================================
 将返回值类型作为模板参数，这个模板参数不能从调用参数中推导，必须手动指定。同时，在这
@@ -121,15 +149,15 @@ TEST_CASE("f3", "basic")
 ===============================================================================
 */
 template<typename T1, typename T2, typename RT>
-RT max3(T1 a, T2 b)
+RT _max3(T1 a, T2 b)
 {
 	return a < b ? b : a;
 }
 
 
-TEST_CASE("max3", "basic")
+TEST_CASE("_max3", "basic")
 {
-	float f = max3<int, float, float>(1, 2.0f);
+	float f = _max3<int, float, float>(1, 2.0f);
 	REQUIRE(f == 2.0f);
 }
 
@@ -140,18 +168,22 @@ TEST_CASE("max3", "basic")
 ===============================================================================
 */
 template<typename RT, typename T1, typename T2>
-RT max4(T1 a, T2 b)
+RT _max4(T1 a, T2 b)
 {
 	return a < b ? b : a;
 }
 
 
-TEST_CASE("max4", "basic")
+TEST_CASE("_max4", "basic")
 {
-	float f = max4<float>(1, 2.0f);
+	float f = _max4<float>(1, 2.0f);
 	REQUIRE(f == 2.0f);
 }
 
+#pragma endregion
+
+
+#pragma region 1.3.2 Deducing the Return Type
 
 /*
 ===============================================================================
@@ -250,6 +282,10 @@ TEST_CASE("auto dacay", "basic")
 	REQUIRE(a == 15);
 }
 
+#pragma endregion
+
+
+#pragma region 1.3.3 Return Type as Common Type
 
 /*
 ===============================================================================
@@ -270,6 +306,10 @@ TEST_CASE("maxcommon", "basic")
 	REQUIRE(f == 2.0f);
 }
 
+#pragma endregion
+
+
+#pragma region 1.4 Default Template Arguments
 
 /*
 ===============================================================================
@@ -313,3 +353,10 @@ TEST_CASE("maxdefault3", "basic")
 	double d = maxdefault3<int, float, double>(1, 2.0f);
 	REQUIRE(d == 2.0);
 }
+
+#pragma endregion
+
+
+#pragma region 1.5 Overloading Function Templates
+
+#pragma endregion

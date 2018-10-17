@@ -10,7 +10,7 @@
     <ClCompile Include="..\..\..\Books\C++ templates complete guide 2nd\main.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Books\C++ templates complete guide 2nd\1_max1.cpp">
+    <ClCompile Include="..\..\..\Books\C++ templates complete guide 2nd\all_in_one.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
