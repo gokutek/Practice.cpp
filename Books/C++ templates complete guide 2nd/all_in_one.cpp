@@ -335,9 +335,15 @@ T max2(T a, T b)
 TEST_CASE("max2", "basic")
 {
 	REQUIRE(max2(7, 42) == 42); // calls the nontemplate for two ints
+
+	// the template is a better match because no conversion from double or char to int is required
 	REQUIRE(max2(7.0, 42.0) == 42.0); // calls max<double> (by argument deduction)
 	REQUIRE(max2('a', 'b') == 'b'); //calls max<char> (by argument deduction)
+
+	// indicates that only templates may resolve a call
 	REQUIRE(max2<>(7, 42) == 42); // calls max<int> (by argument deduction)
+
+	// only the nontemplate function allows nontrivial conversions
 	REQUIRE(max2<double>(7, 42) == 42.0); // calls max<double> (no argument deduction)
 
 #pragma warning(push)
@@ -346,6 +352,141 @@ TEST_CASE("max2", "basic")
 	REQUIRE(max2('a', 42.7) == 'a'); //calls the nontemplate for two ints
 
 #pragma warning(pop)
+}
+
+
+template<typename T1, typename T2>
+auto max2(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+template<typename RT, typename T1, typename T2>
+RT max2(T1 a, T2 b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("max2 with RT", "basic")
+{
+	auto a = ::max2(4, 7.2); // uses first template
+	REQUIRE(a == 7.2);
+
+	auto b = ::max2<long double>(7.2, 4); // uses second template
+	REQUIRE(b == 7.2);
+
+	//auto c = ::max2<int>(4, 7.2); // ERROR: both function templates match
+}
+
+#pragma endregion
+
+
+#pragma region Appendix C Overload Resolution
+
+/*
+===============================================================================
+• The name is looked up to form an initial overload set.
+• If necessary, this set is adjusted in various ways (e.g., template argument deduction
+and substitution occurs, which can cause some function template candidates to be
+discarded).
+• Any candidate that doesn’t match the call at all (even after considering implicit
+conversions and default arguments) is eliminated from the overload set. This
+results in a set of viable function candidates.
+• Overload resolution is performed to find a best candidate. If there is one, it is
+selected; otherwise, the call is ambiguous.
+• The selected candidate is checked. For example, if it is a deleted function (i.e., one
+defined with = delete) or an inaccessible private member function, a diagnostic
+is issued.
+===============================================================================
+*/
+
+
+/*
+===============================================================================
+1. Perfect match. The parameter has the type of the expression, or it has a type that is
+a reference to the type of the expression (possibly with added const and/or
+volatile qualifiers).
+2. Match with minor adjustments. This includes, for example, the decay of an array
+variable to a pointer to its first element or the addition of const to match an
+argument of type int** to a parameter of type int const* const*.
+3. Match with promotion. Promotion is a kind of implicit conversion that includes
+the conversion of small integral types (such as bool, char, short, and
+sometimes enumerations) to int, unsigned int, long, or unsigned
+long, and the conversion of float to double.
+4. Match with standard conversions only. This includes any sort of standard
+conversion (such as int to float) or conversion from a derived class to one of
+its public, unambiguous base classes but excludes the implicit call to a conversion
+operator or a converting constructor.
+5. Match with user-defined conversions. This allows any kind of implicit conversion.
+6. Match with ellipsis (…). An ellipsis parameter can match almost any type.
+However, there is one exception: Class types with a nontrivial copy constructor
+may or may not be valid (implementations are free to allow or disallow this).
+===============================================================================
+*/
+
+
+int append_c_f1(int)
+{
+	return 1;
+}
+
+
+int append_c_f1(double)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.1", "Overload Resolution")
+{
+	REQUIRE(append_c_f1(4) == 1); // calls #1 : perfect match (#2 requires a standard conversion)
+}
+
+
+int append_c_f2(int)
+{
+	return 3;
+}
+
+
+int append_c_f2(char)
+{
+	return 4;
+}
+
+
+TEST_CASE("rule.test.2", "Overload Resolution")
+{
+	// calls #3 : match with promotion (#4 requires stronger standard conversion)
+	REQUIRE(append_c_f2(true) == 3);
+}
+
+
+class X
+{
+public:
+	X(int) {}
+};
+
+
+int append_c_f3(X)
+{
+	return 5;
+}
+
+
+int append_c_f3(...)
+{
+	return 6;
+}
+
+
+TEST_CASE("rule.test.3", "Overload Resolution")
+{
+	// calls #5 : match with user-defined conversion (#6 requires a match with ellipsis)
+	REQUIRE(append_c_f3(7) == 5);
 }
 
 #pragma endregion
