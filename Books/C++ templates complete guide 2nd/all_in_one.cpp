@@ -319,4 +319,33 @@ TEST_CASE("maxdefault3", "basic")
 
 #pragma region 1.5 Overloading Function Templates
 
+int max2(int a, int b)
+{
+	return a < b ? b : a;
+}
+
+
+template<typename T>
+T max2(T a, T b)
+{
+	return a < b ? b : a;
+}
+
+
+TEST_CASE("max2", "basic")
+{
+	REQUIRE(max2(7, 42) == 42); // calls the nontemplate for two ints
+	REQUIRE(max2(7.0, 42.0) == 42.0); // calls max<double> (by argument deduction)
+	REQUIRE(max2('a', 'b') == 'b'); //calls max<char> (by argument deduction)
+	REQUIRE(max2<>(7, 42) == 42); // calls max<int> (by argument deduction)
+	REQUIRE(max2<double>(7, 42) == 42.0); // calls max<double> (no argument deduction)
+
+#pragma warning(push)
+#pragma warning(disable: 4244)
+
+	REQUIRE(max2('a', 42.7) == 'a'); //calls the nontemplate for two ints
+
+#pragma warning(pop)
+}
+
 #pragma endregion
