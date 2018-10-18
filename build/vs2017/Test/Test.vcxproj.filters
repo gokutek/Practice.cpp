@@ -7,28 +7,59 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="..\..\..\Examples\Test\main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="test_constexpr.cpp">
+    <ClCompile Include="..\..\..\Examples\Test\test___COUNTER__.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="test_decltype.cpp">
+    <ClCompile Include="..\..\..\Examples\Test\test_bitset.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="test_macro.cpp">
+    <ClCompile Include="..\..\..\Examples\Test\test_const.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="reflection.h">
+    <ClCompile Include="..\..\..\Examples\Test\test_constexpr.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="my_var_list.h">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_decltype.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="my_var_list_traits.h">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_forward_list.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_macro.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_MakeSureDirectoryPathExists.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_mod.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_optional.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_rapidxml.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_smart_ptr.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_template.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_thread.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_tuple.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_typeid.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_variant.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

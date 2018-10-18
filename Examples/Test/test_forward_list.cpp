@@ -2,7 +2,7 @@
 #include "catch.hpp"
 
 
-TEST_CASE("misc", "[std::forward_list]")
+TEST_CASE("forward_list", "[std::forward_list]")
 {
     std::forward_list<int> l;
     

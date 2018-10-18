@@ -18,6 +18,26 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Examples\Test\main.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_bitset.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_const.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_constexpr.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_decltype.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_forward_list.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_macro.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_MakeSureDirectoryPathExists.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_mod.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_optional.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_rapidxml.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_smart_ptr.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_template.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_thread.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_tuple.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_typeid.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_variant.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test___COUNTER__.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9BEB84A4-952A-447B-84F6-A72A187851BD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -28,26 +48,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -89,6 +109,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,6 +125,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,6 +143,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +163,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,17 +173,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="test_constexpr.cpp" />
-    <ClCompile Include="test_decltype.cpp" />
-    <ClCompile Include="test_macro.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="my_var_list.h" />
-    <ClInclude Include="my_var_list_traits.h" />
-    <ClInclude Include="reflection.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
