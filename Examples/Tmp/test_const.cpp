@@ -8,7 +8,7 @@ TEST_CASE("put const after", "[const]")
 
 	// CPTR展开后是： char* const
 
-	char *szHello = "Hello";
+	char szHello[] = "Hello";
 	CPTR p = szHello;
 
 	*p = 'h';
@@ -22,7 +22,7 @@ TEST_CASE("put const before", "[const]")
 
 	// CPTR展开后是： const char*
 
-	char *szHello = "Hello";
+	char szHello[] = "Hello";
 	CPTR p = szHello;
 
 	*p = 'h';
