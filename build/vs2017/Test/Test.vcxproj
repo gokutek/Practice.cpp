@@ -36,6 +36,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_thread.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_tuple.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_typeid.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_type_traits.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_variant.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test___COUNTER__.cpp" />
   </ItemGroup>
