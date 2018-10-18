@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Examples\Test\main.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_bitset.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_catch2.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_const.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_constexpr.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_decltype.cpp" />

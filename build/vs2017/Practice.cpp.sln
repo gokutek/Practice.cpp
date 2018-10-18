@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luac", "luac\luac.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua\lua.vcxproj", "{1ADE2C1C-EEA4-4A8C-91C4-E1E08F26CB12}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CatchUnitTestExample", "CatchUnitTestExample\CatchUnitTestExample.vcxproj", "{251110E3-68C5-46CF-BDCE-2E72ED122F49}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "entityx", "entityx\entityx.vcxproj", "{D90A25A8-8118-4A2E-995C-56601D1D83E8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++ templates complete guide 2nd", "C++ templates complete guide 2nd\C++ templates complete guide 2nd.vcxproj", "{3B222549-901E-4236-8DF5-3377EA43BA19}"
@@ -49,14 +47,6 @@ Global
 		{1ADE2C1C-EEA4-4A8C-91C4-E1E08F26CB12}.Release|x64.Build.0 = Release|x64
 		{1ADE2C1C-EEA4-4A8C-91C4-E1E08F26CB12}.Release|x86.ActiveCfg = Release|Win32
 		{1ADE2C1C-EEA4-4A8C-91C4-E1E08F26CB12}.Release|x86.Build.0 = Release|Win32
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Debug|x64.ActiveCfg = Debug|x64
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Debug|x64.Build.0 = Debug|x64
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Debug|x86.ActiveCfg = Debug|Win32
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Debug|x86.Build.0 = Debug|Win32
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Release|x64.ActiveCfg = Release|x64
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Release|x64.Build.0 = Release|x64
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Release|x86.ActiveCfg = Release|Win32
-		{251110E3-68C5-46CF-BDCE-2E72ED122F49}.Release|x86.Build.0 = Release|Win32
 		{D90A25A8-8118-4A2E-995C-56601D1D83E8}.Debug|x64.ActiveCfg = Debug|x64
 		{D90A25A8-8118-4A2E-995C-56601D1D83E8}.Debug|x64.Build.0 = Debug|x64
 		{D90A25A8-8118-4A2E-995C-56601D1D83E8}.Debug|x86.ActiveCfg = Debug|Win32
