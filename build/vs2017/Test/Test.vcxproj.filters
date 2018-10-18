@@ -67,5 +67,8 @@
     <ClCompile Include="..\..\..\Examples\Test\test_type_traits.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_float.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
