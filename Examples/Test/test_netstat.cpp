@@ -20,33 +20,16 @@
 ===============================================================================
 */
 
-struct MIB_TCPEXROW
-{
-	DWORD dwState;      // 连接状态
-	DWORD dwLocalAddr;  // 本地地址
-	DWORD dwLocalPort;  // 本地端口（网络字节序）
-	DWORD dwRemoteAddr; // 远程地址
-	DWORD dwRemotePort; // 远程端口
-	DWORD dwProcessId;  // 进程标识
-};
-
 
 struct MIB_TCPEXROW_VISTA
 {
-	DWORD dwState;      // 连接状态   
-	DWORD dwLocalAddr;  // 本地地址   
-	DWORD dwLocalPort;  // 本地端口   
-	DWORD dwRemoteAddr; // 远程地址   
-	DWORD dwRemotePort; // 远程端口   
-	DWORD dwProcessId;  // 进程标识   
+	DWORD dwState;      // 连接状态
+	DWORD dwLocalAddr;  // 本地地址
+	DWORD dwLocalPort;  // 本地端口
+	DWORD dwRemoteAddr; // 远程地址
+	DWORD dwRemotePort; // 远程端口
+	DWORD dwProcessId;  // 进程标识
 	DWORD Unknown;      // 待定标识
-};
-
-
-struct MIB_TCPEXTABLE
-{
-	DWORD dwNumEntries;
-	MIB_TCPEXROW table[ANY_SIZE];
 };
 
 
