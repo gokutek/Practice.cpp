@@ -25,11 +25,20 @@ TEST_CASE("tuple", "[tuple]")
     REQUIRE(std::get<1>(student0) == 'A');
     REQUIRE(std::get<2>(student0) == "Lisa Simpson");
         
-    int gpa1;
-    char grade1;
-    std::string name1;
-    std::tie(gpa1, grade1, name1) = get_student(1);
-    REQUIRE(gpa1 == 2);
-    REQUIRE(grade1 == 'C');
-    REQUIRE(name1 == "Milhouse Van Houten");
+    int gpa;
+    char grade;
+    std::string name;
+    std::tie(gpa, grade, name) = get_student(1);
+    REQUIRE(gpa == 2);
+    REQUIRE(grade == 'C');
+    REQUIRE(name == "Milhouse Van Houten");
+}
+
+
+TEST_CASE("C++17 structured binding", "[tuple]")
+{
+	auto[gpa, grade, name] = get_student(2);
+	REQUIRE(gpa == 1);
+	REQUIRE(grade == 'D');
+	REQUIRE(name == "Ralph Wiggum");
 }
