@@ -31,6 +31,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_MakeSureDirectoryPathExists.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_mod.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_optional.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_priority_queue.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_rapidxml.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_smart_ptr.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_template.cpp" />
