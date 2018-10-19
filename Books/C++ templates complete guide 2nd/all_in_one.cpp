@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#include <string>
+#include <iostream>
 #include <type_traits>
 #include "catch.hpp"
 
@@ -383,7 +384,7 @@ TEST_CASE("max2 with RT", "basic")
 #pragma endregion
 
 
-#pragma region Appendix C Overload Resolution
+#pragma region C.2 Simplified Overload Resolution
 
 /*
 ===============================================================================
@@ -559,5 +560,67 @@ TEST_CASE("rule.test.5", "Overload Resolution")
 
 
 #pragma region C.2.1 The Implied Argument for Member Functions
+
+/*
+===============================================================================
+===============================================================================
+*/
+class BadString
+{
+public:
+	BadString(char const *str)
+		: str_(str)
+	{
+	}
+
+	char& operator[](size_t index)
+	{
+		return str_[index];
+	}
+
+	char const& operator[](size_t index) const
+	{
+		return str_[index];
+	}
+
+	operator char*()
+	{
+		return (char*)str_.c_str();
+	}
+
+	operator char const*() const
+	{
+		return str_.c_str();
+	}
+
+private:
+	std::string str_;
+};
+
+
+TEST_CASE("rule.test.6", "Overload Resolution")
+{
+	BadString str("correkt");
+	//str[5] = 'c'; // ERROR: possibly an overload resolution ambiguity!
+}
+
+
+struct S
+{
+	int f1()
+	{
+		// implicit *this parameter is an lvalue reference(see below)
+	}
+
+	int f2() &&
+	{
+		// implicit *this parameter is an rvalue reference
+	}
+
+	int f3() &
+	{
+		// implicit *this parameter is an lvalue reference
+	}
+};
 
 #pragma endregion
