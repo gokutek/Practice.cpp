@@ -1076,6 +1076,39 @@ TEST_CASE("rule.test.18", "Overload Resolution")
 
 #pragma region C.3.5 Functors and Surrogate Functions
 
+/*
+===============================================================================
+The surrogate function has a worse match for the implied
+parameter (because it requires a user-defined conversion), but it has a better match
+for the last parameter; hence the two candidates cannot be ordered. The call is
+therefore ambiguous.
+===============================================================================
+*/
+using FuncType = void(double, int);
+
+
+class IndirectFunctor 
+{
+public:
+	void operator()(double, double) const
+	{
+	}
+	
+	// Surrogate functions are in the most obscure corners of C++ and rarely occur in practice(fortunately).
+	operator FuncType*() const
+	{
+		return NULL;
+	}
+};
+
+
+TEST_CASE("rule.test.19", "Overload Resolution")
+{
+	IndirectFunctor const *p = NULL;
+	IndirectFunctor const& funcObj = *p;
+	//funcObj(3, 5); // ERROR: ambiguous
+}
+
 #pragma endregion
 
 
