@@ -563,6 +563,22 @@ TEST_CASE("rule.test.5", "Overload Resolution")
 
 /*
 ===============================================================================
+At first, nothing seems ambiguous about the expression str[5]. The subscript
+operator at #1 seems like a perfect match. However, it is not quite perfect because
+the argument 5 has type int, and the operator expects an unsigned integer type
+(size_t and std::size_t usually have type unsigned int or unsigned
+long, but never type int). Still, a simple standard integer conversion makes #1
+easily viable. However, there is another viable candidate: the built-in subscript
+operator. Indeed, if we apply the implicit conversion operator to str (which is the
+implicit member function argument), we obtain a pointer type, and now the built-in
+subscript operator applies. This built-in operator takes an argument of type
+ptrdiff_t, which on many platforms is equivalent to int and therefore is a
+perfect match for the argument 5. So even though the built-in subscript operator is a
+poor match (by user-defined conversion) for the implied argument, it is a better
+match than the operator defined at #1 for the actual subscript! Hence the potential
+ambiguity.2 To solve this kind of problem portably, you can declare operator [ ]
+with a ptrdiff_t parameter, or you can replace the implicit type conversion to
+char* by an explicit conversion (which is usually recommended anyway).
 ===============================================================================
 */
 class BadString
@@ -610,17 +626,136 @@ struct S
 	int f1()
 	{
 		// implicit *this parameter is an lvalue reference(see below)
+		return 1;
 	}
 
 	int f2() &&
 	{
 		// implicit *this parameter is an rvalue reference
+		return 2;
 	}
 
 	int f3() &
 	{
 		// implicit *this parameter is an lvalue reference
+		return 3;
 	}
 };
+
+
+TEST_CASE("rule.test.7", "Overload Resolution")
+{
+	S().f1(); // OK: old rule allows rvalue S() to match implied
+	S().f2(); // lvalue reference type S& of *this. OK: rvalue S() matches rvalue reference type of *thisof *this
+	//S().f3(); // ERROR: rvalue S() cannot match explicit lvalue reference type of *this
+}
+
+#pragma endregion
+
+
+#pragma region C.2.2 Refining the Perfect Match
+
+/*
+===============
+引用和const引用
+===============
+*/
+static int report(int&)
+{
+	return 1;
+}
+
+
+static int report(int const&)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.8", "Overload Resolution")
+{
+	for (int k = 0; k < 10; ++k) {
+		REQUIRE(1 == report(k)); // calls #1
+	}
+	REQUIRE(2 == report(42)); // calls #2
+}
+
+
+/*
+==================
+const引用和右值引用
+==================
+*/
+struct Value
+{
+	Value() {}
+};
+
+
+static int pass(Value const&)
+{
+	return 1;
+}
+
+static int pass(Value &&)
+{
+	return 2;
+}
+
+
+static int g1(Value &&x)
+{
+	return pass(x);
+}
+
+
+static int g2(Value &&x)
+{
+	return pass(std::move(x));
+}
+
+
+static int g3()
+{
+	return pass(Value());
+}
+
+
+TEST_CASE("rule.test.9", "Overload Resolution")
+{
+	REQUIRE(1 == g1(Value())); // calls #1 , because x is an lvalue
+	REQUIRE(2 == g2(Value())); // calls #2 , because X() is an rvalue (in fact, prvalue)
+	REQUIRE(2 == g3()); // calls #2 , because std::move(x) is an rvalue (in fact, xvalue)
+}
+
+
+class Wonder
+{
+public:
+	int tick()
+	{
+		return 1;
+	}
+
+	int tick() const
+	{
+		return 2;
+	}
+
+	int tack() const
+	{
+		return 3;
+	}
+};
+
+
+TEST_CASE("rule.test.10", "Overload Resolution")
+{
+	Wonder wonder;
+	Wonder &device = wonder;
+
+	REQUIRE(1 == device.tick()); // calls #1
+	REQUIRE(3 == device.tack()); // calls #3 , because there is no non-const version of Wonder::tack()
+}
 
 #pragma endregion
