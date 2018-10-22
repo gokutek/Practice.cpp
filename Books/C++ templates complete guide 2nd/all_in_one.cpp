@@ -1,6 +1,9 @@
 ﻿#include <string>
 #include <iostream>
+#include <memory>
 #include <type_traits>
+#include <initializer_list>
+#include <complex>
 #include "catch.hpp"
 
 
@@ -790,5 +793,292 @@ TEST_CASE("rule.test.11", "Overload Resolution")
 	}
 	//c2_report(42); // ERROR, ambiguous: #1 and #3 match equally well
 }
+
+#pragma endregion
+
+
+#pragma region C.3.1 Prefer Nontemplates or More Specialized Templates
+
+template<typename T>
+int c_3_1_f(T)
+{
+	return 1;
+}
+
+
+int c_3_1_f(int)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.12", "Overload Resolution")
+{
+	REQUIRE(2 == c_3_1_f(7));
+}
+
+#pragma endregion
+
+
+#pragma region C3.2 Conversion Sequences
+
+/*
+===============================================================================
+1. A conversion of object from Derived const to Base const (this is a
+glvalue conversion; it preserves the identity of the object)
+2. A user-defined conversion of the resulting Base const object to type short 3.
+A promotion of short to int
+===============================================================================
+*/
+
+class c_3_2_Base 
+{
+public:
+	virtual ~c_3_2_Base() {}
+
+	operator short() const
+	{
+		return 1;
+	}
+};
+
+
+class c_3_2_Derived : public c_3_2_Base 
+{
+};
+
+
+static int c_3_2_count(int val)
+{
+	return val;
+}
+
+
+TEST_CASE("rule.test.13", "Overload Resolution")
+{
+	// 先转换到c_3_2_Base基类，再调用基类的转换函数转换到short，转换到int
+	c_3_2_Derived object;
+	REQUIRE(1 == c_3_2_count(object)); // matches with user-defined conversion
+}
+
+#pragma endregion
+
+
+#pragma region C3.3 Pointer Conversions
+
+/*
+===============================================================================
+Pointers and pointers to members undergo various special standard conversions,
+including
+• Conversions to type bool
+• Conversions from an arbitrary pointer type to void*
+• Derived-to-base conversions for pointers
+• Base-to-derived conversions for pointers to members
+===============================================================================
+*/
+
+
+/*
+===============================================================================
+conversions to type bool (both from a regular pointer and from a pointer to
+a member) are considered worse than any other kind of standard conversion.
+===============================================================================
+*/
+int c_3_3_check(void*)
+{
+	return 1;
+}
+
+
+int c_3_3_check(bool)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.14", "Overload Resolution")
+{
+	std::unique_ptr<int> p(new int(10));
+	REQUIRE(c_3_3_check(p.get()) == 1);
+}
+
+
+/*
+===============================================================================
+if conversions to different classes related by inheritance exist,
+a conversion to the most derived class is preferred.
+===============================================================================
+*/
+class c_3_3_interface
+{
+public:
+	virtual ~c_3_3_interface() {}
+};
+
+
+class c_3_3_CommonProcesses : public c_3_3_interface
+{
+};
+
+
+class c_3_3_Machine : public c_3_3_CommonProcesses
+{
+};
+
+
+int c_3_3_serialize(c_3_3_interface*)
+{
+	return 1;
+}
+
+
+int c_3_3_serialize(c_3_3_CommonProcesses*)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.15", "Overload Resolution")
+{
+	c_3_3_Machine *machine = NULL;
+	REQUIRE(c_3_3_serialize(machine) == 2);
+}
+
+#pragma endregion
+
+
+#pragma region C.3.4 Initializer Lists
+
+/*
+===============================================================================
+Initializer list arguments (initializers passed with in curly braces) can be converted to
+several different kinds of parameters: initializer_lists, class types
+with an initializer_list constructor, class types for which the initializer
+list elements can be treated as (separate) parameters to a constructor, or aggregate
+class types whose members can be initialized by the elements of the initializer list.
+===============================================================================
+*/
+int c_3_4_f(std::initializer_list<int>)
+{
+	return 1;
+}
+
+
+int c_3_4_f(std::initializer_list<std::string>)
+{
+	return 2;
+}
+
+
+int c_3_4_g(std::vector<int> const& vec)
+{
+	return 3;
+} 
+
+
+int c_3_4_h(std::complex<double> const& cmplx)
+{
+	return 4;
+}
+
+
+struct c_3_4_Point
+{
+	int x, y;
+};
+
+
+int c_3_4_i(c_3_4_Point const &pt)
+{
+	return 5;
+} 
+
+
+TEST_CASE("rule.test.16", "Overload Resolution")
+{
+	REQUIRE(1 == c_3_4_f({ 1, 2, 3 }));
+	REQUIRE(2 == c_3_4_f({ "hello", "initializer", "list" }));
+	REQUIRE(3 == c_3_4_g({ 1, 1, 2, 3, 5 }));
+	REQUIRE(4 == c_3_4_h({ 1.5, 2.5 }));
+	REQUIRE(5 == c_3_4_i({ 1, 2 }));
+}
+
+
+/*
+===============================================================================
+===============================================================================
+*/
+static int c_3_4_ovl(std::initializer_list<char>) 
+{
+	return 1;
+}
+
+
+static int c_3_4_ovl(std::initializer_list<int>)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.17", "Overload Resolution")
+{
+	REQUIRE(1 == c_3_4_ovl({ 'h', 'e', 'l', 'l', 'o', '\0' }));
+	REQUIRE(2 == c_3_4_ovl({ 'h', 'e', 'l', 'l', 'o', 0 }));
+}
+
+
+/*
+===============================================================================
+any initializer-list constructor is a better match than any
+non-initializer-list constructor.
+===============================================================================
+*/
+template<typename T>
+struct C_3_4_Array
+{
+	C_3_4_Array(std::initializer_list<T>)
+	{
+		ver = 1;
+	}
+
+	C_3_4_Array(unsigned n, T const&)
+	{
+		ver = 2;
+	}
+
+	int ver;
+};
+
+
+int C_3_4_arr1(C_3_4_Array<int> arr)
+{
+	return arr.ver;
+}
+
+
+int C_3_4_arr2(C_3_4_Array<std::string> arr)
+{
+	return arr.ver;
+}
+
+
+TEST_CASE("rule.test.18", "Overload Resolution")
+{
+	REQUIRE(1 == C_3_4_arr1({ 1, 2, 3, 4, 5 }));
+	REQUIRE(1 == C_3_4_arr1({ 1, 2 }));
+	REQUIRE(1 == C_3_4_arr1({ 10u, 5 }));
+	REQUIRE(1 == C_3_4_arr2({ "hello", "initializer", "list" }));
+	REQUIRE(2 == C_3_4_arr2({ 10, "hello" }));
+}
+
+#pragma endregion
+
+
+#pragma region C.3.5 Functors and Surrogate Functions
+
+#pragma endregion
+
+
+#pragma region C.3.6 Other Overloading Contexts
 
 #pragma endregion
