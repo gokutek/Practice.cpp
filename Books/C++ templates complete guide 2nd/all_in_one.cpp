@@ -758,4 +758,37 @@ TEST_CASE("rule.test.10", "Overload Resolution")
 	REQUIRE(3 == device.tack()); // calls #3 , because there is no non-const version of Wonder::tack()
 }
 
+
+/*
+===============================================================================
+Finally, the following modification of our earlier example illustrates that two perfect
+matches can also create an ambiguity if you overload with and without references:
+===============================================================================
+*/
+int c2_report(int)
+{
+	return 1;
+}
+
+
+int c2_report(int&)
+{
+	return 2;
+}
+
+
+int c2_report(int const&)
+{
+	return 3;
+}
+
+
+TEST_CASE("rule.test.11", "Overload Resolution")
+{
+	for (int k = 0; k<10; ++k) {
+		//c2_report(k); // ERROR, ambiguous: #1 and #2 match equally well
+	}
+	//c2_report(42); // ERROR, ambiguous: #1 and #3 match equally well
+}
+
 #pragma endregion
