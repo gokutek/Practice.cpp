@@ -1106,12 +1106,77 @@ TEST_CASE("rule.test.19", "Overload Resolution")
 {
 	IndirectFunctor const *p = NULL;
 	IndirectFunctor const& funcObj = *p;
-	//funcObj(3, 5); // ERROR: ambiguous
+	// ERROR: ambiguous，可能是调用operator()操作符，也可能是先转换成函数指针再调用
+	//funcObj(3, 5);
 }
 
 #pragma endregion
 
 
 #pragma region C.3.6 Other Overloading Contexts
+
+int c_3_6_numElems(int)
+{
+	return 1;
+}
+
+
+int c_3_6_numElems(char)
+{
+	return 2;
+}
+
+
+TEST_CASE("rule.test.20", "Overload Resolution")
+{
+	int(*funcPtr)(char) = c_3_6_numElems;
+	REQUIRE(funcPtr(1) == 2);
+}
+
+
+class c_3_6_BigNum
+{
+public:
+	c_3_6_BigNum(long n) 
+	{
+		ver = 1;
+	}
+
+	c_3_6_BigNum(double n) 
+	{
+		ver = 2;
+	}
+
+	c_3_6_BigNum(std::string const&) 
+	{
+		ver = 3;
+	}
+	
+	operator double() 
+	{
+		return 4;
+	}
+
+	operator long() 
+	{
+		return 5;
+	}
+
+	int ver;
+};
+
+
+TEST_CASE("rule.test.21", "Overload Resolution")
+{
+	// 注意，下面一行代码无法编译，可能是VS的编译器不支持
+	//c_3_6_BigNum bn1(100103);
+	//REQUIRE(bn1.ver == 1);
+
+	c_3_6_BigNum bn2("7057103224.095764");
+	REQUIRE(bn2.ver == 3);
+
+	int in = bn2;
+	REQUIRE(in == 5);
+}
 
 #pragma endregion
