@@ -46,4 +46,26 @@ TEST_CASE("assembly.2", "[ASM]")
 	REQUIRE(res == 25);
 }
 
+
+static int __stdcall func2(int a, int b)
+{
+	return a + b;
+}
+
+
+TEST_CASE("assembly.3", "[ASM]")
+{
+	int res;
+
+	__asm
+	{
+		push 12
+		push 13
+		call func2
+		mov res, eax
+	}
+
+	REQUIRE(res == 25);
+}
+
 #endif // _MSC_VER
