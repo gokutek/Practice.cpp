@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_const.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_constexpr.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_decltype.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_functional.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_float.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_forward_list.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_macro.cpp" />

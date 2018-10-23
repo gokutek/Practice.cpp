@@ -76,5 +76,8 @@
     <ClCompile Include="..\..\..\Examples\Test\test_netstat.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_functional.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
