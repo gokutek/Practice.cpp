@@ -3,17 +3,35 @@
 #include "catch.hpp"
 
 
-TEST_CASE("find, substr", "string")
+TEST_CASE("find, substr", "std::string")
 {
-	std::string const str = "string,int";
+	std::string const str = "hello,world";
 	size_t pos = str.find(',');
 	REQUIRE(std::string::npos != pos);
 
 	std::string const prefix = str.substr(0, pos);
-	REQUIRE(prefix == "string");
+	REQUIRE(prefix == "hello");
 
 	std::string const surfix = str.substr(pos + 1);
-	REQUIRE(surfix == "int");
+	REQUIRE(surfix == "world");
+
+	pos = str.find("hello");
+	REQUIRE(std::string::npos != pos);
+	REQUIRE(0 == pos);
+
+	pos = str.find("Fuck");
+	REQUIRE(std::string::npos == pos);
+}
+
+
+TEST_CASE("find_first_of", "std::string")
+{
+	std::string const str = "hello,world";
+	size_t pos = str.find_first_of("egg");
+	REQUIRE(pos == 1);
+
+	pos = str.find_first_of("fuck");
+	REQUIRE(pos == std::string::npos);
 }
 
 
