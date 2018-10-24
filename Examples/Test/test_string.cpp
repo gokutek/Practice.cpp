@@ -3,8 +3,17 @@
 #include "catch.hpp"
 
 
-TEST_CASE("string", "string")
+TEST_CASE("find, substr", "string")
 {
+	std::string const str = "string,int";
+	size_t pos = str.find(',');
+	REQUIRE(std::string::npos != pos);
+
+	std::string const prefix = str.substr(0, pos);
+	REQUIRE(prefix == "string");
+
+	std::string const surfix = str.substr(pos + 1);
+	REQUIRE(surfix == "int");
 }
 
 
