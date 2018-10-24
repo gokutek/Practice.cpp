@@ -16,3 +16,14 @@ TEST_CASE("sstream clear", "sstream")
 
 	REQUIRE(oss.str() == "helloworld");
 }
+
+
+TEST_CASE("sstream str", "sstream")
+{
+	std::ostringstream oss;
+	oss << "hello";
+	oss.str("");
+	oss << "world";
+
+	REQUIRE(oss.str() == "world");
+}
