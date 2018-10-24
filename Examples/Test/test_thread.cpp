@@ -85,3 +85,33 @@ TEST_CASE("lock_guard", "[thread]")
 	std::mutex mutex;
 	std::lock_guard<std::mutex> guard(mutex);
 }
+
+
+/*
+===============================================================================
+The effects of notify_one()/notify_all() and each of the three atomic parts of 
+wait()/wait_for()/wait_until() (unlock+wait, wakeup, and lock) take place in a 
+single total order that can be viewed as modification order of an atomic 
+variable: the order is specific to this individual condition_variable. This 
+makes it impossible for notify_one() to, for example, be delayed and unblock a
+thread that started waiting just after the call to notify_one() was made.
+
+The notifying thread does not need to hold the lock on the same mutex as the 
+one held by the waiting thread(s); in fact doing so is a pessimization, since
+the notified thread would immediately block again, waiting for the notifying 
+thread to release the lock. However, some implementations (in particular many 
+implementations of pthreads) recognize this situation and avoid this "hurry up 
+and wait" scenario by transferring the waiting thread from the condition 
+variable's queue directly to the queue of the mutex within the notify call, 
+without waking it up.
+
+Notifying while under the lock may nevertheless be necessary when precise 
+scheduling of events is required, e.g. if the waiting thread would exit the 
+program if the condition is satisfied, causing destruction of the notifying 
+thread's condition_variable. A spurious wakeup after mutex unlock but before 
+notify would result in notify called on a destroyed object.
+===============================================================================
+*/
+TEST_CASE("notify_one", "[condition_variable]")
+{
+}
