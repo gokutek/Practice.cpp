@@ -1,4 +1,5 @@
-﻿#include <string>
+﻿#include <assert.h>
+#include <string>
 #include <iostream>
 #include <memory>
 #include <type_traits>
@@ -323,6 +324,14 @@ TEST_CASE("maxdefault3", "basic")
 
 #pragma region 1.5 Overloading Function Templates
 
+/*
+===============================================================================
+a nontemplate function can coexist with a function template
+that has the same name and can be instantiated with the same type. All other factors
+being equal, the overload resolution process prefers the nontemplate over one
+generated from the template.
+===============================================================================
+*/
 int max2(int a, int b)
 {
 	return a < b ? b : a;
@@ -360,14 +369,14 @@ TEST_CASE("max2", "basic")
 
 
 template<typename T1, typename T2>
-auto max2(T1 a, T2 b)
+auto maxdefault4(T1 a, T2 b)
 {
 	return a < b ? b : a;
 }
 
 
 template<typename RT, typename T1, typename T2>
-RT max2(T1 a, T2 b)
+RT maxdefault4(T1 a, T2 b)
 {
 	return a < b ? b : a;
 }
@@ -375,13 +384,142 @@ RT max2(T1 a, T2 b)
 
 TEST_CASE("max2 with RT", "basic")
 {
-	auto a = ::max2(4, 7.2); // uses first template
+	auto a = ::maxdefault4(4, 7.2); // uses first template
 	REQUIRE(a == 7.2);
 
-	auto b = ::max2<long double>(7.2, 4); // uses second template
+	auto b = ::maxdefault4<long double>(7.2, 4); // uses second template
 	REQUIRE(b == 7.2);
 
-	//auto c = ::max2<int>(4, 7.2); // ERROR: both function templates match
+	//auto c = ::maxdefault4<int>(4, 7.2); // ERROR: both function templates match
+}
+
+
+/*
+============================================================================== =
+===============================================================================
+*/
+
+// maximum of two values of any type:
+template<typename T>
+T max3val(T a, T b)
+{
+	return b < a ? a : b;
+}
+
+
+// maximum of two pointers:
+template<typename T>
+T* max3val(T* a, T* b)
+{
+	return *b < *a ? a : b;
+}
+
+
+// maximum of two C-strings:
+char const* max3val(char const* a, char const* b)
+{
+	return std::strcmp(b, a) < 0 ? a : b;
+}
+
+
+TEST_CASE("max3val", "max3val")
+{
+	int a = 7;
+	int b = 42;
+	auto m1 = ::max3val(a, b); // max() for two values of type int
+
+	std::string s1 = "hey";
+	std::string s2 = "you";
+	auto m2 = ::max3val(s1, s2); // max() for two values of type std::string
+
+	int* p1 = &b;
+	int* p2 = &a;
+	auto m3 = ::max3val(p1, p2); // max() for two pointers
+
+	char const* x = "hello";
+	char const* y = "world";
+	auto m4 = ::max3val(x, y); // max() for two C-strings
+}
+
+
+/*
+===============================================================================
+In general, it is a good idea not to change more than necessary when overloading
+function templates. You should limit your changes to the number of parameters
+or to specifying template parameters explicitly. Otherwise, unexpected effects
+may happen. For example, if you implement your max() template to pass the
+arguments by reference and overload it for two C-strings passed by value, you
+can’t use the three-argument version to compute the maximum of three C-strings:
+===============================================================================
+*/
+
+// maximum of two values of any type (call-by-reference)
+template<typename
+	T> T const& max3ref(T const& a, T const& b)
+{
+	return b < a ? a : b;
+} 
+
+
+// maximum of two C-strings (call - by - value)
+char const* max3ref(char const* a, char const* b)
+{
+	return std::strcmp(b, a) < 0 ? a : b;
+}
+
+
+// maximum of three values of any type (call-by-reference)
+template<typename T>
+T const& max3ref(T const& a, T const& b, T const& c)
+{
+	return max3ref(max3ref(a, b), c); // error if max(a,b) uses	call - by - value
+} 
+
+
+TEST_CASE("max3ref", "max3ref")
+{
+	auto m1 = ::max3ref(7, 42, 68); // OK
+	char const* s1 = "frederic";
+	char const* s2 = "anica";
+	char const* s3 = "lucas";
+	//auto m2 = ::max3ref(s1, s2, s3); //run-time ERROR
+}
+
+
+/*
+===============================================================================
+In addition, ensure that all overloaded versions of a function are declared
+before the function is called.
+===============================================================================
+*/
+
+// maximum of two values of any type:
+template<typename T>
+T max4(T a, T b)
+{
+	return b < a ? a : b;}
+
+
+// maximum of three values of any type:
+template<typename T>
+T max4(T a, T b, T c)
+{
+	// uses the template version even for ints, because the following declaration comes too late:
+	return max4(max4(a, b), c);
+}
+
+
+// maximum of two int values:
+int max4(int a,	int b)
+{
+	assert(0);
+	return b < a ? a : b;
+}
+
+
+TEST_CASE("max4", "max4")
+{
+	::max4(47, 11, 33); // OOPS: uses max<T>() instead of max(int, int)
 }
 
 #pragma endregion
