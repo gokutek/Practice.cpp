@@ -85,5 +85,8 @@
     <ClCompile Include="..\..\..\Examples\Test\test_os_windows.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_stringstream.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

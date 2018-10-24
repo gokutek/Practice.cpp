@@ -37,6 +37,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_priority_queue.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_rapidxml.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_smart_ptr.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_stringstream.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_template.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_thread.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_tuple.cpp" />
