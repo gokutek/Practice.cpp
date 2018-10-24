@@ -11,7 +11,7 @@ TEST_CASE("sstream clear", "sstream")
 {
 	std::ostringstream oss;
 	oss << "hello";
-	oss.clear();
+	oss.clear(); // clear不是清理掉之前的输入
 	oss << "world";
 
 	REQUIRE(oss.str() == "helloworld");
