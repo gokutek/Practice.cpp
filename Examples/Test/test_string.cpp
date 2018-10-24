@@ -35,6 +35,13 @@ TEST_CASE("find_first_of", "std::string")
 }
 
 
+TEST_CASE("data", "std::string")
+{
+	std::string const str = "hello,world";
+	REQUIRE(str.data() == str.c_str());
+}
+
+
 /*
 ===============================================================================
 string_view
