@@ -91,5 +91,8 @@
     <ClCompile Include="..\..\..\Examples\Test\test_base64.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_initializer_list.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

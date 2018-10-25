@@ -30,6 +30,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_functional.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_float.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_forward_list.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_initializer_list.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_macro.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_MakeSureDirectoryPathExists.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_mod.cpp" />
