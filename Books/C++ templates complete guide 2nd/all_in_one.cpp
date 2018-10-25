@@ -454,8 +454,8 @@ can’t use the three-argument version to compute the maximum of three C-strings
 */
 
 // maximum of two values of any type (call-by-reference)
-template<typename
-	T> T const& max3ref(T const& a, T const& b)
+template<typename T> 
+T const& max3ref(T const& a, T const& b)
 {
 	return b < a ? a : b;
 } 
@@ -497,14 +497,15 @@ before the function is called.
 template<typename T>
 T max4(T a, T b)
 {
-	return b < a ? a : b;}
+	return b < a ? a : b;
+}
 
 
 // maximum of three values of any type:
 template<typename T>
 T max4(T a, T b, T c)
 {
-	// uses the template version even for ints, because the following declaration comes too late:
+	// uses the template version even for ints, because the following declaration comes too late
 	return max4(max4(a, b), c);
 }
 
