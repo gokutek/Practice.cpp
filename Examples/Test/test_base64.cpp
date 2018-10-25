@@ -4,37 +4,41 @@
 #include "catch.hpp"
 
 /*
-================
-base64编码、解码
-================
+===============================================================================
+base64编码、解码：
+1.以每3个字节为组，不足时在后面补0；
+2.每6位对应一个base64字符，3个字节对应4个base64字符；
+3.如果6位都是补的0，则对应的字符是'='；
+3.如果6位数据都是0，则对应的字符是'A'；
+===============================================================================
 */
 
-static char base64Char[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static char base64Charset[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 
-static std::string base64_encode(void *data, size_t sz)
+static std::string base64_encode(void const *data, size_t sz)
 {
 	std::string res;
 
 	uint8_t const *ptr = (uint8_t const*)data;
 	while (sz >= 3) {
-		res.push_back(base64Char[ptr[0] >> 2]);
-		res.push_back(base64Char[((ptr[0] & 3) << 4) | (ptr[1] >> 4)]);
-		res.push_back(base64Char[((ptr[1] & 0xf) << 2) | (ptr[2] >> 6)]);
-		res.push_back(base64Char[ptr[2] & 0x3f]);
+		res.push_back(base64Charset[ptr[0] >> 2]);
+		res.push_back(base64Charset[((ptr[0] & 3) << 4) | (ptr[1] >> 4)]);
+		res.push_back(base64Charset[((ptr[1] & 0xf) << 2) | (ptr[2] >> 6)]);
+		res.push_back(base64Charset[ptr[2] & 0x3f]);
 		sz -= 3;
 		ptr += 3;
 	}
 
 	if (sz == 1) {
-		res.push_back(base64Char[ptr[0] >> 2]);
-		res.push_back(base64Char[(ptr[0] & 0x3) << 4]);
+		res.push_back(base64Charset[ptr[0] >> 2]);
+		res.push_back(base64Charset[(ptr[0] & 0x3) << 4]);
 		res.push_back('=');
 		res.push_back('=');
 	} else if (sz == 2) {
-		res.push_back(base64Char[ptr[0] >> 2]);
-		res.push_back(base64Char[((ptr[0] & 3) << 4) | (ptr[1] >> 4)]);
-		res.push_back(base64Char[(ptr[1] & 0xf) << 2]);
+		res.push_back(base64Charset[ptr[0] >> 2]);
+		res.push_back(base64Charset[((ptr[0] & 3) << 4) | (ptr[1] >> 4)]);
+		res.push_back(base64Charset[(ptr[1] & 0xf) << 2]);
 		res.push_back('=');
 	}
 
@@ -106,6 +110,9 @@ static bool equal(std::vector<char> const &data1, std::vector<char> const &data2
 
 TEST_CASE("base64", "base64")
 {
+	char const c = 0;
+	REQUIRE("AA==" == base64_encode(&c, 1));
+
 	REQUIRE("NA==" == base64_encode("4", 1));
 	REQUIRE("NDU=" == base64_encode("45", 2));
 	REQUIRE("MTIz" == base64_encode("123", 3));
