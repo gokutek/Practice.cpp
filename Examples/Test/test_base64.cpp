@@ -94,6 +94,16 @@ static std::vector<char> base64_decode(std::string const &str)
 }
 
 
+static bool equal(std::vector<char> const &data1, std::vector<char> const &data2) 
+{
+	if (data1.size() != data2.size()) { return false; }
+	for (size_t i = 0; i < data1.size(); ++i) {
+		if (data1[i] != data2[i]) { return false; }
+	}
+	return true;
+}
+
+
 TEST_CASE("base64", "base64")
 {
 	REQUIRE("NA==" == base64_encode("4", 1));
@@ -112,11 +122,6 @@ TEST_CASE("base64", "base64")
 
 		std::string const buf = base64_encode(&data[0], len);
 		std::vector<char> const data2 = base64_decode(buf);
-
-		REQUIRE(data.size() == data2.size());
-
-		for (size_t i = 0; i < data.size(); ++i) {
-			REQUIRE(data[i] == data2[i]);
-		}
+		REQUIRE(equal(data, data2));
 	}
 }
