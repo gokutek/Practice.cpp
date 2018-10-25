@@ -1,4 +1,4 @@
-﻿#ifdef _MSC_VER
+﻿#ifdef WIN32
 
 #include "catch.hpp"
 
@@ -78,4 +78,4 @@ TEST_CASE("assembly.3", "[ASM]")
 	REQUIRE(res == 25);
 }
 
-#endif // _MSC_VER
+#endif // WIN32
