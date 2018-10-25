@@ -19,6 +19,7 @@ static char base64Charset[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstu
 static std::string base64_encode(void const *data, size_t sz)
 {
 	std::string res;
+	res.reserve((sz + 2) / 3 * 4);
 
 	uint8_t const *ptr = (uint8_t const*)data;
 	while (sz >= 3) {
@@ -62,7 +63,10 @@ static char char_index(char c)
 static std::vector<char> base64_decode(std::string const &str)
 {
 	assert(str.size() % 4 == 0);
+
 	std::vector<char> data;
+	data.reserve(str.size() / 4 * 3);
+
 	for (size_t i = 0; i < str.size(); i += 4) {
 		char const c0 = str[i];
 		char const c1 = str[i + 1];
