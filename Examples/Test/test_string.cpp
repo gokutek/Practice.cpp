@@ -1,4 +1,5 @@
-﻿#include <string>
+﻿#include <map>
+#include <string>
 #include <string_view>
 #include "catch.hpp"
 
@@ -57,4 +58,19 @@ TEST_CASE("string_view", "string_view")
 
 	char const *p = &sv.at(0);
 	REQUIRE(p == str);
+}
+
+
+/*
+===============================================================================
+设计接口时，参数用std::string const&还是char const*：
+下面这种情况，可能是用std::string const&比较好。如果用char const*，在调用find时，
+肯定会引发std::string的构造。用std::string const&，就要看调用者怎么传参数了，如
+果调用者传的就是std::string const&，就避免了std::string的内存分配；
+===============================================================================
+*/
+static bool find_key(std::string const &key)
+{
+	std::map<std::string, int> m;
+	return m.find(key) != m.end();
 }
