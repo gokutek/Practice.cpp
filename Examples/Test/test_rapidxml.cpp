@@ -56,7 +56,7 @@ static std::string CreateXMLDoc()
 }
 
 
-TEST_CASE("test write", "[rapidxml]")
+TEST_CASE("test write xml", "[rapidxml]")
 {
 	std::string const result =
 		"<?xml version='1.0' encoding='utf-8' ?>\n"
@@ -71,7 +71,7 @@ TEST_CASE("test write", "[rapidxml]")
 }
 
 
-TEST_CASE("test read", "[rapidxml]")
+TEST_CASE("test read xml", "[rapidxml]")
 {
 	std::string const text = CreateXMLDoc();
 

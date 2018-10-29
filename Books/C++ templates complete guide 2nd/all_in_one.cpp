@@ -959,7 +959,7 @@ TEST_CASE("rule.test.12", "Overload Resolution")
 #pragma endregion
 
 
-#pragma region C3.2 Conversion Sequences
+#pragma region C.3.2 Conversion Sequences
 
 /*
 ===============================================================================
@@ -1003,7 +1003,7 @@ TEST_CASE("rule.test.13", "Overload Resolution")
 #pragma endregion
 
 
-#pragma region C3.3 Pointer Conversions
+#pragma region C.3.3 Pointer Conversions
 
 /*
 ===============================================================================
