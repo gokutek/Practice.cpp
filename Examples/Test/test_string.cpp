@@ -1,4 +1,5 @@
-﻿#include <map>
+﻿#include <limits>
+#include <map>
 #include <string>
 #include <string_view>
 #include "catch.hpp"
@@ -73,4 +74,18 @@ static bool find_key(std::string const &key)
 {
 	std::map<std::string, int> m;
 	return m.find(key) != m.end();
+}
+
+
+TEST_CASE("int64", "format")
+{
+	int64_t const i64 = std::numeric_limits<int64_t>::max();
+	
+	char buffer[256];
+	sprintf(buffer, "%lld", i64);
+	REQUIRE(strcmp(buffer, "9223372036854775807") == 0);
+
+	memset(buffer, 0, sizeof(buffer));
+	sprintf(buffer, "%I64d", i64);
+	REQUIRE(strcmp(buffer, "9223372036854775807") == 0);
 }
