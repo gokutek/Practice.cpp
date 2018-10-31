@@ -28,9 +28,6 @@
     <ClCompile Include="..\..\..\Examples\Test\test_macro.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Examples\Test\test_MakeSureDirectoryPathExists.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Examples\Test\test_mod.cpp">
       <Filter>Source</Filter>
     </ClCompile>
