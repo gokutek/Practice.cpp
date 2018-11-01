@@ -15,6 +15,8 @@
 */
 TEST_CASE("nothrow", "nothrow")
 {
+#ifdef WIN32
 	char* p = new (std::nothrow) char[0x7fffffff];
-	REQUIRE(p == NULL);
+    REQUIRE(p == NULL);
+#endif // WIN32
 }
