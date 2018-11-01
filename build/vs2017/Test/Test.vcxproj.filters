@@ -103,5 +103,8 @@
     <ClCompile Include="..\..\..\Examples\Test\test_time.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_rapidjson.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

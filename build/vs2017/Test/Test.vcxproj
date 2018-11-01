@@ -36,6 +36,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_netstat.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_optional.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_priority_queue.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_rapidjson.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_rapidxml.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_rvalue.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_smart_ptr.cpp" />
@@ -123,7 +124,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -139,7 +140,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -157,7 +158,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -177,7 +178,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
