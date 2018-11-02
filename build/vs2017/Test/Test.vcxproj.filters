@@ -76,9 +76,6 @@
     <ClCompile Include="..\..\..\Examples\Test\test_asm.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Examples\Test\test_os_windows.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Examples\Test\test_sstream.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -104,6 +101,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Examples\Test\test_rapidjson.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_win_api.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -51,7 +51,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_uncommon.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_stdarg.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_variant.cpp" />
-    <ClCompile Include="..\..\..\Examples\Test\test_os_windows.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_win_api.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9BEB84A4-952A-447B-84F6-A72A187851BD}</ProjectGuid>
