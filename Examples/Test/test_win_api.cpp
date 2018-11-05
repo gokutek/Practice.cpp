@@ -30,3 +30,25 @@ TEST_CASE("CreateProcess", "WinAPI")
 	CloseHandle(pi.hThread);
 	CloseHandle(pi.hProcess);
 }
+
+
+/*
+============================
+OpenMutex第一个参数不能指定0
+============================
+*/
+TEST_CASE("Mutex", "WinAPI")
+{
+	HANDLE hMutex = CreateMutexW(NULL, FALSE, L"{C14C3FA8-C179-4E24-B435-784C7FF610BB}");
+	REQUIRE(hMutex != NULL);
+
+	HANDLE hMutex1 = OpenMutexW(0, FALSE, L"{C14C3FA8-C179-4E24-B435-784C7FF610BB}");
+	REQUIRE(hMutex1 == NULL);
+	CloseHandle(hMutex1);
+
+	hMutex1 = OpenMutexW(MUTEX_ALL_ACCESS, FALSE, L"{C14C3FA8-C179-4E24-B435-784C7FF610BB}");
+	REQUIRE(hMutex1 != NULL);
+	CloseHandle(hMutex1);
+
+	CloseHandle(hMutex);
+}
