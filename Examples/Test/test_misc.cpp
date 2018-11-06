@@ -37,14 +37,15 @@ namespace
 	};
 
 
-	Animal::~Animal()
+	// 必须要实现，否则将会有链接错误
+	inline Animal::~Animal()
 	{
 	}
 
 
 	class Cat : public Animal
 	{
-
+	public:
 	};
 }
 
@@ -52,4 +53,6 @@ namespace
 TEST_CASE("pure virtual dtor", "dtor")
 {
 	//Animal ani;
+	Cat cat;
+	cat;
 }
