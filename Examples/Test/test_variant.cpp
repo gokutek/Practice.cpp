@@ -27,6 +27,10 @@ namespace
 		{
 		}
 
+		Foo(Foo const &other) : m_val(other.m_val)
+		{
+		}
+
 		~Foo()
 		{
 			dtor_is_called = true;
@@ -77,6 +81,23 @@ TEST_CASE("object", "[variant]")
 	v = Foo(123);
 	v = "hello";
 	REQUIRE(dtor_is_called);
+}
+
+
+/*
+===============================================================================
+std::get返回的实际上是引用类型
+===============================================================================
+*/
+TEST_CASE("get", "[variant]")
+{
+	std::variant<std::string, Foo> v;
+	v = Foo(123);
+	Foo &foo = std::get<Foo>(v);
+	REQUIRE(foo.m_val == 123);
+
+	std::get<Foo>(v).m_val = 666;
+	REQUIRE(foo.m_val == 666);
 }
 
 #endif // _MSC_VER >= 1914

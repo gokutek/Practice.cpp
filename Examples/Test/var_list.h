@@ -146,7 +146,8 @@ inline double VarList::DoubleVar(size_t i) const
 inline char const * VarList::StringVar(size_t i) const
 {
 	assert(vars_[i].type == VT::VT_STRING);
-	return std::get<std::string>(vars_[i].var).c_str();
+	std::string const &str = std::get<std::string>(vars_[i].var);
+	return str.c_str();
 }
 
 
