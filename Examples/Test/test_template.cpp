@@ -2,6 +2,11 @@
 #include "catch.hpp"
 
 
+/*
+=======
+T与引用
+=======
+*/
 template<typename T>
 void test_t_type(T val)
 {
@@ -24,6 +29,11 @@ void test_t_type_func()
 }
 
 
+/*
+=========
+T&&与引用
+=========
+*/
 template<typename T>
 void test_t_type2(T&& val)
 {
