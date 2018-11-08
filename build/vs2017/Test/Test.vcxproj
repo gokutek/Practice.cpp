@@ -51,6 +51,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_misc.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_stdarg.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_variant.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_var_list.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_win_api.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
