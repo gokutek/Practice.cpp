@@ -61,8 +61,8 @@ static void MakeVarList(VarList &varlist)
 }
 
 
-template<typename T, typename ... TArgs>
-void MakeVarList(VarList &varlist, T &&val, TArgs&& ... args)
+template<typename T, typename ...TArgs>
+void MakeVarList(VarList &varlist, T &&val, TArgs &&...args)
 {
 	varlist << val;
 	MakeVarList(varlist, args...);
@@ -70,7 +70,7 @@ void MakeVarList(VarList &varlist, T &&val, TArgs&& ... args)
 
 
 template<typename ... TArgs>
-int Invoke(void *pEntity, char const *func, TArgs && ... args)
+int Invoke(void *pEntity, char const *func, TArgs &&...args)
 {
 	VarList varlist;
 	MakeVarList(varlist, args...);
