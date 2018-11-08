@@ -41,6 +41,13 @@ namespace
 }
 
 
+/*
+===============================================================================
+0.std::get模板参数可以是索引或者类型；
+1.索引越界，或者类型不存在都会有编译错误；
+2.当variant中当前实际储存的类型与std::get不一致时，会抛出异常；
+===============================================================================
+*/
 TEST_CASE("misc", "[variant]")
 {
 	std::variant<int, float> v, w;
@@ -57,11 +64,22 @@ TEST_CASE("misc", "[variant]")
 	//  std::get<double>(v); // error: no double in [int, float]
 	//  std::get<3>(v);      // error: valid index values are 0 and 1
 
+	bool has_exception = false;
 	try {
-		// warning C4834: 放弃具有 "nodiscard" 属性的函数的返回值
 		std::variant<int, float> val = std::get<float>(w); // w contains int, not float: will throw
 	} catch (std::bad_variant_access&) {
+		has_exception = true;
 	}
+	REQUIRE(has_exception);
+
+	has_exception = false;
+	try {
+		w = 1.23f;
+		std::variant<int, float> val = std::get<float>(w);
+	} catch (std::bad_variant_access&) {
+		has_exception = true;
+	}
+	REQUIRE(!has_exception);
 
 	std::variant<std::string> vstr("abc"); // converting constructors work when unambiguous
 	vstr = "def"; // converting assignment also works when unambiguous
