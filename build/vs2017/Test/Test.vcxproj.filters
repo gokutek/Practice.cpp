@@ -109,5 +109,8 @@
     <ClCompile Include="..\..\..\Examples\Test\test_var_list.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Examples\Test\test_any.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Examples\Test\main.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_any.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_asm.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_base64.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_bitset.cpp" />
