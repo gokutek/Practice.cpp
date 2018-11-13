@@ -1,4 +1,7 @@
-﻿#include <Windows.h>
+﻿#include <iostream>
+#include <Windows.h>
+#include <Psapi.h>
+#include <tlhelp32.h>
 #include "catch.hpp"
 
 /*
@@ -51,4 +54,33 @@ TEST_CASE("Mutex", "WinAPI")
 	CloseHandle(hMutex1);
 
 	CloseHandle(hMutex);
+}
+
+
+TEST_CASE("EnumProcessModules", "WinAPI")
+{
+	DWORD cbNeeded = 0;
+	EnumProcessModules(GetCurrentProcess(), NULL, 0, &cbNeeded);
+	HMODULE *lphModule = (HMODULE*)malloc(cbNeeded);
+	BOOL bRet = EnumProcessModules(GetCurrentProcess(), lphModule, cbNeeded, &cbNeeded);
+	REQUIRE(bRet);
+	for (size_t i = 0; i < cbNeeded / sizeof(HMODULE); ++i) {
+		char file[256];
+		GetModuleFileNameA(lphModule[i], file, sizeof(file));
+	}
+	free(lphModule);
+}
+
+
+TEST_CASE("CreateToolhelp32Snapshot", "WinAPI")
+{
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, GetCurrentProcessId());
+	REQUIRE(INVALID_HANDLE_VALUE != hSnapshot);
+	MODULEENTRY32 me;
+	memset(&me, 0, sizeof(me));
+	me.dwSize = sizeof(me);
+	BOOL bRet = Module32First(hSnapshot, &me);
+	while (bRet) {
+		bRet = Module32Next(hSnapshot, &me);
+	}
 }
