@@ -83,4 +83,5 @@ TEST_CASE("CreateToolhelp32Snapshot", "WinAPI")
 	while (bRet) {
 		bRet = Module32Next(hSnapshot, &me);
 	}
+	CloseHandle(hSnapshot);
 }
