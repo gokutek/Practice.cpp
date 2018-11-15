@@ -85,3 +85,25 @@ TEST_CASE("CreateToolhelp32Snapshot", "WinAPI")
 	}
 	CloseHandle(hSnapshot);
 }
+
+
+/*
+===============================================================================
+使用template+auto，可以省去声明typedef函数签名，注意调用约定。
+===============================================================================
+*/
+template<typename T>
+T* GetProcAddressT(HMODULE hModule, char const* func)
+{
+	return (T*)GetProcAddress(hModule, func);
+}
+
+
+TEST_CASE("GetProcAddress", "WinAPI")
+{
+	auto pfnCreateFileW = GetProcAddressT<HANDLE __stdcall (LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE)>(GetModuleHandleW(L"kernel32"), "CreateFileW");
+	REQUIRE(pfnCreateFileW != NULL);
+	REQUIRE((void*)pfnCreateFileW == (void*)CreateFileW);
+	HANDLE hd = pfnCreateFileW(L"C:\\62CC8542-C99F-4802-9950-2AC62E662686", GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	REQUIRE(INVALID_HANDLE_VALUE == hd);
+}
