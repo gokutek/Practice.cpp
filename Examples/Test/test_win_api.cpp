@@ -107,3 +107,32 @@ TEST_CASE("GetProcAddress", "WinAPI")
 	HANDLE hd = pfnCreateFileW(L"C:\\62CC8542-C99F-4802-9950-2AC62E662686", GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	REQUIRE(INVALID_HANDLE_VALUE == hd);
 }
+
+
+/*
+===============================================================================
+https://docs.microsoft.com/zh-cn/windows/desktop/api/shellapi/ns-shellapi-_shfileopstructa
+This string must be double-null terminated.
+===============================================================================
+*/
+static int RemoveFileToDustbin(char const *file)
+{
+	SHFILEOPSTRUCTA FileOp = { 0 };
+	FileOp.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;  //允许放回回收站;
+	FileOp.pFrom = file;
+	FileOp.pTo = NULL;  //一定要是NULL
+	FileOp.wFunc = FO_DELETE;//删除操作
+	int const nRet = SHFileOperationA(&FileOp);
+	return nRet;
+}
+
+
+TEST_CASE("RemoveFileToDustbin", "WinAPI")
+{
+	std::string file = "d:\\{46516991-A064-472A-BCEC-782B1FE0C704}.txt";
+	FILE* fd = fopen(file.c_str(), "w");
+	fclose(fd);
+	file.push_back(0);
+	int const nRet = RemoveFileToDustbin(file.c_str());
+	REQUIRE(nRet == 0);
+}
