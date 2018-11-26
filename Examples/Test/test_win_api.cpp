@@ -1,7 +1,9 @@
-﻿#include <iostream>
+﻿#include <assert.h>
+#include <iostream>
 #include <Windows.h>
 #include <Psapi.h>
 #include <tlhelp32.h>
+#include <string>
 #include "catch.hpp"
 
 /*
@@ -135,4 +137,99 @@ TEST_CASE("RemoveFileToDustbin", "WinAPI")
 	file.push_back(0);
 	int const nRet = RemoveFileToDustbin(file.c_str());
 	REQUIRE(nRet == 0);
+}
+
+
+/**
+ * 多字节转宽字符
+ * @param str		字符串，可以是ANSI或者UTF-8
+ * @param code_page	表示str的编码
+ */
+static std::wstring MultiByteToWideChar(char const *str, UINT code_page)
+{
+	std::wstring result;
+	int const nSize = MultiByteToWideChar(code_page, 0, str, -1, NULL, 0);
+	result.resize(nSize);
+	int const nRet = MultiByteToWideChar(code_page, 0, str, -1, result.data(), nSize);
+	assert(nRet == nSize);
+	result.pop_back();
+	return result;
+}
+
+
+/**
+* 宽字符转多字节
+* @param str		unicode_str
+* @param code_page	要转换到的目标编码，可以是ANSI或者UTF-8
+*/
+static std::string WideCharToMultiByte(wchar_t const* unicode_str, UINT code_page)
+{
+	std::string result;
+	int const nSize = WideCharToMultiByte(code_page, 0, unicode_str, -1, NULL, 0, NULL, NULL);
+	result.resize(nSize);
+	int const nRet = WideCharToMultiByte(code_page, 0, unicode_str, -1, result.data(), nSize, NULL, NULL);
+	assert(nRet == nSize);
+	result.pop_back();
+	return result;
+}
+
+
+/*
+===============
+ANSI => UNICODE
+===============
+*/
+static std::wstring AnsiToUnicode(char const *ansi_str)
+{
+	return MultiByteToWideChar(ansi_str, CP_ACP);
+}
+
+
+
+/*
+===============
+UNICODE => ANSI
+===============
+*/
+static std::string UnicodeToAnsi(wchar_t const *unicode_str)
+{
+	return WideCharToMultiByte(unicode_str, CP_ACP);
+}
+
+
+/*
+============
+ANSI => UTF8
+============
+*/
+static std::string AnsiToUtf8(char const *ansi_str)
+{
+	std::wstring const wstr = MultiByteToWideChar(ansi_str, CP_ACP);
+	return WideCharToMultiByte(wstr.c_str(), CP_UTF8);
+}
+
+
+/*
+============
+UTF8 => ANSI
+============
+*/
+static std::string Utf8ToAnsi(char const *utf8_str)
+{
+	std::wstring const wstr = MultiByteToWideChar(utf8_str, CP_UTF8);
+	return WideCharToMultiByte(wstr.c_str(), CP_ACP);
+}
+
+
+TEST_CASE("Utf8ToAnsi", "WinAPI")
+{
+	std::wstring const unicode_str = AnsiToUnicode("hello中国");
+	REQUIRE(unicode_str == L"hello中国");
+
+	std::string const ansi_str = UnicodeToAnsi(unicode_str.c_str());
+	REQUIRE(ansi_str == "hello中国");
+
+	std::string const utf8_str = AnsiToUtf8("hello中国");
+	std::string const ansi_str1 = Utf8ToAnsi(utf8_str.c_str());
+	REQUIRE(ansi_str1 == "hello中国");
 }
