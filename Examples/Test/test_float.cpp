@@ -22,8 +22,14 @@ TEST_CASE("Float", "Float")
     REQUIRE((int)maxFloat == 0);
     REQUIRE((int)minFloat == 0);
 #pragma warning(pop)
-
+	
+	// 这个float加1后，并没有得到-226423087.0f
     float x = -226423088.0f;
-    x += 1;
+    x += 1.0;
     REQUIRE(x == -226423088.0f);
+
+	// 用double表示后，相加后得到的结果正常
+	double d = -226423088.0;
+	d += 1.0;
+	REQUIRE(d == -226423087.0);
 }
