@@ -37,6 +37,7 @@
     <ClCompile Include="..\..\..\Examples\Test\test_mod.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_netstat.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_new.cpp" />
+    <ClCompile Include="..\..\..\Examples\Test\test_nullptr.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_optional.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_priority_queue.cpp" />
     <ClCompile Include="..\..\..\Examples\Test\test_rapidjson.cpp" />
