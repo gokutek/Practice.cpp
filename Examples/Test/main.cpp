@@ -7,12 +7,14 @@
 
 int main(int argc, char* argv[])
 {
-	WSADATA wsaData;
-	WSAStartup(MAKEWORD(2, 2), &wsaData);
-
-    int const res = Catch::Session().run(argc, argv);
-
-	WSACleanup();
-	
-	return res;
+    char* S = "";
+    if (S[0] == '\0')
+    {
+        std::cout << "1" << std::endl;
+    }
+    else
+    {
+        std::cout << "0" << std::endl;
+    }
+	return 0;
 }
