@@ -1,4 +1,10 @@
-﻿#include <assert.h>
+﻿/*
+===============================================================================
+《C++ templates complete guide 2nd》
+===============================================================================
+*/
+
+#include <assert.h>
 #include <string>
 #include <iostream>
 #include <memory>
