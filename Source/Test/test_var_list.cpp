@@ -1,4 +1,4 @@
-﻿#include "var_list.h"
+﻿#include "test_var_list.h"
 #include "catch.hpp"
 
 TEST_CASE("VarList", "VarList")
