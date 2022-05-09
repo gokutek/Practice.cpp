@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <windows.h>
 
 // 字符串转换到宽字符串
@@ -122,22 +123,41 @@ static const char* PlatformWideStrToUTF8(const wchar_t* info, char* buf, size_t 
 	return buf;
 }
 
+// UTF8转换到宽字符串
+static const wchar_t* PlatformUTF8ToWideStr(const char* info, wchar_t* buf, size_t byte_size)
+{
+	const size_t len = byte_size / sizeof(wchar_t);
+	int res = MultiByteToWideChar(CP_UTF8, 0, info, -1, buf, int(len));
+
+	if (res == 0)
+	{
+		if (GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+		{
+			buf[len - 1] = 0;
+		}
+		else
+		{
+			buf[0] = 0;
+		}
+	}
+
+	return buf;
+}
+
 int main()
-{	
-	//Lua从XML读出UTF-8
-	char szUTF8[256] = { 0 };
-	PlatformWideStrToUTF8(L"中国", szUTF8, sizeof(szUTF8));
+{
+	wchar_t* const wszServerName = L"金字标";
 
-	//转成宽字符（内部认为是ANSI编码）
-	wchar_t wszBuff[256] = { 0 };
-	PlatformStringToWideStr(szUTF8, wszBuff, sizeof(wszBuff));
-
-	/////////////////////////////////////////////////////////
-	//下面是客户端再尝试转回UTF-8
-	char szTestUTF8[256] = { 0 };
-	PlatformWideStrToUTF8(wszBuff, szTestUTF8, sizeof(szTestUTF8));
-
-	//szUTF8与szTestUTF8不等~
+	//该子串实际的UTF-8数据应该是这样的
+	char szServerNameUTF8[256] = { 0 };
+	PlatformWideStrToUTF8(wszServerName, szServerNameUTF8, sizeof(szServerNameUTF8));
+	
+	//将UTF-8当做ANSI转成UNICODE
+	wchar_t sss[256];
+	PlatformStringToWideStr(szServerNameUTF8, sss, sizeof(sss));
+	//再将UNICODE转换ANSI，此时szServerNameUTF82与szServerNameUTF8并不等
+	char szServerNameUTF82[256] = { 0 };
+	PlatformWideStrToString(sss, szServerNameUTF82, sizeof(szServerNameUTF82));
 
 	return 0;
 }

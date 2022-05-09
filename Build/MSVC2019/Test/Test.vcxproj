@@ -19,12 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\ThirdParty\sqlite\sqlite3.h" />
-    <ClInclude Include="..\..\..\ThirdParty\sqlite\sqlite3ext.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\Examples\Test\test_sqlite.cpp" />
-    <ClCompile Include="..\..\..\ThirdParty\sqlite\sqlite3.c" />
+    <ClCompile Include="..\..\..\Source\Test\test_string_encode.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9BEB84A4-952A-447B-84F6-A72A187851BD}</ProjectGuid>

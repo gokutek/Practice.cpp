@@ -7,18 +7,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\ThirdParty\sqlite\sqlite3.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\ThirdParty\sqlite\sqlite3ext.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\ThirdParty\sqlite\sqlite3.c">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Examples\Test\test_sqlite.cpp">
+    <ClCompile Include="..\..\..\Source\Test\test_string_encode.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
