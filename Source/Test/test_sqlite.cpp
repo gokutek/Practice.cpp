@@ -12,7 +12,7 @@ static int select_callback(void*, int column_num, char** column_values, char** c
 	return 0;
 }
 
-int main()
+static void hello_world()
 {
 	//打开/创建数据库
 	sqlite3* db = nullptr;
@@ -34,6 +34,9 @@ int main()
 
 	//关闭数据库
 	sqlite3_close(db);
+}
 
+int main()
+{
  	return 0;
 }
