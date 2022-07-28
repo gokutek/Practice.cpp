@@ -19,7 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Source\Test\test_string_encode.cpp" />
+    <ClCompile Include="..\..\..\Source\Test\test_sqlite.cpp" />
+    <ClCompile Include="..\..\..\ThirdParty\microprofile\microprofile.cpp" />
+    <ClCompile Include="..\..\..\ThirdParty\sqlite\sqlite3.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\ThirdParty\microprofile\microprofile.h" />
+    <ClInclude Include="..\..\..\ThirdParty\microprofile\microprofile_html.h" />
+    <ClInclude Include="..\..\..\ThirdParty\sqlite\sqlite3.h" />
+    <ClInclude Include="..\..\..\ThirdParty\sqlite\sqlite3ext.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9BEB84A4-952A-447B-84F6-A72A187851BD}</ProjectGuid>
@@ -108,12 +116,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;$(SolutionDir)..\..\ThirdParty\sqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty;$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;$(SolutionDir)..\..\ThirdParty\sqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,7 +155,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\ThirdParty;$(SolutionDir)..\..\ThirdParty\Catch;$(SolutionDir)..\..\ThirdParty\rapidxml;$(SolutionDir)..\..\ThirdParty\rapidjson\include;$(SolutionDir)..\..\ThirdParty\sqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -154,6 +163,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
