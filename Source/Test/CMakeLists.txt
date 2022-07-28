@@ -17,18 +17,28 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # ==============================================================================
 # test_hello_world
 # ==============================================================================
-set(TARGET_TEST_HELLO_WORLD test_hello_world)
-add_executable(${TARGET_TEST_HELLO_WORLD} test_hello_world.cpp)
+set(TARGET test_hello_world)
+add_executable(${TARGET} test_hello_world.cpp)
 
 # ==============================================================================
 # test_sqlite
 # ==============================================================================
-set(TARGET_TEST_SQLITE test_sqlite)
+set(TARGET test_sqlite)
 
-set(TARGET_TEST_SQLITE_SRC
+set(TARGET_SRC
     ${THIRD_PARTY_ROOT_PATH}/sqlite/sqlite3.c
     ${THIRD_PARTY_ROOT_PATH}/microprofile/microprofile.cpp
     test_sqlite.cpp)
 
-add_executable(${TARGET_TEST_SQLITE} ${TARGET_TEST_SQLITE_SRC})
-target_link_libraries(${TARGET_TEST_SQLITE} ws2_32)
+add_executable(${TARGET} ${TARGET_SRC})
+target_link_libraries(${TARGET} ws2_32)
+
+# ==============================================================================
+# test_skiplist
+# ==============================================================================
+set(TARGET test_skiplist)
+
+set(TARGET_SRC
+    test_skiplist.cpp)
+
+add_executable(${TARGET} ${TARGET_SRC})
