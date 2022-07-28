@@ -6,14 +6,6 @@ SET(THIRD_PARTY_ROOT_PATH ${CMAKE_HOME_DIRECTORY}/ThirdParty/)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH})
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/sqlite)
 
-# https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-# expected behaviour
-#set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++lastest")
-
 # ==============================================================================
 # test_hello_world
 # ==============================================================================
