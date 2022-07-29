@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -30,7 +31,7 @@ public:
 	size_t size() const;
 	bool insert(int key, int value);
 	int* find(int key) const;
-	void remove(int key);
+	bool remove(int key);
 
 	void dump() const;
 
@@ -99,7 +100,6 @@ bool skip_list::insert(int key, int value)
 
 int* skip_list::find(int key) const
 {
-	//每层的指针域?
 	std::vector<skip_list_node*> per_level_nodes(max_level_, nullptr);
 	skip_list_node* node = head_;
 	for (int level = (int)cur_level_; level >= 0; --level)
@@ -120,8 +120,38 @@ int* skip_list::find(int key) const
 	return nullptr;
 }
 
-void skip_list::remove(int key)
+bool skip_list::remove(int key)
 {
+	std::vector<skip_list_node*> per_level_nodes(max_level_, nullptr);
+	skip_list_node* node = head_;
+	for (int level = (int)cur_level_; level >= 0; --level)
+	{
+		while (node->next_[level] && node->next_[level]->key_ < key)
+		{
+			node = node->next_[level];
+		}
+
+		per_level_nodes[level] = node;
+	}
+
+	if (!node->next_[0] || node->next_[0]->key_ != key)
+	{
+		return false;
+	}
+
+	skip_list_node* node_to_del = node->next_[0];
+
+	int level = node->next_[0]->level_;
+	for (int i = 0; i <= level; ++i)
+	{
+		per_level_nodes[i]->next_[i] = per_level_nodes[i]->next_[i]->next_[i];
+	}
+
+	--count_;
+
+	delete node_to_del;
+
+	return true;
 }
 
 void skip_list::dump() const
@@ -147,14 +177,30 @@ int main()
 		set.insert(key);
 	}
 
+	list.dump();
+	std::cout << "---" << std::endl;
+
 	for (int key : set)
 	{
 		std::cout << *list.find(key) << std::endl;
 	}
 
-	std::cout << std::endl;
-
-	list.dump();
+	for (int key : set)
+	{
+		bool ret = list.remove(key);
+		assert(ret);
+	}
 
 	return 0;
 }
+
+/*
+===============================================================================
+insert
+------
+
+find
+----
+只要把insert的代码拿点过来修改一下即可。
+===============================================================================
+*/
