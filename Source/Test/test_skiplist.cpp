@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <time.h>
+#include <set>
 
 struct skip_list_node
 {
@@ -27,8 +29,8 @@ public:
 	skip_list(int max_level);
 	size_t size() const;
 	bool insert(int key, int value);
+	int* find(int key) const;
 	void remove(int key);
-	int* find(int key);
 
 	void dump() const;
 
@@ -56,6 +58,7 @@ size_t skip_list::size() const
 
 bool skip_list::insert(int key, int value)
 {
+	//每层的指针域?
 	std::vector<skip_list_node*> per_level_nodes(max_level_, nullptr);
 	skip_list_node* node = head_;
 	for (int level = (int)cur_level_; level >= 0; --level)
@@ -73,6 +76,7 @@ bool skip_list::insert(int key, int value)
 		return false;
 	}
 
+	//这个节点的高度?
 	int insert_level = rand() % max_level_;
 	if (insert_level > cur_level_) 
 	{
@@ -93,13 +97,31 @@ bool skip_list::insert(int key, int value)
 	return true;
 }
 
-void skip_list::remove(int key)
+int* skip_list::find(int key) const
 {
+	//每层的指针域?
+	std::vector<skip_list_node*> per_level_nodes(max_level_, nullptr);
+	skip_list_node* node = head_;
+	for (int level = (int)cur_level_; level >= 0; --level)
+	{
+		while (node->next_[level] && node->next_[level]->key_ < key)
+		{
+			node = node->next_[level];
+		}
+
+		per_level_nodes[level] = node;
+	}
+
+	if (node->next_[0] && node->next_[0]->key_ == key)
+	{
+		return &node->next_[0]->value_;
+	}
+
+	return nullptr;
 }
 
-int* skip_list::find(int key)
+void skip_list::remove(int key)
 {
-	return nullptr;
 }
 
 void skip_list::dump() const
@@ -111,19 +133,26 @@ void skip_list::dump() const
 }
 
 int main()
-{	
+{
+	srand((unsigned int)time(nullptr));
+	std::set<int> set;
+
 	skip_list list;
-	list.insert(1, 1);
-	list.insert(10, 10);
-	list.insert(3, 3);
-	list.insert(8, 8);
-	list.insert(9, 9);
-	list.insert(90, 90);
-	list.insert(70, 70);
-	list.insert(850, 850);
-	list.insert(630, 630);
-	list.insert(40, 40);
-	list.insert(40, 40);
+
+	for (int i = 0; i < 20; ++i)
+	{
+		int key = rand() % INT_MAX;
+		list.insert(key, key);
+
+		set.insert(key);
+	}
+
+	for (int key : set)
+	{
+		std::cout << *list.find(key) << std::endl;
+	}
+
+	std::cout << std::endl;
 
 	list.dump();
 
