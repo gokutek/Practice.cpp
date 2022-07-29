@@ -4,6 +4,11 @@
 #include <vector>
 #include <time.h>
 #include <set>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif // _DEBUG
 
 struct skip_list_node
 {
@@ -18,6 +23,11 @@ struct skip_list_node
 		memset(next_, 0, sz);
 	}
 
+	~skip_list_node()
+	{
+		free(next_);
+	}
+
 	int key_;
 	int value_;
 	int level_;
@@ -28,6 +38,7 @@ class skip_list
 {
 public:
 	skip_list(int max_level);
+	~skip_list();
 	size_t size() const;
 	bool insert(int key, int value);
 	int* find(int key) const;
@@ -50,6 +61,11 @@ skip_list::skip_list(int max_level = 8)
 	, count_(0)
 {
 	head_ = new skip_list_node(-1, -1, max_level_);
+}
+
+skip_list::~skip_list()
+{
+	delete head_;
 }
 
 size_t skip_list::size() const
@@ -164,6 +180,8 @@ void skip_list::dump() const
 
 int main()
 {
+	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
+
 	srand((unsigned int)time(nullptr));
 	std::set<int> set;
 
