@@ -1,3 +1,0 @@
-http://preshing.com/20180116/a-primitive-reflection-system-in-cpp-part-1/
-
-http://preshing.com/20180124/a-flexible-reflection-system-in-cpp-part-2/
