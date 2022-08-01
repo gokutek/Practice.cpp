@@ -10,3 +10,6 @@
 [submodule "ThirdParty/microprofile"]
 	path = ThirdParty/microprofile
 	url = https://github.com/jonasmr/microprofile.git
+[submodule "ThirdParty/lua"]
+	path = ThirdParty/lua
+	url = https://github.com/lua/lua.git
