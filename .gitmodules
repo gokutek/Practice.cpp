@@ -7,3 +7,6 @@
 [submodule "ThirdParty/tinyxml2"]
 	path = ThirdParty/tinyxml2
 	url = https://github.com/leethomason/tinyxml2.git
+[submodule "ThirdParty/microprofile"]
+	path = ThirdParty/microprofile
+	url = https://github.com/jonasmr/microprofile.git
