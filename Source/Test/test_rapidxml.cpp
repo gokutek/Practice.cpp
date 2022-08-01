@@ -1,6 +1,6 @@
-﻿#include <iostream>
+﻿#include <assert.h>
+#include <iostream>
 #include <string>
-#include "catch.hpp"
 #include "rapidxml.hpp"
 #include "rapidxml_iterators.hpp"
 #include "rapidxml_print.hpp"
@@ -55,8 +55,7 @@ static std::string CreateXMLDoc()
 	return str;
 }
 
-
-TEST_CASE("test write xml", "[rapidxml]")
+static void test_write_xml()
 {
 	std::string const result =
 		"<?xml version='1.0' encoding='utf-8' ?>\n"
@@ -67,11 +66,10 @@ TEST_CASE("test write xml", "[rapidxml]")
 
 	std::string const doc = CreateXMLDoc();
 
-	REQUIRE(result == doc);
+	assert(result == doc);
 }
 
-
-TEST_CASE("test read xml", "[rapidxml]")
+static void test_read_xml()
 {
 	std::string const text = CreateXMLDoc();
 
@@ -79,15 +77,23 @@ TEST_CASE("test read xml", "[rapidxml]")
 	doc.parse<0>((char*)text.c_str());
 
 	rapidxml::xml_node<> *root_node = doc.first_node();
-	REQUIRE(!strcmp(root_node->name(), "class"));
+	assert(!strcmp(root_node->name(), "class"));
 
 	rapidxml::xml_node<> *tom_node = root_node->first_node();
 	rapidxml::xml_node<> *jerry_node = tom_node->next_sibling();
-	REQUIRE(jerry_node->next_sibling() == NULL);
+	assert(jerry_node->next_sibling() == NULL);
 
-	REQUIRE(!strcmp(tom_node->first_attribute("name")->value(), "Tom"));
-	REQUIRE(!strcmp(tom_node->first_attribute("age")->value(), "18"));
+	assert(!strcmp(tom_node->first_attribute("name")->value(), "Tom"));
+	assert(!strcmp(tom_node->first_attribute("age")->value(), "18"));
 
-	REQUIRE(!strcmp(jerry_node->first_attribute("name")->value(), "Jerry"));
-	REQUIRE(!strcmp(jerry_node->first_attribute("age")->value(), "20"));
+	assert(!strcmp(jerry_node->first_attribute("name")->value(), "Jerry"));
+	assert(!strcmp(jerry_node->first_attribute("age")->value(), "20"));
+}
+
+int main()
+{
+	test_write_xml();
+	test_read_xml();
+
+	return 0;
 }

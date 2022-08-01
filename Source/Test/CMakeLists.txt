@@ -6,15 +6,13 @@ SET(THIRD_PARTY_ROOT_PATH ${CMAKE_HOME_DIRECTORY}/ThirdParty/)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH})
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/sqlite)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/Catch)
+INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/rapidxml)
 
 # ==============================================================================
-# test_hello_world
+# single file projects
 # ==============================================================================
 add_executable(test_hello_world test_hello_world.cpp)
-
-# ==============================================================================
-# test_skiplist
-# ==============================================================================
+add_executable(test_rapidxml test_rapidxml.cpp)
 add_executable(test_skiplist test_skiplist.cpp)
 
 # ==============================================================================
