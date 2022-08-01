@@ -4,3 +4,6 @@
 [submodule "ThirdParty/Catch2"]
 	path = ThirdParty/Catch2
 	url = https://github.com/catchorg/Catch2.git
+[submodule "ThirdParty/tinyxml2"]
+	path = ThirdParty/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
