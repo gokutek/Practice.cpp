@@ -13,3 +13,6 @@
 [submodule "ThirdParty/lua"]
 	path = ThirdParty/lua
 	url = https://github.com/lua/lua.git
+[submodule "ThirdParty/libevent"]
+	path = ThirdParty/libevent
+	url = https://github.com/libevent/libevent.git
