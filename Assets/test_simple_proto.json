@@ -1,0 +1,26 @@
+{
+    "PubQueryTeamListReqParam": {
+        "PlayerUid": "string",
+        "StartIndex": "int",
+        "Limit": "int",
+        "MainTargetID": "int",
+        "SubTargetID": "int"
+    },
+    "PubStartRecruitTeamParam": {
+        "TeamMemberRecRow": {
+            "PlayerUid": "string",
+            "PlayerName": "string",
+            "RoleIndex": "int",
+            "IsOffline": "int",
+            "Hp": "int64",
+            "MaxHp": "int64",
+            "Extention": "string"
+        },
+        "TeamGuid": "string",
+        "MainTarget": "int",
+        "SubTarget": "int",
+        "LevelMin": "int",
+        "LevelMax": "int",
+        "TeamMembers": "TeamMemberRecRow[]"
+    }
+}
