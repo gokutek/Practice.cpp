@@ -31,7 +31,8 @@ static std::string get_init_def(std::string const& backend_type)
 	std::unordered_map<std::string, std::string> m;
 	m["bool"] = " = false";
 	m["int"] = " = 0";
-	m["int64"] = " = 0";
+	m["int64_t"] = " = 0";
+	m["float"] = " = 0.0f";
 
 	auto iter = m.find(backend_type);
 	return iter != m.end() ? iter->second : "";
@@ -137,7 +138,8 @@ static int gen_code(std::ostringstream& oss, int ident_level, Json::Value const&
 	{
 		if (!node[field].isString())
 		{
-			oss << get_ident_str(ident_level + 1) << "struct " << field << " {" << std::endl;
+			oss << get_ident_str(ident_level + 1) << "struct " << field << std::endl;
+			oss << get_ident_str(ident_level + 1) << "{" << std::endl;
 			gen_code(oss, ident_level + 1, node[field]);
 			oss << get_ident_str(ident_level + 1) << "};" << std::endl;
 			oss << std::endl;
@@ -217,7 +219,8 @@ int main(int argc, char** argv)
 	for (auto& member : members)
 	{
 		std::ostringstream oss;
-		oss << "struct " << member << " {" << std::endl;
+		oss << "struct " << member << std::endl;
+		oss << "{" << std::endl;
 		gen_code(oss, 0, root[member]);
 		oss << "};" << std::endl;
 
