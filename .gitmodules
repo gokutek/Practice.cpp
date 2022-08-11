@@ -16,3 +16,6 @@
 [submodule "ThirdParty/libevent"]
 	path = ThirdParty/libevent
 	url = https://github.com/libevent/libevent.git
+[submodule "ThirdParty/jsoncpp"]
+	path = ThirdParty/jsoncpp
+	url = https://github.com/open-source-parsers/jsoncpp.git
