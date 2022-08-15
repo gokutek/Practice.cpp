@@ -14,6 +14,7 @@ INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/jsoncpp/include)
 add_executable(test_hello_world test_hello_world.cpp)
 add_executable(test_rapidxml test_rapidxml.cpp)
 add_executable(test_skiplist test_skiplist.cpp)
+add_executable(test_time_wheel test_time_wheel.cpp)
 
 add_executable(test_simple_proto
     ${THIRD_PARTY_ROOT_PATH}/jsoncpp/src/lib_json/json_reader.cpp
