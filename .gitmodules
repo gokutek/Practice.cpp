@@ -19,3 +19,6 @@
 [submodule "ThirdParty/jsoncpp"]
 	path = ThirdParty/jsoncpp
 	url = https://github.com/open-source-parsers/jsoncpp.git
+[submodule "ThirdParty/svgpp"]
+	path = ThirdParty/svgpp
+	url = https://github.com/svgpp/svgpp.git
