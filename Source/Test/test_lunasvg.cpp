@@ -435,7 +435,7 @@ int stbi_write_png(char const* filename, int x, int y, int comp, const void* dat
 int main(int argc, char** argv)
 {
 	auto document = lunasvg::Document::loadFromFile(argv[1]);
-	auto bitmap = document->renderToBitmap();
+	auto bitmap = document->renderToBitmap(10000, 10000);
 	
 	bitmap.convertToRGBA();
 	stbi_write_png("d:/svg_output.png", int(bitmap.width()), int(bitmap.height()), 4, bitmap.data(), 0);
