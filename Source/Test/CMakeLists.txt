@@ -15,8 +15,10 @@ add_executable(test_hello_world test_hello_world.cpp)
 add_executable(test_rapidxml test_rapidxml.cpp)
 add_executable(test_skiplist test_skiplist.cpp)
 add_executable(test_time_wheel test_time_wheel.cpp)
-add_executable(test_svgpp test_svgpp.cpp)
 
+# ==============================================================================
+# test_simple_proto
+# ==============================================================================
 add_executable(test_simple_proto
     ${THIRD_PARTY_ROOT_PATH}/jsoncpp/src/lib_json/json_reader.cpp
     ${THIRD_PARTY_ROOT_PATH}/jsoncpp/src/lib_json/json_writer.cpp
@@ -35,3 +37,10 @@ set(TARGET_SRC
 
 add_executable(${TARGET} ${TARGET_SRC})
 target_link_libraries(${TARGET} ws2_32)
+
+# ==============================================================================
+# test_lunasvg
+# ==============================================================================
+add_subdirectory(../../ThirdParty/lunasvg ../../ThirdParty/lunasvg/build)
+add_executable(test_lunasvg test_lunasvg.cpp)
+target_link_libraries(test_lunasvg lunasvg)  
