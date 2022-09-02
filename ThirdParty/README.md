@@ -20,3 +20,7 @@ lua-5.3.5
 
 ## rapidxml
 rapidxml-1.13
+
+## svgpp
+
+## lunasvg

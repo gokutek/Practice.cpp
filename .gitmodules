@@ -22,3 +22,6 @@
 [submodule "ThirdParty/svgpp"]
 	path = ThirdParty/svgpp
 	url = https://github.com/svgpp/svgpp.git
+[submodule "ThirdParty/lunasvg"]
+	path = ThirdParty/lunasvg
+	url = https://github.com/sammycage/lunasvg.git
