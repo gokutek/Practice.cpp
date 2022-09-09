@@ -24,7 +24,7 @@ add_executable(test_lua_capi test_lua_capi.cpp)
 target_link_libraries(test_lua_capi lualib)
 
 # ==============================================================================
-# lua扩展库
+# lua扩展库（动态链接库）
 # ==============================================================================
 add_library(test_lua_ext_lib SHARED test_lua_ext_lib.cpp)
 target_link_libraries(test_lua_ext_lib lualib)
