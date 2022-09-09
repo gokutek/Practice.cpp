@@ -24,6 +24,12 @@ add_executable(test_lua_capi test_lua_capi.cpp)
 target_link_libraries(test_lua_capi lualib)
 
 # ==============================================================================
+# lua扩展库
+# ==============================================================================
+add_library(test_lua_ext_lib SHARED test_lua_ext_lib.cpp)
+target_link_libraries(test_lua_ext_lib lualib)
+
+# ==============================================================================
 # test_simple_proto
 # ==============================================================================
 add_executable(test_simple_proto
