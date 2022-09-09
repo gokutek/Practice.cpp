@@ -25,3 +25,6 @@
 [submodule "ThirdParty/lunasvg"]
 	path = ThirdParty/lunasvg
 	url = https://github.com/sammycage/lunasvg.git
+[submodule "ThirdParty/Detours"]
+	path = ThirdParty/Detours
+	url = https://github.com/microsoft/Detours.git
