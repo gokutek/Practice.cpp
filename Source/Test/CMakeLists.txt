@@ -24,10 +24,11 @@ add_executable(test_lua_capi test_lua_capi.cpp)
 target_link_libraries(test_lua_capi lualib)
 
 # ==============================================================================
-# lua扩展库（动态链接库）
+# lua扩展库，动态链接库，必须加上LUA_BUILD_AS_DLL、LUA_LIB以导出符号
 # ==============================================================================
 add_library(test_lua_ext_lib SHARED test_lua_ext_lib.cpp)
 target_link_libraries(test_lua_ext_lib lualib)
+target_compile_definitions(test_lua_ext_lib PRIVATE LUA_BUILD_AS_DLL PRIVATE LUA_LIB)
 
 # ==============================================================================
 # test_simple_proto

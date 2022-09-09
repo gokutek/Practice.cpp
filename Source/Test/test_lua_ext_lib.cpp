@@ -11,7 +11,7 @@ static int lencode(lua_State *L)
 	return 2; // 返回值表示栈里有几个返回值
 }
 
-extern "C" LUAMOD_API int luaopen_MyExtension(lua_State *L) 
+extern "C" LUAMOD_API int luaopen_test_lua_ext_lib(lua_State *L)
 {
 	luaL_checkversion(L);
 
@@ -26,12 +26,12 @@ extern "C" LUAMOD_API int luaopen_MyExtension(lua_State *L)
 }
 
 /*
-===========================================
-local MyExtension = require("MyExtension")
+===============================================================================
+local MyExtension = require("test_lua_ext_lib")
 local n, s = MyExtension.encode()
 print(n)
 print(s)
-===========================================
+===============================================================================
 */
 static int ladd(lua_State *L)
 {
@@ -50,13 +50,13 @@ static int ladd(lua_State *L)
 }
 
 /*
-=======================================================================
-这个导出函数的名字是luaopen_MyExtension_Math，所以在lua代码中需要这么使用：
-local MyExtensionMath = require("MyExtension.Math")
+===============================================================================
+这个导出函数的名字是luaopen_test_lua_ext_lib_Math，所以在lua代码中需要这么使用：
+local MyExtensionMath = require("test_lua_ext_lib.Math")
 print(MyExtensionMath.add(10, 20))
-=======================================================================
+===============================================================================
 */
-extern "C" LUAMOD_API int luaopen_test_lua_ex_lib_Math(lua_State *L)
+extern "C" LUAMOD_API int luaopen_test_lua_ext_lib_Math(lua_State *L)
 {
 	luaL_checkversion(L);
 
