@@ -1,33 +1,33 @@
-[submodule "ThirdParty/entt"]
-	path = ThirdParty/entt
+[submodule "third_party/entt"]
+	path = third_party/entt
 	url = https://github.com/skypjack/entt.git
-[submodule "ThirdParty/Catch2"]
-	path = ThirdParty/Catch2
+[submodule "third_party/Catch2"]
+	path = third_party/Catch2
 	url = https://github.com/catchorg/Catch2.git
-[submodule "ThirdParty/tinyxml2"]
-	path = ThirdParty/tinyxml2
+[submodule "third_party/tinyxml2"]
+	path = third_party/tinyxml2
 	url = https://github.com/leethomason/tinyxml2.git
-[submodule "ThirdParty/microprofile"]
-	path = ThirdParty/microprofile
+[submodule "third_party/microprofile"]
+	path = third_party/microprofile
 	url = https://github.com/jonasmr/microprofile.git
-[submodule "ThirdParty/lua"]
-	path = ThirdParty/lua
+[submodule "third_party/lua"]
+	path = third_party/lua
 	url = https://github.com/lua/lua.git
-[submodule "ThirdParty/libevent"]
-	path = ThirdParty/libevent
+[submodule "third_party/libevent"]
+	path = third_party/libevent
 	url = https://github.com/libevent/libevent.git
-[submodule "ThirdParty/jsoncpp"]
-	path = ThirdParty/jsoncpp
+[submodule "third_party/jsoncpp"]
+	path = third_party/jsoncpp
 	url = https://github.com/open-source-parsers/jsoncpp.git
-[submodule "ThirdParty/svgpp"]
-	path = ThirdParty/svgpp
+[submodule "third_party/svgpp"]
+	path = third_party/svgpp
 	url = https://github.com/svgpp/svgpp.git
-[submodule "ThirdParty/lunasvg"]
-	path = ThirdParty/lunasvg
+[submodule "third_party/lunasvg"]
+	path = third_party/lunasvg
 	url = https://github.com/sammycage/lunasvg.git
-[submodule "ThirdParty/Detours"]
-	path = ThirdParty/Detours
+[submodule "third_party/Detours"]
+	path = third_party/Detours
 	url = https://github.com/microsoft/Detours.git
-[submodule "ThirdParty/stb"]
-	path = ThirdParty/stb
+[submodule "third_party/stb"]
+	path = third_party/stb
 	url = https://github.com/nothings/stb.git

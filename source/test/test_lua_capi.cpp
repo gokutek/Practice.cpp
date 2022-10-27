@@ -407,7 +407,7 @@ static void init_work_dir()
 		*strrchr(szWorkDir, '\\') = 0;
 
 		std::string tmp = szWorkDir;
-		tmp += "\\Assets\\";
+		tmp += "\\assets\\";
 		if (!access(tmp.c_str(), 0))
 		{
 			SetCurrentDirectoryA(tmp.c_str());

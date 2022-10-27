@@ -1,7 +1,7 @@
 # ==============================================================================
 # 公共头文件
 # ==============================================================================
-SET(THIRD_PARTY_ROOT_PATH ${CMAKE_HOME_DIRECTORY}/ThirdParty/)
+SET(THIRD_PARTY_ROOT_PATH ${CMAKE_HOME_DIRECTORY}/third_party/)
 
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH})
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/lua)
@@ -56,6 +56,6 @@ target_link_libraries(${TARGET} ws2_32)
 # ==============================================================================
 # test_lunasvg: 渲染SVG
 # ==============================================================================
-add_subdirectory(../../ThirdParty/lunasvg ../../ThirdParty/lunasvg/build)
+add_subdirectory(../../third_party/lunasvg ../../third_party/lunasvg/build)
 add_executable(test_lunasvg test_lunasvg.cpp)
 target_link_libraries(test_lunasvg lunasvg)  
