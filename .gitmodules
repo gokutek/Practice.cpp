@@ -34,3 +34,6 @@
 [submodule "third_party/libgoku"]
 	path = third_party/libgoku
 	url = https://github.com/gokutek/libgoku.git
+[submodule "third_party/quickjs"]
+	path = third_party/quickjs
+	url = https://github.com/gokutek/quickjs.git
