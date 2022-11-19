@@ -17,6 +17,7 @@ add_executable(test_rapidxml test_rapidxml.cpp)
 add_executable(test_skiplist test_skiplist.cpp)
 add_executable(test_time_wheel test_time_wheel.cpp)
 add_executable(test_stl_algo test_stl_algo.cpp)
+add_executable(test_monte_carlo test_monte_carlo.cpp)
 
 # ==============================================================================
 # lua测试项目
