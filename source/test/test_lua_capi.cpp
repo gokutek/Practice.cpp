@@ -408,7 +408,7 @@ static void init_work_dir()
 
 		std::string tmp = szWorkDir;
 		tmp += "\\assets\\";
-		if (!access(tmp.c_str(), 0))
+		if (!_access(tmp.c_str(), 0))
 		{
 			SetCurrentDirectoryA(tmp.c_str());
 			break;
