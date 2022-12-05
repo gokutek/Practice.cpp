@@ -40,3 +40,6 @@
 [submodule "third_party/WTL"]
 	path = third_party/WTL
 	url = https://git.code.sf.net/p/wtl/git
+[submodule "third_party/ratas"]
+	path = third_party/ratas
+	url = git@github.com:gokutek/ratas.git

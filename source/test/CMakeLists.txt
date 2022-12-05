@@ -8,6 +8,7 @@ INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/lua)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/sqlite)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/rapidxml)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/jsoncpp/include)
+INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/ratas/src)
 
 # ==============================================================================
 # 一些单文件项目
@@ -18,6 +19,7 @@ add_executable(test_skiplist test_skiplist.cpp)
 add_executable(test_time_wheel test_time_wheel.cpp)
 add_executable(test_stl_algo test_stl_algo.cpp)
 add_executable(test_monte_carlo test_monte_carlo.cpp)
+add_executable(test_ratas test_ratas.cpp)
 
 # ==============================================================================
 # lua测试项目
