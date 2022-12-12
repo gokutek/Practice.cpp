@@ -1,11 +1,16 @@
+/*
+ * 2012/12/12: 测试std::sort能否传std::list迭代器
+ */
+
 #include <vector>
+#include <list>
 #include <cassert>
 #include <numeric>
 #include <iostream>
 #include <algorithm>
 #include <functional>
 
-void printVec(const std::vector<int>& vec)
+static void printVec(const std::vector<int>& vec)
 {
 	std::cout << "v= {";
 	for (int i : vec)
@@ -30,6 +35,15 @@ static void test_nth_element()
 	std::cout << "\nThe second largest element is " << v[1] << '\n';
 	std::cout << "The largest element is " << v[0] << '\n';
 	printVec(v);
+}
+
+static void test_list_sort()
+{
+	//编译失败，std::sort不支持list，所有std::list本身有sort成员函数
+#if 0
+	std::list<int> l = {1,2,3};
+	std::sort(l.begin(), l.end());
+#endif
 }
 
 void main()
