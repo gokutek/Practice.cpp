@@ -1,3 +1,7 @@
+/*
+ * 2022/08/30: 测试将矢量图渲染成PNG格式的图片
+ */
+
 #include <assert.h>
 #include <iostream>
 #include <stdarg.h>

@@ -1,3 +1,7 @@
+/*
+ * 2022/08/11: 想写一个工具，定义json，生成C++代码
+ */
+
 #include <assert.h>
 #include <functional>
 #include <string>
