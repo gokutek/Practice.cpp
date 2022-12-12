@@ -1,3 +1,7 @@
+/*
+ * 2022/04/20: 测试sqlite的增删改查
+ */
+
 #include <iostream>
 #include <assert.h>
 #include "sqlite3.h"
