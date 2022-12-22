@@ -1,3 +1,7 @@
+/*
+ * 2022/09/09: 从LuaTestGround项目移植过来
+ */
+
 extern "C"
 {
 #include "lua.h"
