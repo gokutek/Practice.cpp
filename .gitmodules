@@ -43,3 +43,6 @@
 [submodule "third_party/ratas"]
 	path = third_party/ratas
 	url = git@github.com:gokutek/ratas.git
+[submodule "third_party/spdlog"]
+	path = third_party/spdlog
+	url = git@github.com:gokutek/spdlog.git
