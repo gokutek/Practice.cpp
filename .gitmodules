@@ -27,7 +27,7 @@
 	url = https://github.com/sammycage/lunasvg.git
 [submodule "third_party/Detours"]
 	path = third_party/Detours
-	url = https://github.com/microsoft/Detours.git
+	url = git@github.com:gokutek/Detours.git
 [submodule "third_party/stb"]
 	path = third_party/stb
 	url = https://github.com/nothings/stb.git
