@@ -24,3 +24,9 @@ rapidxml-1.13
 ## svgpp
 
 ## lunasvg
+
+## 随书源码
+* `ai_progarm`：
+* `cpp_primer_5e`：
+* `cpp_templates_2e`：
+* `programming_pearls`：编程珠玑
