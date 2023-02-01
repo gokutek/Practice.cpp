@@ -49,3 +49,6 @@
 [submodule "third_party/openssl"]
 	path = third_party/openssl
 	url = git@github.com:gokutek/openssl.git
+[submodule "third_party/thread-pool"]
+	path = third_party/thread-pool
+	url = git@github.com:gokutek/thread-pool.git
