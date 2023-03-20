@@ -22,6 +22,7 @@ add_executable(test_monte_carlo test_monte_carlo.cpp)
 add_executable(test_ratas test_ratas.cpp)
 add_executable(test_filesystem test_filesystem.cpp)
 add_executable(test_openssl test_openssl.cpp)
+add_executable(test_dtor test_dtor.cpp)
 
 # ==============================================================================
 # lua测试项目
