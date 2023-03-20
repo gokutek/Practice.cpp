@@ -33,10 +33,10 @@
 	url = https://github.com/nothings/stb.git
 [submodule "third_party/libgoku"]
 	path = third_party/libgoku
-	url = https://github.com/gokutek/libgoku.git
+	url = git@github.com:gokutek/libgoku.git
 [submodule "third_party/quickjs"]
 	path = third_party/quickjs
-	url = https://github.com/gokutek/quickjs.git
+	url = git@github.com:gokutek/quickjs.git
 [submodule "third_party/WTL"]
 	path = third_party/WTL
 	url = https://git.code.sf.net/p/wtl/git
