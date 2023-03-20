@@ -23,6 +23,7 @@ add_executable(test_ratas test_ratas.cpp)
 add_executable(test_filesystem test_filesystem.cpp)
 add_executable(test_openssl test_openssl.cpp)
 add_executable(test_dtor test_dtor.cpp)
+add_executable(test_misc test_misc.cpp)
 
 # ==============================================================================
 # lua测试项目

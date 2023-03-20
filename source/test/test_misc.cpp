@@ -1,5 +1,9 @@
-﻿#include <iostream>
-#include "catch.hpp"
+﻿/*
+ * 2023/03/20: 对之前的代码整理，去除catch2单元测试库的依赖
+ */
+
+#include <assert.h>
+#include <iostream>
 
 /*
 =========================
@@ -7,20 +11,18 @@
 =========================
 */
 
-
 /*
 =========================================================
 加上“(std::nothrow)”，内存分配失败时返回NULL，而不是抛出异常
 =========================================================
 */
-TEST_CASE("nothrow", "nothrow")
+static void test_nothrow()
 {
 #ifdef WIN32
-	char* p = new (std::nothrow) char[0x7fffffff];
-    REQUIRE(p == NULL);
+	char* p = new (std::nothrow) char[0x7ffffff];
+    assert(p == NULL);
 #endif // WIN32
 }
-
 
 /*
 ===============================================================================
@@ -49,16 +51,14 @@ namespace
 	};
 }
 
-
-TEST_CASE("pure virtual dtor", "dtor")
+static void test_pure_dtor()
 {
 	//Animal ani;
 	Cat cat;
 	cat;
 }
 
-
-TEST_CASE("2D ARRAY", "2D ARRAY")
+static void test_2d_array()
 {
 	/*
 	==========================================
@@ -73,8 +73,16 @@ TEST_CASE("2D ARRAY", "2D ARRAY")
 		13, 14, 15, 16
 	};
 
-	REQUIRE(matrix[2][3] == 12);
+	assert(matrix[2][3] == 12);
 
 	int *ptr = &matrix[0][0];
-	REQUIRE(ptr[5] == 6);
+	assert(ptr[5] == 6);
+}
+
+int main()
+{
+	//test_nothrow();
+	test_pure_dtor();
+	test_2d_array();
+	return 0;
 }
