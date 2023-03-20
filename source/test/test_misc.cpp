@@ -79,10 +79,35 @@ static void test_2d_array()
 	assert(ptr[5] == 6);
 }
 
+static void test_my_assert()
+{
+	/*
+	==========================================
+	由于RELEASE_MYASSERT1宏展开后时空的，所以函数
+	也不会被调用。
+	==========================================
+	*/
+
+	auto f = [](int a, int b) {
+		int sum = a + b;
+		std::cout << "sum=" << sum << std::endl;
+		return sum;
+	};
+
+#define DEBUG_MYASSERT(cond) if (!cond) { abort(); }
+#define RELEASE_MYASSERT1(cond)
+#define RELEASE_MYASSERT2(cond) cond
+
+	DEBUG_MYASSERT(f(1, 1));
+	RELEASE_MYASSERT1(f(1, 2));
+	RELEASE_MYASSERT2(f(1, 3));
+}
+
 int main()
 {
 	//test_nothrow();
 	test_pure_dtor();
 	test_2d_array();
+	test_my_assert();
 	return 0;
 }
