@@ -103,11 +103,24 @@ static void test_my_assert()
 	RELEASE_MYASSERT2(f(1, 3));
 }
 
+
+static void test_order()
+{
+	//乘法的优先级高于异或
+	int v1 = 10 * 2 ^ 1;
+	int v3 = (10 * 2) ^ 1;
+
+	int v2 = 10 * (2 ^ 1);
+	assert(v1 == v3);
+	assert(v1 != v2);
+}
+
 int main()
 {
 	//test_nothrow();
 	test_pure_dtor();
 	test_2d_array();
 	test_my_assert();
+	test_order();
 	return 0;
 }
