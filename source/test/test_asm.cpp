@@ -1,14 +1,18 @@
-﻿#ifdef WIN32
+﻿/*
+ * 2023/03/24: 整理编译
+ */
 
-#include "catch.hpp"
+#include <Windows.h>
+#include <assert.h>
 
+#ifndef _AMD64_
 /*
 ========
 内联汇编
 ========
 */
 
-TEST_CASE("assembly.1", "[ASM]")
+static void test_asm1()
 {
 	int count = 12;
 
@@ -20,7 +24,7 @@ TEST_CASE("assembly.1", "[ASM]")
 		mov count, eax
 	}
 
-	REQUIRE(count == 97);
+	assert(count == 97);
 }
 
 
@@ -34,8 +38,7 @@ static int func1(int a, int b)
 	return a + b;
 }
 
-
-TEST_CASE("assembly.2", "[ASM]")
+static void test_asm2()
 {
 	int res;
 
@@ -48,7 +51,7 @@ TEST_CASE("assembly.2", "[ASM]")
 		add esp, 8
 	}
 
-	REQUIRE(res == 25);
+	assert(res == 25);
 }
 
 
@@ -62,8 +65,7 @@ static int __stdcall func2(int a, int b)
 	return a + b;
 }
 
-
-TEST_CASE("assembly.3", "[ASM]")
+static void test_asm3()
 {
 	int res;
 
@@ -75,7 +77,17 @@ TEST_CASE("assembly.3", "[ASM]")
 		mov res, eax
 	}
 
-	REQUIRE(res == 25);
+	assert(res == 25);
 }
 
-#endif // WIN32
+#endif // _AMD64_
+
+int main()
+{
+#ifndef _AMD64_
+	test_asm1();
+	test_asm2();
+	test_asm3();
+#endif //_AMD64_
+	return 0;
+}
