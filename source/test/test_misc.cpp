@@ -44,7 +44,6 @@ namespace
 	{
 	}
 
-
 	class Cat : public Animal
 	{
 	public:
@@ -103,7 +102,6 @@ static void test_my_assert()
 	RELEASE_MYASSERT2(f(1, 3));
 }
 
-
 static void test_order()
 {
 	//乘法的优先级高于异或
@@ -115,6 +113,13 @@ static void test_order()
 	assert(v1 != v2);
 }
 
+static void test_hash()
+{
+	std::hash<uint32_t> func;
+	uint32_t i = 123;
+	std::cout << func(i) << std::endl;
+}
+
 int main()
 {
 	//test_nothrow();
@@ -122,5 +127,6 @@ int main()
 	test_2d_array();
 	test_my_assert();
 	test_order();
+	test_hash();
 	return 0;
 }
