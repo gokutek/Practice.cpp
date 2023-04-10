@@ -25,6 +25,7 @@ add_executable(test_openssl test_openssl.cpp)
 add_executable(test_dtor test_dtor.cpp)
 add_executable(test_misc test_misc.cpp)
 add_executable(test_asm test_asm.cpp)
+add_executable(test_win_iocp test_win_iocp.cpp)
 
 # ==============================================================================
 # lua测试项目
