@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <assert.h>
 #include <vector>
 #include <stdint.h>
 
@@ -60,18 +61,69 @@ inline ring_buffer::ring_buffer(size_t size)
 
 inline size_t ring_buffer::get_unread_size() const
 {
-	buffer_.size() - abs(read_pos_ - write_pos_);
-	
+	if (read_pos_ == write_pos_)
+	{
+		return 0;
+	}
+	else if (read_pos_ < write_pos_)
+	{
+		return write_pos_ - read_pos_;
+	}
+	else
+	{
+		return buffer_.size() - read_pos_ + write_pos_;
+	}
 }
 
 inline size_t ring_buffer::read(uint8_t* buffer, size_t buffer_size)
 {
+	size_t sz = std::min(buffer_size, get_unread_size());
+	for (size_t i = 0; i < sz; ++i)
+	{
+		buffer[i] = buffer_[read_pos_++];
+
+		if (read_pos_ >= buffer_.size())
+		{
+			read_pos_ = 0;
+		}
+	}
+	return sz;
 }
 
 inline size_t ring_buffer::get_writable_size() const
 {
+	if (read_pos_ == write_pos_)
+	{
+		return buffer_.size() - 1;
+	}
+	else if (read_pos_ < write_pos_)
+	{
+		return buffer_.size() - (write_pos_ - read_pos_);
+	}
+	else
+	{
+		return read_pos_ - write_pos_;
+	}
 }
 
 inline size_t ring_buffer::write(uint8_t* buffer, size_t buffer_size)
 {
+	size_t sz = std::min(buffer_size, get_writable_size());
+	for (size_t i = 0; i < sz; ++i)
+	{
+		buffer_[i] = buffer[write_pos_++];
+
+		if (write_pos_ >= buffer_.size())
+		{
+			write_pos_ = 0;
+		}
+	}
+	return sz;
 }
+
+/*
+===============================================================================
+Пе
+Тњ
+===============================================================================
+*/
