@@ -10,8 +10,13 @@ int main()
 	int const kBufferSize = 8;
 	ring_buffer rbuffer(kBufferSize);
 	
-	assert(0 == rbuffer.get_unread_size());
-	assert(rbuffer.get_writable_size() == 8);
+	{
+		assert(0 == rbuffer.get_unread_size());
+		assert(rbuffer.get_writable_size() == 8);
+
+		std::vector<std::tuple<uint8_t*, size_t> >  sections = rbuffer.get_writable_sections();
+		assert(sections.size() == 1);
+	}
 
 	{
 		char const buffer[] = "12345678";
@@ -44,6 +49,11 @@ int main()
 		assert(!strcmp(tmp, buffer));
 		assert(0 == rbuffer.get_unread_size());
 		assert(rbuffer.get_writable_size() == 8);
+	}
+
+	{
+		std::vector<std::tuple<uint8_t*, size_t> >  sections = rbuffer.get_writable_sections();
+		assert(sections.size() == 2);
 	}
 
 	return 0;

@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <vector>
 #include <stdint.h>
+#include <tuple>
 
 class ring_buffer
 {
@@ -46,6 +47,12 @@ public:
 	/// <param name="buffer_size">要写入的数据长度</param>
 	/// <returns>实际写入字节数</returns>
 	size_t write(uint8_t* buffer, size_t buffer_size);
+
+	/// <summary>
+	/// 获取可写的区块，最多存在首尾2块
+	/// </summary>
+	/// <returns></returns>
+	std::vector<std::tuple<uint8_t*,size_t> > get_writable_sections();
 
 private:
 	std::vector<uint8_t> buffer_;
@@ -155,6 +162,31 @@ inline size_t ring_buffer::write(uint8_t* buffer, size_t buffer_size)
 	}
 #endif
 	return sz;
+}
+
+inline std::vector<std::tuple<uint8_t*, size_t> > ring_buffer::get_writable_sections()
+{
+	std::vector<std::tuple<uint8_t*, size_t> > sections;
+
+	size_t sz = get_writable_size();
+
+	if (sz > 0)
+	{
+		if (write_pos_ + sz >= buffer_.size())
+		{
+			size_t sz1 = buffer_.size() - write_pos_;
+			sections.push_back(std::make_tuple(&buffer_[write_pos_], sz1));
+
+			size_t sz2 = sz - sz1;
+			sections.push_back(std::make_tuple(&buffer_[0], sz2));
+		}
+		else
+		{
+			sections.push_back(std::make_tuple(&buffer_[write_pos_], sz));
+		}
+	}
+
+	return sections;
 }
 
 /*
