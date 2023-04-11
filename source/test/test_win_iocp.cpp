@@ -25,6 +25,7 @@ https://learn.microsoft.com/en-us/windows/win32/api/mswsock/nf-mswsock-acceptex
 #include <iostream>
 #include <array>
 #include <unordered_map>
+#include "ring_buffer.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment(lib, "Ws2_32.lib")
@@ -65,29 +66,54 @@ private:
     HANDLE iocp_handle_ = NULL;
 };
 
-struct accept_context
+enum class async_io_type
+{
+    invalid,
+    accept,
+    recv,
+    send,
+};
+
+struct async_context
+{
+    WSAOVERLAPPED overlapped;
+    async_io_type type;
+};
+
+struct accept_context : public async_context
 {
     accept_context()
     {
         memset(this, 0, sizeof(*this));
+        type = async_io_type::accept;
     }
 
     SOCKET handle;
-    WSAOVERLAPPED overlapped;
-    uint8_t recv_data[512];
     sockaddr_in local_addr;
     uint8_t local_padding[16];
     sockaddr_in remote_addr;
     uint8_t remote_padding[16];
 };
 
+struct recv_context : public async_context
+{
+    recv_context()
+    {
+        memset(this, 0, sizeof(*this));
+        type = async_io_type::recv;
+    }
+
+    std::array<uint8_t, 64> buffer;
+};
+
 class tcp_connection
 {
 public:
     tcp_connection()
-        : peer_socket_(INVALID_SOCKET)
+        : peer_socket_(INVALID_SOCKET),
+        recv_buffer_(4096)
     {
-        recv_buffer_.reserve(1024);
+        is_recv_post_ = false;
     }
 
     int attach(SOCKET handle)
@@ -101,9 +127,44 @@ public:
     {
     }
 
+    int start_recv()
+    {
+        if (is_recv_post_) 
+        {
+            return -1;
+        }
+
+        WSABUF buf;
+        buf.buf = (char*)recv_context_.buffer.data();
+        buf.len = sizeof(recv_context_.buffer);
+        DWORD dwNumberOfBytesRecvd = 0;
+        DWORD dwFlags = 0;
+        int errorno = WSARecv(peer_socket_, &buf, 1, &dwNumberOfBytesRecvd, &dwFlags, &recv_context_.overlapped, NULL);
+        if (0 == errorno)
+        {
+            // TODO:立即完成了
+        }
+        else if (SOCKET_ERROR == errorno)
+        {
+            if (WSA_IO_PENDING != WSAGetLastError())
+            {
+                // 异步请求发起失败
+            }
+            else
+            {
+                // 异步请求成功发起
+                is_recv_post_ = true;
+            }
+        }
+
+        return 0;
+    }
+
 private:
     SOCKET peer_socket_;
-    std::vector<uint8_t> recv_buffer_;
+    ring_buffer recv_buffer_;
+    recv_context recv_context_;
+    uint32_t is_recv_post_ : 1;
 };
 
 class tcp_server
@@ -178,21 +239,25 @@ public:
         for (size_t i = 0; i < count; ++i)
         {
             OVERLAPPED_ENTRY& entry = entries[i];
-            if (kListenSockCompletionKey == entry.lpCompletionKey)
+            async_context* ctx = (async_context*)entry.lpOverlapped;
+            if (async_io_type::accept == ctx->type)
             {
                 // 接受了一个客户端新连接~
-                accept_context* context = (accept_context*)entry.lpOverlapped;
+                accept_context* context = (accept_context*)ctx;
                 std::unique_ptr<tcp_connection> connection = std::make_unique<tcp_connection>();
                 iocp_.bind(context->handle, connection.get());
                 connection->attach(context->handle);
-                std::cout << "hello listen" << std::endl;
-                clients_.insert(std::make_pair(context->handle, std::move(connection)));
 
-                // TODO:在该连接上发起recv请求
-                // TODO:再发起一个异步accept
+                // 在该客户端套接字上发起异步recv请求
+                connection->start_recv();
+
+                // TODO:在监听套接字上再发起一个异步accept请求
+
+                clients_.insert(std::make_pair(context->handle, std::move(connection)));
             }
-            else
+            else if(async_io_type::recv == ctx->type)
             {
+                recv_context* context = (recv_context*)ctx;
                 assert(false);
             }
         }
@@ -213,8 +278,7 @@ private:
 
         // 发起异步请求
         DWORD dwBytesReceived = 0;
-        BOOL bRetVal = lpfnAcceptEx(listen_socket_, context->handle, context->recv_data,
-                                    sizeof(context->recv_data),
+        BOOL bRetVal = lpfnAcceptEx(listen_socket_, context->handle, &context->local_addr, 0,
                                     sizeof(context->local_addr) + sizeof(context->local_padding),
                                     sizeof(context->remote_addr) + sizeof(context->remote_padding),
                                     &dwBytesReceived,

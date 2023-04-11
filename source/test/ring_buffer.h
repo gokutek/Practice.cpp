@@ -84,7 +84,7 @@ inline size_t ring_buffer::get_unread_size() const
 
 inline size_t ring_buffer::read(uint8_t* buffer, size_t buffer_size)
 {
-	size_t sz = std::min(buffer_size, get_unread_size());
+	size_t sz = (std::min)(buffer_size, get_unread_size());
 #if 0
 	for (size_t i = 0; i < sz; ++i)
 	{
@@ -133,7 +133,7 @@ inline size_t ring_buffer::get_writable_size() const
 
 inline size_t ring_buffer::write(uint8_t* buffer, size_t buffer_size)
 {
-	size_t sz = std::min(buffer_size, get_writable_size());
+	size_t sz = (std::min)(buffer_size, get_writable_size());
 #if 0
 	for (size_t i = 0; i < sz; ++i)
 	{
