@@ -111,7 +111,7 @@ inline size_t ring_buffer::write(uint8_t* buffer, size_t buffer_size)
 	size_t sz = std::min(buffer_size, get_writable_size());
 	for (size_t i = 0; i < sz; ++i)
 	{
-		buffer_[i] = buffer[write_pos_++];
+		buffer_[write_pos_++] = buffer[i];
 
 		if (write_pos_ >= buffer_.size())
 		{
