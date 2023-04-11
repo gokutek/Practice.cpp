@@ -78,6 +78,7 @@ inline size_t ring_buffer::get_unread_size() const
 inline size_t ring_buffer::read(uint8_t* buffer, size_t buffer_size)
 {
 	size_t sz = std::min(buffer_size, get_unread_size());
+#if 0
 	for (size_t i = 0; i < sz; ++i)
 	{
 		buffer[i] = buffer_[read_pos_++];
@@ -87,6 +88,23 @@ inline size_t ring_buffer::read(uint8_t* buffer, size_t buffer_size)
 			read_pos_ = 0;
 		}
 	}
+#else
+	if (read_pos_ + sz >= buffer_.size())
+	{
+		size_t sz1 = buffer_.size() - read_pos_;
+		memcpy(buffer, &buffer_[read_pos_], sz1);
+
+		size_t sz2 = sz - sz1;
+		memcpy(buffer + sz1, &buffer_[0], sz2);
+
+		read_pos_ = sz2;
+	}
+	else
+	{
+		memcpy(buffer, &buffer_[read_pos_], sz);
+		read_pos_ += sz;
+	}
+#endif
 	return sz;
 }
 
@@ -109,6 +127,7 @@ inline size_t ring_buffer::get_writable_size() const
 inline size_t ring_buffer::write(uint8_t* buffer, size_t buffer_size)
 {
 	size_t sz = std::min(buffer_size, get_writable_size());
+#if 0
 	for (size_t i = 0; i < sz; ++i)
 	{
 		buffer_[write_pos_++] = buffer[i];
@@ -118,6 +137,23 @@ inline size_t ring_buffer::write(uint8_t* buffer, size_t buffer_size)
 			write_pos_ = 0;
 		}
 	}
+#else
+	if (write_pos_ + sz >= buffer_.size())
+	{
+		size_t sz1 = buffer_.size() - write_pos_;
+		memcpy(&buffer_[write_pos_], buffer, sz1);
+
+		size_t sz2 = sz - sz1;
+		memcpy(&buffer_[0], buffer + sz1, sz2);
+
+		write_pos_ = sz2;
+	}
+	else
+	{
+		memcpy(&buffer_[write_pos_], buffer, sz);
+		write_pos_ += sz;
+	}
+#endif
 	return sz;
 }
 
