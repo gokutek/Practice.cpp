@@ -54,6 +54,12 @@ public:
 	/// <returns></returns>
 	std::vector<std::tuple<uint8_t*,size_t> > get_writable_sections();
 
+	/// <summary>
+	/// 向前移动写指针位置
+	/// </summary>
+	/// <param name="offset"></param>
+	void advance_write_pos(size_t offset);
+
 private:
 	std::vector<uint8_t> buffer_;
 	size_t read_pos_;
@@ -187,6 +193,22 @@ inline std::vector<std::tuple<uint8_t*, size_t> > ring_buffer::get_writable_sect
 	}
 
 	return sections;
+}
+
+inline void ring_buffer::advance_write_pos(size_t offset)
+{
+	size_t sz = (std::min)(offset, get_writable_size());
+
+	if (write_pos_ + sz >= buffer_.size())
+	{
+		size_t sz1 = buffer_.size() - write_pos_;
+		size_t sz2 = sz - sz1;
+		write_pos_ = sz2;
+	}
+	else
+	{
+		write_pos_ += sz;
+	}
 }
 
 /*

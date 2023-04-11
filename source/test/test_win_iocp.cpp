@@ -103,7 +103,9 @@ struct recv_context : public async_context
         type = async_io_type::recv;
     }
 
-    std::array<uint8_t, 64> buffer;
+    size_t buf_used_count;
+    WSABUF buf[2];
+    class tcp_connection* connection;
 };
 
 class tcp_connection
@@ -111,7 +113,7 @@ class tcp_connection
 public:
     tcp_connection()
         : peer_socket_(INVALID_SOCKET),
-        recv_buffer_(4096)
+        recv_buffer_(8)
     {
         is_recv_post_ = false;
     }
@@ -131,15 +133,25 @@ public:
     {
         if (is_recv_post_) 
         {
-            return -1;
+            return -1; //已经投递了Recv请求
         }
 
-        WSABUF buf;
-        buf.buf = (char*)recv_context_.buffer.data();
-        buf.len = sizeof(recv_context_.buffer);
-        DWORD dwNumberOfBytesRecvd = 0;
+        std::vector<std::tuple<uint8_t*, size_t> > sections = recv_buffer_.get_writable_sections();
+        if (sections.empty())
+        {
+            return -1; //接收缓冲区已满~
+        }
+
+        recv_context_.buf_used_count = sections.size();
+        for (size_t i = 0; i < sections.size(); ++i)
+        {
+            recv_context_.buf[i].buf = (CHAR*)std::get<0>(sections[i]);
+            recv_context_.buf[i].len = std::get<1>(sections[i]);
+        }
+        recv_context_.connection = this;
         DWORD dwFlags = 0;
-        int errorno = WSARecv(peer_socket_, &buf, 1, &dwNumberOfBytesRecvd, &dwFlags, &recv_context_.overlapped, NULL);
+        int errorno = WSARecv(peer_socket_, recv_context_.buf, recv_context_.buf_used_count, 
+                              NULL, &dwFlags, &recv_context_.overlapped, NULL);
         if (0 == errorno)
         {
             // TODO:立即完成了
@@ -158,6 +170,23 @@ public:
         }
 
         return 0;
+    }
+
+    void on_recv()
+    {
+        DWORD dwTransferBytes = 0;
+        DWORD dwFlags = 0;
+        WSAGetOverlappedResult(peer_socket_, &recv_context_.overlapped, &dwTransferBytes, FALSE, &dwFlags);
+        recv_buffer_.advance_write_pos(dwTransferBytes);
+
+        size_t sz = recv_buffer_.get_unread_size();
+        std::unique_ptr<char[]> buffer(new char[sz + 1]);
+        recv_buffer_.read((uint8_t*)buffer.get(), sz);
+        buffer[sz] = 0;
+        std::cout << buffer.get() << std::endl;
+
+        is_recv_post_ = false;
+        start_recv();
     }
 
 private:
@@ -255,10 +284,10 @@ public:
 
                 clients_.insert(std::make_pair(context->handle, std::move(connection)));
             }
-            else if(async_io_type::recv == ctx->type)
+            else if (async_io_type::recv == ctx->type)
             {
                 recv_context* context = (recv_context*)ctx;
-                assert(false);
+                context->connection->on_recv();
             }
         }
     }
@@ -343,26 +372,11 @@ int main()
 
     WSACleanup();
     return 0;
-
-#if 0
-    // Associate the accept socket with the completion port
-    HANDLE hCompPort2 = CreateIoCompletionPort((HANDLE)AcceptSocket, hCompPort, (u_long)0, 0);
-    // hCompPort2 should be hCompPort if this succeeds
-    if (hCompPort2 == NULL) 
-    {
-        wprintf(L"CreateIoCompletionPort associate failed with error: %u\n", GetLastError());
-        closesocket(AcceptSocket);
-        closesocket(ListenSocket);
-        return 1;
-    }
-
-    // Continue on to use send, recv, TransmitFile(), etc.,.
-    //...
-#endif
 }
 
 /*
 ===============================================================================
 1，OVERLAPPED不能放栈上，在异步请求完成前，内存必须一直有效；
+2，WSABUF[]可以描述多块不连续的内存，非常适合环形缓冲区首尾有空间、中间没空间的情况
 ===============================================================================
 */
