@@ -152,6 +152,16 @@ add_executable(WTLExplorer WIN32
     WTL/Samples/WTLExplorer/WTLExplorer.cpp
     WTL/Samples/WTLExplorer/WTLExplorer.rc
     )
-
+    
 # TODO:MTPad7
 # TODO:Wizard97Test
+
+set_property(TARGET Aero PROPERTY FOLDER "WTL Samples")
+set_property(TARGET Alpha PROPERTY FOLDER "WTL Samples")
+set_property(TARGET BmpView PROPERTY FOLDER "WTL Samples")
+set_property(TARGET GuidGen PROPERTY FOLDER "WTL Samples")
+set_property(TARGET MDIDocVw PROPERTY FOLDER "WTL Samples")
+set_property(TARGET MemDlg PROPERTY FOLDER "WTL Samples")
+set_property(TARGET MTPad PROPERTY FOLDER "WTL Samples")
+set_property(TARGET TabBrowser PROPERTY FOLDER "WTL Samples")
+set_property(TARGET WTLExplorer PROPERTY FOLDER "WTL Samples")
