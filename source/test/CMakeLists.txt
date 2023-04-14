@@ -38,6 +38,7 @@ add_single_file_project(test_ring_buffer)
 # ==============================================================================
 add_executable(test_lua_capi test_lua_capi.cpp)
 target_link_libraries(test_lua_capi lualib)
+set_property(TARGET test_lua_capi PROPERTY FOLDER "lua")
 
 # ==============================================================================
 # lua扩展库，动态链接库，必须加上LUA_BUILD_AS_DLL、LUA_LIB以导出符号
@@ -45,6 +46,7 @@ target_link_libraries(test_lua_capi lualib)
 add_library(test_lua_ext_lib SHARED test_lua_ext_lib.cpp)
 target_link_libraries(test_lua_ext_lib lualib)
 target_compile_definitions(test_lua_ext_lib PRIVATE LUA_BUILD_AS_DLL PRIVATE LUA_LIB)
+set_property(TARGET test_lua_ext_lib PROPERTY FOLDER "lua")
 
 # ==============================================================================
 # test_simple_proto
@@ -54,19 +56,18 @@ add_executable(test_simple_proto
     ${THIRD_PARTY_ROOT_PATH}/jsoncpp/src/lib_json/json_writer.cpp
     ${THIRD_PARTY_ROOT_PATH}/jsoncpp/src/lib_json/json_value.cpp
     test_simple_proto.cpp)
+set_property(TARGET test_simple_proto PROPERTY FOLDER "test")
 
 # ==============================================================================
 # test_sqlite
 # ==============================================================================
-set(TARGET test_sqlite)
-
-set(TARGET_SRC
+add_executable(test_sqlite 
     ${THIRD_PARTY_ROOT_PATH}/sqlite/sqlite3.c
     ${THIRD_PARTY_ROOT_PATH}/microprofile/microprofile.cpp
-    test_sqlite.cpp)
-
-add_executable(${TARGET} ${TARGET_SRC})
-target_link_libraries(${TARGET} ws2_32)
+    test_sqlite.cpp
+    )
+target_link_libraries(test_sqlite ws2_32)
+set_property(TARGET test_sqlite PROPERTY FOLDER "test")
 
 # ==============================================================================
 # test_lunasvg: 渲染SVG
@@ -74,3 +75,4 @@ target_link_libraries(${TARGET} ws2_32)
 add_subdirectory(../../third_party/lunasvg ../../third_party/lunasvg/build)
 add_executable(test_lunasvg test_lunasvg.cpp)
 target_link_libraries(test_lunasvg lunasvg)  
+set_property(TARGET test_lunasvg PROPERTY FOLDER "test")

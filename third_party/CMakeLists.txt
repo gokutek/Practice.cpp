@@ -32,10 +32,12 @@ add_library(lualib STATIC
     lua/ltablib.c
     lua/lutf8lib.c
     lua/linit.c)
+set_property(TARGET lualib PROPERTY FOLDER "lua")
 
 # lua交互式解释器
 add_executable(lua lua/lua.c)
 target_link_libraries(lua lualib)
+set_property(TARGET lua PROPERTY FOLDER "lua")
 
 # WTL示例程序
 SET(THIRD_PARTY_ROOT_PATH ${CMAKE_HOME_DIRECTORY}/third_party/)
