@@ -32,12 +32,12 @@ add_library(lualib STATIC
     lua/ltablib.c
     lua/lutf8lib.c
     lua/linit.c)
-set_property(TARGET lualib PROPERTY FOLDER "lua")
+set_property(TARGET lualib PROPERTY FOLDER "third_party")
 
 # lua交互式解释器
 add_executable(lua lua/lua.c)
 target_link_libraries(lua lualib)
-set_property(TARGET lua PROPERTY FOLDER "lua")
+set_property(TARGET lua PROPERTY FOLDER "third_party")
 
 # WTL示例程序
 SET(THIRD_PARTY_ROOT_PATH ${CMAKE_HOME_DIRECTORY}/third_party/)
@@ -158,12 +158,12 @@ add_executable(WTLExplorer WIN32
 # TODO:MTPad7
 # TODO:Wizard97Test
 
-set_property(TARGET Aero PROPERTY FOLDER "WTL Samples")
-set_property(TARGET Alpha PROPERTY FOLDER "WTL Samples")
-set_property(TARGET BmpView PROPERTY FOLDER "WTL Samples")
-set_property(TARGET GuidGen PROPERTY FOLDER "WTL Samples")
-set_property(TARGET MDIDocVw PROPERTY FOLDER "WTL Samples")
-set_property(TARGET MemDlg PROPERTY FOLDER "WTL Samples")
-set_property(TARGET MTPad PROPERTY FOLDER "WTL Samples")
-set_property(TARGET TabBrowser PROPERTY FOLDER "WTL Samples")
-set_property(TARGET WTLExplorer PROPERTY FOLDER "WTL Samples")
+set_property(TARGET Aero PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET Alpha PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET BmpView PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET GuidGen PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET MDIDocVw PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET MemDlg PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET MTPad PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET TabBrowser PROPERTY FOLDER "third_party/wtl_samples")
+set_property(TARGET WTLExplorer PROPERTY FOLDER "third_party/wtl_samples")

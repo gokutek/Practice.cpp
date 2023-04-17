@@ -14,3 +14,4 @@ INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/ratas/src)
 # 一些单文件项目
 # ==============================================================================
 add_executable(fight_system fight_system.cpp)
+set_property(TARGET fight_system PROPERTY FOLDER "game")
