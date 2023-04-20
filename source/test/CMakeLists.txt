@@ -9,6 +9,7 @@ INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/sqlite)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/rapidxml)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/jsoncpp/include)
 INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/ratas/src)
+INCLUDE_DIRECTORIES(${THIRD_PARTY_ROOT_PATH}/sigslot/include)
 
 # ==============================================================================
 # 一些单文件项目

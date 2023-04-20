@@ -26,6 +26,7 @@ https://learn.microsoft.com/en-us/windows/win32/api/mswsock/nf-mswsock-acceptex
 #include <array>
 #include <unordered_map>
 #include "ring_buffer.h"
+#include "sigslot/signal.hpp"
 
 // Need to link with Ws2_32.lib
 #pragma comment(lib, "Ws2_32.lib")
@@ -110,6 +111,11 @@ struct recv_context : public async_context
 
 class tcp_connection
 {
+    friend class tcp_server;
+
+public:
+    sigslot::signal<uint8_t*, size_t> sig_on_read_;
+
 public:
     tcp_connection()
         : peer_socket_(INVALID_SOCKET),
@@ -118,6 +124,14 @@ public:
         is_recv_post_ = false;
     }
 
+    /** 发送数据 */
+    int send_data(uint8_t* data, size_t sz)
+    {
+        //TODO:
+        return 0;
+    }
+
+private:
     int attach(SOCKET handle)
     {
         assert(peer_socket_ == INVALID_SOCKET);
@@ -127,6 +141,7 @@ public:
 
     void close()
     {
+        //closesocket(peer_socket_);
     }
 
     int start_recv()
@@ -172,7 +187,7 @@ public:
         return 0;
     }
 
-    void on_recv()
+    void on_recv_data()
     {
         DWORD dwTransferBytes = 0;
         DWORD dwFlags = 0;
@@ -180,13 +195,14 @@ public:
         recv_buffer_.advance_write_pos(dwTransferBytes);
 
         size_t sz = recv_buffer_.get_unread_size();
-        std::unique_ptr<char[]> buffer(new char[sz + 1]);
-        recv_buffer_.read((uint8_t*)buffer.get(), sz);
-        buffer[sz] = 0;
-        std::cout << buffer.get() << std::endl;
+        std::unique_ptr<uint8_t[]> buffer(new uint8_t[sz]);
+        recv_buffer_.read(buffer.get(), sz);
+        sig_on_read_(buffer.get(), sz);
 
         is_recv_post_ = false;
         start_recv();
+
+        //TODO:如果dwTransferBytes为0表示对方断开了连接
     }
 
 private:
@@ -198,6 +214,9 @@ private:
 
 class tcp_server
 {
+public:
+    sigslot::signal<tcp_connection*> sig_on_connection_;
+
 public:
     int create(uint16_t port)
     {
@@ -277,17 +296,23 @@ public:
                 iocp_.bind(context->handle, connection.get());
                 connection->attach(context->handle);
 
+                // 信号通知
+                sig_on_connection_(connection.get());
+
                 // 在该客户端套接字上发起异步recv请求
                 connection->start_recv();
 
-                // TODO:在监听套接字上再发起一个异步accept请求
-
+                // 保存到列表里
                 clients_.insert(std::make_pair(context->handle, std::move(connection)));
+                
+                // 在监听套接字上再发起一个异步accept请求
+                delete context;
+                start_accept();
             }
             else if (async_io_type::recv == ctx->type)
             {
                 recv_context* context = (recv_context*)ctx;
-                context->connection->on_recv();
+                context->connection->on_recv_data();
             }
         }
     }
@@ -350,6 +375,42 @@ private:
 class echo_server
 {
 public:
+    int init()
+    {
+        server_.create(20023);
+        server_.sig_on_connection_.connect(&echo_server::on_recv_connection, this);
+        return 0;
+    }
+
+    void update()
+    {
+        server_.update();
+    }
+
+    void destroy()
+    {
+        server_.sig_on_connection_.disconnect_all();
+    }
+
+private:
+    /** 收到一个客户端连接 */
+    void on_recv_connection(tcp_connection* connection)
+    {
+        connection->sig_on_read_.connect(std::bind(&echo_server::on_recv_data, this, connection, std::placeholders::_1, std::placeholders::_2));
+    }
+
+    /** 收到数据 */
+    void on_recv_data(tcp_connection* connection, uint8_t* data, size_t sz)
+    {
+        char buffer[1024];
+        assert(sz < _countof(buffer));
+        memcpy(buffer, data, sz);
+        buffer[sz] = 0;
+        std::cout << buffer;
+    }
+
+private:
+    tcp_server server_;
 };
 
 int main()
@@ -361,8 +422,8 @@ int main()
         return 1;
     }
 
-    tcp_server server;
-    server.create(20023);
+    echo_server server;
+    server.init();
     bool quit = false;
     while (!quit)
     {
