@@ -1,7 +1,11 @@
 /*
  * 2023/04/17: 仅测试，后续UI还是考虑用Qt~
+ * 2023/11/15: 编译遇到问题了，先注掉；
+ *			   fatal  error C1083: 无法打开包括文件: “atlbase.h”: No such file or directory
  */
+#include <Windows.h>
 
+#if 0
 #include <atlbase.h>
 #include <atlapp.h>
 #include <atlframe.h>
@@ -60,3 +64,9 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 	_Module.Term();
 	return nRet;
 }
+#else
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lpstrCmdLine, int nCmdShow)
+{
+	return 0;
+}
+#endif
