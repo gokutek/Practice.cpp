@@ -33,6 +33,7 @@ add_single_file_project(test_misc)
 add_single_file_project(test_asm)
 add_single_file_project(test_win_iocp)
 add_single_file_project(test_ring_buffer)
+add_single_file_project(test_udp_socket)
 
 # ==============================================================================
 # lua测试项目
