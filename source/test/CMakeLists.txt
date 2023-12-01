@@ -80,3 +80,14 @@ add_executable(test_lunasvg test_lunasvg.cpp)
 target_link_libraries(test_lunasvg lunasvg)  
 set_property(TARGET test_lunasvg PROPERTY FOLDER "test")
 set_property(TARGET lunasvg PROPERTY FOLDER "third_party")
+
+# ==============================================================================
+# test_kcp
+# ==============================================================================
+add_executable(test_kcp 
+    ${THIRD_PARTY_ROOT_PATH}/kcp/ikcp.h
+    ${THIRD_PARTY_ROOT_PATH}/kcp/ikcp.c
+    test_kcp.cpp
+    )
+target_link_libraries(test_kcp ws2_32)
+set_property(TARGET test_kcp PROPERTY FOLDER "test")
