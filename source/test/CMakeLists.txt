@@ -35,6 +35,7 @@ add_single_file_project(test_win_iocp)
 add_single_file_project(test_ring_buffer)
 add_single_file_project(test_udp_socket)
 add_single_file_project(test_variadic_template)
+add_single_file_project(test_printf_format)
 
 # ==============================================================================
 # lua测试项目
