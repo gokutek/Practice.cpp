@@ -9,6 +9,7 @@
 #include <Windows.h>
 #include <memory.h>
 #include <iostream>
+#include <WS2tcpip.h>
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -113,7 +114,7 @@ static int udp_client_main()
     sockaddr_in servaddr;
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET; // IPv4 
-    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
     servaddr.sin_port = htons(PORT);
 
     while (true)
