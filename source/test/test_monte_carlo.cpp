@@ -1,25 +1,48 @@
-#include <random>
+ï»¿#include <random>
 #include <iostream>
 #include <time.h>
 
 /*
 ===============================================================================
-¼ÙÉè±»»ıº¯ÊıÊÇx^2£¬»ı·ÖÇø¼äÊÇ[1,10]£¬½âÎö·½Ê½Çó½â½á¹ûÊÇ333
+å‡è®¾è¢«ç§¯å‡½æ•°æ˜¯x^2ï¼Œç§¯åˆ†åŒºé—´æ˜¯[3,6]ï¼Œè§£ææ–¹å¼æ±‚è§£ç»“æœæ˜¯63.
+
+ç”¨è’™ç‰¹å¡ç½—æ–¹æ³•æ±‚ç®—$\int_{a}^{b}f(x)dx$çš„æ­¥éª¤ï¼š
+1ï¼Œåœ¨ç§¯åˆ†åŒºé—´$[a,b]$å†…ä½¿ç”¨å‡åŒ€åˆ†å¸ƒéšæœºç”Ÿæˆ$n$ä¸ªé‡‡æ ·ç‚¹ï¼›
+2ï¼Œè®¡ç®—$F_n=\frac{b-a}{n}\sum_{i=1}^{n}f(X_i)$ï¼Œä½œä¸ºç§¯åˆ†çš„è¿‘ä¼¼å€¼ã€‚
 ===============================================================================
 */
 
+double INT_LOWER_BOUND = 3;
+double INT_UPPER_BOUND = 6;
+
+static double fx(double x)
+{
+	return x * x;
+}
+
+static double calc(std::default_random_engine& engine, std::uniform_real_distribution<double>& uniform, int samples)
+{
+	double result = 0;
+	double factor = 1.0f * (INT_UPPER_BOUND - INT_LOWER_BOUND) / samples;
+	for (int i = 0; i < samples; ++i)
+	{
+		double x = uniform(engine);
+		result += factor * fx(x);
+	}
+	return result;
+}
+
 int main()
 {
-	srand((unsigned int)time(nullptr));
+	std::default_random_engine engine((unsigned int)time(nullptr));
+	std::uniform_real_distribution<double> uniform(INT_LOWER_BOUND, INT_UPPER_BOUND);
 	
-	int const SAMPLER_COUNT = 1000000;
-	float result = 0;
-	for (int i = 0; i < SAMPLER_COUNT; ++i)
-	{
-		int x = (rand()%10+1);
-		result += x*x;
-	}
-	std::cout << 1.0f*result/SAMPLER_COUNT*10 << std::endl;
+	std::cout << calc(engine, uniform, 1000) << std::endl;
+	std::cout << calc(engine, uniform, 10000) << std::endl;
+	std::cout << calc(engine, uniform, 100000) << std::endl;
+	std::cout << calc(engine, uniform, 1000000) << std::endl;
+	std::cout << calc(engine, uniform, 10000000) << std::endl;
+	std::cout << calc(engine, uniform, 100000000) << std::endl;
 
 	return 0;
 }
