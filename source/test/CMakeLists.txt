@@ -37,6 +37,7 @@ add_single_file_project(test_udp_socket)
 add_single_file_project(test_variadic_template)
 add_single_file_project(test_printf_format)
 add_single_file_project(test_tagged_pointer)
+add_single_file_project(test_rbtree)
 
 # ==============================================================================
 # lua测试项目
